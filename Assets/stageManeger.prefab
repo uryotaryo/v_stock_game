@@ -43,8 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e623d3a9b3ae0bf449f82fb0e45cc804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagebox_interval: 1
-  stageobj:
+  stageBox_Interval: 1
+  stageObj:
   - {fileID: 3094955803296618017, guid: d3af12e4340422a479d86f66466f8391, type: 3}
   create: 0
-  childdestroy: 0

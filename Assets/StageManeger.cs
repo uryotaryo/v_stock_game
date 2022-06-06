@@ -4,18 +4,19 @@ using UnityEngine;
 using UnityEditor;
 using System;
 
+[ExecuteInEditMode]
 public class StageManeger : MonoBehaviour
 {
     [SerializeField]
-    float stagebox_interval;
+    private float stageBox_Interval;
     [NonSerialized]
-    public int[,] Pathfindingmap = {
+    public int[,] Path_finding_map = {
         {0,0,0,0},
         {0,0,0,0},
         {0,0,0,0},
         {0,0,0,0}
         };
-    private int[,]Designmap = {
+    private int[,]Design_map = {
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
@@ -26,21 +27,16 @@ public class StageManeger : MonoBehaviour
         {0,0,0,0,0,0,0,0,0,0}
     };
     [SerializeField]
-    private GameObject[] stageobj;
-    [SerializeField]
-    private bool create;
-    [SerializeField]
-    private bool childdestroy;
+    private GameObject[] stageObj;
     private (int x,int y)StageSize;
-    void OnValidate(){
-        StageSize = (Designmap.GetLength(0),Designmap.GetLength(1));
-        if(create){
-            test();
-            create = false;
-        }
 
+    public void OnDate(){
+        StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
+        foreach (Transform t in this.transform){
+            EditorApplication.delayCall += () => Destroy(t.gameObject);
+        }
+        test();
     }
- 
     // Start is called before the first frame update
     void Start()
     {
@@ -53,25 +49,43 @@ public class StageManeger : MonoBehaviour
         
     }
     private void test(){
-        for (int x = 0;x < Designmap.GetLength(0);x++){
-            for(int y = 0;y < Designmap.GetLength(1);y++){
-                samon(stageobj[Designmap[x,y]],x,y);
-                Debug.Log(Designmap[x,y]);
+        for (int x = 0;x < Design_map.GetLength(0);x++){
+            for(int y = 0;y < Design_map.GetLength(1);y++){
+                samon(stageObj[Design_map[x,y]],x,y);
+                Debug.Log(Design_map[x,y]);
             }
 
         }
     }
-    private void Repos(GameObject g, Vector3 v){
+    private void repos(GameObject g, Vector3 v){
         g.transform.localPosition = v;
     }
     private void samon(GameObject obj,int x,int y){
-        Vector3 samonpos = new Vector3((-(StageSize.x/2)+x)*stagebox_interval,0,(-(StageSize.y/2)+y)*stagebox_interval);
-        Vector3 boxpos = this.transform.position;
-        boxpos.x += samonpos.x; 
-        boxpos.y += samonpos.y;
-        boxpos.z += samonpos.z;
-        var gameobj = Instantiate(obj,Vector3.zero,Quaternion.identity);
-        EditorApplication.delayCall += () => gameobj.transform.SetParent(this.transform);
-        Repos(gameobj,boxpos);
+        Vector3 samon_pos = new Vector3((-(StageSize.x/2)+x)*stageBox_Interval,0,(-(StageSize.y/2)+y)*stageBox_Interval);
+        Vector3 box_pos = this.transform.position;
+        box_pos.x += samon_pos.x; 
+        box_pos.y += samon_pos.y;
+        box_pos.z += samon_pos.z;
+        var game_obj = Instantiate(obj,Vector3.zero,Quaternion.identity);
+        EditorApplication.delayCall += () => game_obj.transform.SetParent(this.transform);
+        repos(game_obj,box_pos);
     }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(StageManeger))]
+public class StageManegerEditer:Editor{
+    void OnEnable(){
+
+    }
+    public override void OnInspectorGUI()
+    {
+        base.OnInspectorGUI();
+        if(GUILayout.Button("作成")){
+            Debug.Log("ステージを再作成します。");
+            ((StageManeger)target).OnDate();
+        }
+    }
+
+}
+#endif
