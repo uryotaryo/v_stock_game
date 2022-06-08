@@ -8936,8 +8936,7 @@ Transform:
   m_LocalPosition: {x: -2, y: 0, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 748093293}
-  m_RootOrder: 22
+
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2109826704
 MonoBehaviour:
@@ -9123,9 +9122,6 @@ MeshFilter:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2115056219}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1001 &1249518408380765530
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9134,7 +9130,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1249518407555640228, guid: 12036b481e7fd2546bb3140488496437, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1249518407555640228, guid: 12036b481e7fd2546bb3140488496437, type: 3}
       propertyPath: m_LocalPosition.x
