@@ -41,17 +41,22 @@ public class StageManeger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.Set_Stage_Maneger(this.gameObject);
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if(GameManager.Get_Stage_Maneger() == null) GameManager.Set_Stage_Maneger(this.gameObject);
+
     }
-    public static Vector3 VectorReturn(int x,int y){
-        //TODO:配列番号に対しての３次元座標を返す
-        return new Vector3(0,0,0);
+    public Vector3 VectorReturn(int x,int y){
+        Vector3 samon_pos = new Vector3((-(StageSize.x/2)+x)*stageBox_Interval,0,(-(StageSize.y/2)+y)*stageBox_Interval);
+        Vector3 box_pos = this.transform.position;
+        box_pos.x += samon_pos.x; 
+        box_pos.y += samon_pos.y;
+        box_pos.z += samon_pos.z;
+        return box_pos;
     }
     public static (int,int)BoxPos_Move(int n_x,int n_y,int g_x,int g_y){
         int x_diff = diff(n_x,g_x);
@@ -77,7 +82,8 @@ public class StageManeger : MonoBehaviour
     }
     public void DoTarget((int x,int y)target){
         targetpos = target;
-        Debug.Log(targetpos);
+        GameObject.FindWithTag("Player").GetComponent<Player>().Set_target(targetpos.x,targetpos.y);
+        //Debug.Log(targetpos);
     }
     private void repos(GameObject g, Vector3 v){
         g.transform.localPosition = v;

@@ -19,7 +19,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        this.transform.position = StageManeger.VectorReturn(0,0);
+        this.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(0,0);
     }
 
     // Update is called once per frame
@@ -27,11 +27,16 @@ public class Player : MonoBehaviour
     {
         if(!posCheck())return;
         frame_meta += Time.deltaTime * 1000;
+        Debug.Log(_x +":"+_y+":"+_t_x+":"+_t_y);
         if(frame_intaval < frame_meta){
             frame_meta = 0;
             var repos = StageManeger.BoxPos_Move(_x,_y,_t_x,_t_y);
             _x = repos.Item1;
             _y = repos.Item2;
+            this.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
         }
+        var pos = this.transform.position;
+        pos.y = 1;
+        this.transform.position = pos;
     }
 }
