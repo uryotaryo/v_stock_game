@@ -17,7 +17,7 @@ public class CameraMove : MonoBehaviour
     void Update()
     {
         GameObject hit_obj;
-        if(Input.GetMouseButton(0)){
+        if(Player_Input.Mouse_Reft_Click){
             
             Ray ray = mycamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit_info = new RaycastHit();
@@ -25,8 +25,12 @@ public class CameraMove : MonoBehaviour
 
             bool is_hit = Physics.Raycast (ray, out hit_info, max_distance); 
             if (is_hit) {
-                hit_obj = hit_info.transform.gameObject;
-                Debug.Log(hit_obj);
+                if(hit_info.transform.tag == "Stage_Box"){
+                    hit_info.transform.GetComponent<StagePropaty>().Hit();
+                }else{
+                    hit_obj = hit_info.transform.gameObject;
+                    Debug.Log(hit_obj);
+                }
             }   
         }
 

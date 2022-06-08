@@ -46,4 +46,4 @@ MonoBehaviour:
   stageBox_Interval: 1
   stageObj:
   - {fileID: 3094955803296618017, guid: d3af12e4340422a479d86f66466f8391, type: 3}
-  create: 0
+  - {fileID: 5867546465350735404, guid: e5a759e4b58dbff4db8baaf2a8de8f0c, type: 3}

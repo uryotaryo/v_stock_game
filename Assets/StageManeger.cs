@@ -19,16 +19,17 @@ public class StageManeger : MonoBehaviour
     private int[,]Design_map = {
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
+        {0,1,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
+        {0,1,0,1,0,1,0,1,0,1},
         {0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0}
     };
     [SerializeField]
     private GameObject[] stageObj;
     private (int x,int y)StageSize;
+    private (int x,int y)targetpos;
 
     public void OnDate(){
         StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
@@ -57,6 +58,10 @@ public class StageManeger : MonoBehaviour
 
         }
     }
+    public void DoTarget((int x,int y)target){
+        targetpos = target;
+        Debug.Log(targetpos);
+    }
     private void repos(GameObject g, Vector3 v){
         g.transform.localPosition = v;
     }
@@ -67,6 +72,8 @@ public class StageManeger : MonoBehaviour
         box_pos.y += samon_pos.y;
         box_pos.z += samon_pos.z;
         var game_obj = Instantiate(obj,Vector3.zero,Quaternion.identity);
+        var ads = game_obj.AddComponent<StagePropaty>();
+        game_obj.GetComponent<StagePropaty>().Set_Box_Pos(x,y);
         EditorApplication.delayCall += () => game_obj.transform.SetParent(this.transform);
         repos(game_obj,box_pos);
     }
