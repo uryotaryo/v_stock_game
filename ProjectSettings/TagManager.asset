@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Camera
   - Stage_Box
+  - StageManeger
   layers:
   - Default
   - TransparentFX

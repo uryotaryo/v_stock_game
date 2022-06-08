@@ -7,11 +7,19 @@ public class GameManager : MonoBehaviour
 {
     
     private static GameManager _my_Maneger;
+    private static GameObject _stage_Maneger;
     public static GameManager Get_GameManager(){
         return _my_Maneger;
     }
-    private void Await(){
+    public static void Set_Stage_Maneger(GameObject obj){
+        _stage_Maneger = obj;
+    }
+    public static GameObject Get_Stage_Maneger(){
+        return _stage_Maneger;
+    }
+    private void Awake(){
         _my_Maneger = this.GetComponent<GameManager>();
+        _stage_Maneger = GameObject.FindWithTag("StageManeger");
     }
     // Start is called before the first frame update
     void Start()
@@ -23,7 +31,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Player_Input.Input_Update();
-        
     }
 }
 public static class Player_Input{
@@ -45,13 +52,6 @@ public static class Player_Input{
             _mouse_Click_Intabal_Meta = _mouse_Click_Intabal;
             Mouse_Reft_Up = true;
         }
-        /*
-        if(_mous_Intabal_meta >= 0){
-            _mous_Intabal_meta -= Time.deltaTime;
-        }else{
-            _mous_Intabal_meta = _mous_Intabal;
-
-        }*/
     }
     private static void full_false(){
         Mouse_Reft_Down = false;
