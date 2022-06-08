@@ -35,6 +35,10 @@ public class CameraMove : MonoBehaviour
         }
 
         var mous = Input.mouseScrollDelta;
-        mycamera.fieldOfView += mous.y * speed;
+        var pos = this.transform.position;
+        pos += this.transform.forward * mous.y * speed;
+        Debug.Log(pos);
+        if(pos.y <= 5)return;
+        this.transform.position = pos;
     }
 }

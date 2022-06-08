@@ -17,8 +17,9 @@ public class GameManager : MonoBehaviour
     public static GameObject Get_Stage_Maneger(){
         return _stage_Maneger;
     }
-    private void Await(){
+    private void Awake(){
         _my_Maneger = this.GetComponent<GameManager>();
+        _stage_Maneger = GameObject.FindWithTag("StageManeger");
     }
     // Start is called before the first frame update
     void Start()
@@ -30,7 +31,6 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         Player_Input.Input_Update();
-        
     }
 }
 public static class Player_Input{

@@ -17,14 +17,14 @@ public class StageManeger : MonoBehaviour
         {0,0,0,0}
         };
     private int[,]Design_map = {
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,1,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0},
         {0,1,0,1,0,1,0,1,0,1},
-        {0,0,0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0,0,0}
+        {1,0,1,0,1,0,1,0,1,0},
+        {0,1,0,1,0,1,0,1,0,1},
+        {1,0,1,0,1,0,1,0,1,0},
+        {0,1,0,1,0,1,0,1,0,1},
+        {1,0,1,0,1,0,1,0,1,0},
+        {0,1,0,1,0,1,0,1,0,1},
+        {1,0,1,0,1,0,1,0,1,0}
     };
     [SerializeField]
     private GameObject[] stageObj;
@@ -38,10 +38,14 @@ public class StageManeger : MonoBehaviour
         }
         test();
     }
+    public void Awake(){
+        StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
+        GameManager.Set_Stage_Maneger(this.gameObject);
+
+    }
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.Set_Stage_Maneger(this.gameObject);
     }
 
     // Update is called once per frame
@@ -52,21 +56,25 @@ public class StageManeger : MonoBehaviour
     }
     public Vector3 VectorReturn(int x,int y){
         Vector3 samon_pos = new Vector3((-(StageSize.x/2)+x)*stageBox_Interval,0,(-(StageSize.y/2)+y)*stageBox_Interval);
+        Debug.Log(samon_pos);
         Vector3 box_pos = this.transform.position;
         box_pos.x += samon_pos.x; 
         box_pos.y += samon_pos.y;
         box_pos.z += samon_pos.z;
-        return box_pos;
+        return samon_pos;
     }
     public static (int,int)BoxPos_Move(int n_x,int n_y,int g_x,int g_y){
         int x_diff = diff(n_x,g_x);
         int y_diff = diff(n_y,g_y);
-        if(x_diff == 0&& y_diff == 0)return(n_x,n_y);
-        if(y_diff > x_diff||x_diff == 0)
-        {
-            return(n_x,n_y-1);
+        Debug.Log (x_diff+":"+y_diff);
+        if(y_diff > x_diff||x_diff == 0){
+            if(n_y > g_y)return(n_x,n_y-1);
+            else return(n_x,n_y+1);
+        }else if(x_diff > y_diff||y_diff == 0||x_diff == y_diff){
+            if(n_x>g_x)return(n_x-1,n_y);
+            else return(n_x+1,n_y);
         }
-        else return (n_x-1,n_y);
+        else return (n_x,n_y);
     }
     private static int diff(int s,int g){
         return (s - g) * (int)Mathf.Sign(s - g);
@@ -75,7 +83,6 @@ public class StageManeger : MonoBehaviour
         for (int x = 0;x < Design_map.GetLength(0);x++){
             for(int y = 0;y < Design_map.GetLength(1);y++){
                 samon(stageObj[Design_map[x,y]],x,y);
-                Debug.Log(Design_map[x,y]);
             }
 
         }
@@ -83,7 +90,6 @@ public class StageManeger : MonoBehaviour
     public void DoTarget((int x,int y)target){
         targetpos = target;
         GameObject.FindWithTag("Player").GetComponent<Player>().Set_target(targetpos.x,targetpos.y);
-        //Debug.Log(targetpos);
     }
     private void repos(GameObject g, Vector3 v){
         g.transform.localPosition = v;
