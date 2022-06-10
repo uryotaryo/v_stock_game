@@ -37,9 +37,7 @@ public static class Player_Input{
     private static float _mouse_Click_Intabal = 500;
     private static float _mouse_Click_Intabal_Meta;
     public static bool Mouse_Reft_Down = false;
-    
     public static bool Mouse_Reft_Up = false;
-    
     public static bool Mouse_Reft_Click = false;
     public static void Input_Update(){
         full_false();

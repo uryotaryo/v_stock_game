@@ -33,15 +33,31 @@ public class StageManeger : MonoBehaviour
 
     public void OnDate(){
         StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
-        foreach (Transform t in this.transform){
-            EditorApplication.delayCall += () => Destroy(t.gameObject);
-        }
-        test();
+        var objname = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
+        string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(objname);
+        GameObject useObj;
+        if(PrefabPath == "")useObj = this.gameObject;
+        else useObj = PrefabUtility.LoadPrefabContents(PrefabPath);
+        DestoryChild(useObj);
+        test(useObj);
+        if(PrefabPath == "")return;
+        PrefabUtility.SaveAsPrefabAsset(useObj,PrefabPath);
+        PrefabUtility.UnloadPrefabContents(useObj);
     }
     public void Awake(){
         StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
         GameManager.Set_Stage_Maneger(this.gameObject);
 
+    }
+    private static void DestoryChild(GameObject parent){
+        int childmax = parent.transform.childCount;
+        for (int c = 0;c < childmax;c++){
+#if UNITY_EDITOR
+            DestroyImmediate(parent.transform.GetChild(0).gameObject);
+#else
+            Destroy(parent.transform.GetChild(0).gameObject);
+#endif
+        }
     }
     // Start is called before the first frame update
     void Start()
@@ -79,10 +95,10 @@ public class StageManeger : MonoBehaviour
     private static int diff(int s,int g){
         return (s - g) * (int)Mathf.Sign(s - g);
     }
-    private void test(){
+    private void test(GameObject g){
         for (int x = 0;x < Design_map.GetLength(0);x++){
             for(int y = 0;y < Design_map.GetLength(1);y++){
-                samon(stageObj[Design_map[x,y]],x,y);
+                samon(stageObj[Design_map[x,y]],x,y,g);
             }
 
         }
@@ -94,7 +110,7 @@ public class StageManeger : MonoBehaviour
     private void repos(GameObject g, Vector3 v){
         g.transform.localPosition = v;
     }
-    private void samon(GameObject obj,int x,int y){
+    private void samon(GameObject obj,int x,int y,GameObject preobj){
         Vector3 samon_pos = new Vector3((-(StageSize.x/2)+x)*stageBox_Interval,0,(-(StageSize.y/2)+y)*stageBox_Interval);
         Vector3 box_pos = this.transform.position;
         box_pos.x += samon_pos.x; 
@@ -103,7 +119,9 @@ public class StageManeger : MonoBehaviour
         var game_obj = Instantiate(obj,Vector3.zero,Quaternion.identity);
         var ads = game_obj.AddComponent<StagePropaty>();
         game_obj.GetComponent<StagePropaty>().Set_Box_Pos(x,y);
-        EditorApplication.delayCall += () => game_obj.transform.SetParent(this.transform);
+
+        game_obj.transform.SetParent(preobj.transform);
+
         repos(game_obj,box_pos);
     }
 }
