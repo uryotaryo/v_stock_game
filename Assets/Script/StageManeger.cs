@@ -72,7 +72,6 @@ public class StageManeger : MonoBehaviour
     }
     public Vector3 VectorReturn(int x,int y){
         Vector3 samon_pos = new Vector3((-(StageSize.x/2)+x)*stageBox_Interval,0,(-(StageSize.y/2)+y)*stageBox_Interval);
-        Debug.Log(samon_pos);
         Vector3 box_pos = this.transform.position;
         box_pos.x += samon_pos.x; 
         box_pos.y += samon_pos.y;
@@ -82,7 +81,6 @@ public class StageManeger : MonoBehaviour
     public static (int,int)BoxPos_Move(int n_x,int n_y,int g_x,int g_y){
         int x_diff = diff(n_x,g_x);
         int y_diff = diff(n_y,g_y);
-        Debug.Log (x_diff+":"+y_diff);
         if(y_diff > x_diff||x_diff == 0){
             if(n_y > g_y)return(n_x,n_y-1);
             else return(n_x,n_y+1);
