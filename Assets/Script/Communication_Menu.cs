@@ -11,8 +11,6 @@ public class Communication_Menu : MonoBehaviour
     private GameObject[] ShowMenu;
     [SerializeField]
     private float Menu_distance;
-    [NonSerialized]
-    public bool create_bool = false;
     private Camera cam;
     
     private Vector2[] point = {
@@ -47,25 +45,32 @@ public class Communication_Menu : MonoBehaviour
         this.transform.LookAt(cam.transform);
     }
     public void OnDate(){
-        if(!create_bool)return; 
         if(ShowMenu.Length < 1||ShowMenu.Length > 8){
             Debug.Log("表示可能メニュー数を下回っているか数が多すぎます。");
             return;
         }
-        Child_Destroy();
-        Create_menu();
-        create_bool = false;
+        var objname = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
+        string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(objname);
+        GameObject useObj;
+        if(PrefabPath == "")useObj = this.gameObject;
+        else useObj = PrefabUtility.LoadPrefabContents(PrefabPath);
+        DestoryChild(useObj);
+        Create_menu(useObj);
+        if(PrefabPath == "")return;
+        PrefabUtility.SaveAsPrefabAsset(useObj,PrefabPath);
+        PrefabUtility.UnloadPrefabContents(useObj);
     }
-    private void Child_Destroy(){
-        foreach (Transform c in this.transform){
+    private static void DestoryChild(GameObject parent){
+        int childmax = parent.transform.childCount;
+        for (int c = 0;c < childmax;c++){
 #if UNITY_EDITOR
-            EditorApplication.delayCall += () => DestroyImmediate(c.gameObject);
+            DestroyImmediate(parent.transform.GetChild(0).gameObject);
 #else
-            Destroy(c.gameObject);
+            Destroy(parent.transform.GetChild(0).gameObject);
 #endif
         }
     }
-    private void Create_menu(){        
+    private void Create_menu(GameObject parent){        
         int Menu_count = ShowMenu.Length;
         int[] this_setting = pos_setting[Menu_count-1];
         for (int i = 0;i<Menu_count;i++){
@@ -73,7 +78,7 @@ public class Communication_Menu : MonoBehaviour
             Vector3 pos = new Vector3(point[this_setting[i]].x,point[this_setting[i]].y,0);
             var game_obj = Instantiate(ShowMenu[i],pos.normalized*Menu_distance,Quaternion.identity);
             game_obj.transform.localEulerAngles = new Vector3(90f,0,0);
-            game_obj.transform.SetParent(transform);
+            game_obj.transform.SetParent(parent.transform);
         }
     }
 }
@@ -88,10 +93,7 @@ public class Communication_Menu_Editor:Editor{
     public override void OnInspectorGUI()
     {
         base.OnInspectorGUI();
-        EditorGUILayout.HelpBox("プレハブ編集内でのみクリックしてください",MessageType.Info);
         if(GUILayout.Button("作成")){
-            if(((Communication_Menu)target).create_bool)return;
-            ((Communication_Menu)target).create_bool = true;
             Debug.Log("コミュニケーションメニューを再作成します。");
             
             ((Communication_Menu)target).OnDate();
