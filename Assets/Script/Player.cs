@@ -9,6 +9,8 @@ public class Player : MonoBehaviour
     private Vector3 meta_pos;
     private Vector3 target_vector3;
     [SerializeField]
+    private GameObject player_obj;
+    [SerializeField]
     private float move_speed;
     private float lerp_Intbal_meta;
     private float meta_lerp_pos;
@@ -62,6 +64,7 @@ public class Player : MonoBehaviour
             target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
             meta_pos = this.transform.position;
             lerp_Intbal_meta = 0;
+            if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
         }
         var pos = this.transform.position;
         pos.y = 1;
