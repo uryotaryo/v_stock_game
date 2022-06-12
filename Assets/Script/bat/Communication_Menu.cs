@@ -42,7 +42,6 @@ public class Communication_Menu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        this.transform.LookAt(cam.transform);
     }
     public void OnDate(){
         if(ShowMenu.Length < 1||ShowMenu.Length > 8){
@@ -54,6 +53,7 @@ public class Communication_Menu : MonoBehaviour
         GameObject useObj;
         if(PrefabPath == "")useObj = this.gameObject;
         else useObj = PrefabUtility.LoadPrefabContents(PrefabPath);
+        if(useObj.tag != "Menu")return;
         DestoryChild(useObj);
         Create_menu(useObj);
         if(PrefabPath == "")return;
@@ -75,9 +75,8 @@ public class Communication_Menu : MonoBehaviour
         int[] this_setting = pos_setting[Menu_count-1];
         for (int i = 0;i<Menu_count;i++){
             if(ShowMenu[i] == null)break;
-            Vector3 pos = new Vector3(point[this_setting[i]].x,point[this_setting[i]].y,0);
+            Vector3 pos = new Vector3(point[this_setting[i]].x,0,point[this_setting[i]].y);
             var game_obj = Instantiate(ShowMenu[i],pos.normalized*Menu_distance,Quaternion.identity);
-            game_obj.transform.localEulerAngles = new Vector3(90f,0,0);
             game_obj.transform.SetParent(parent.transform);
         }
     }

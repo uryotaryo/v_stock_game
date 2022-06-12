@@ -39,6 +39,7 @@ public static class Player_Input{
     public static bool Mouse_Reft_Down = false;
     public static bool Mouse_Reft_Up = false;
     public static bool Mouse_Reft_Click = false;
+    public static Vector2 Move_Difference = new Vector2(0,0);
     public static void Input_Update(){
         full_false();
         if(Mouse.current.leftButton.isPressed){
@@ -50,6 +51,8 @@ public static class Player_Input{
             _mouse_Click_Intabal_Meta = _mouse_Click_Intabal;
             Mouse_Reft_Up = true;
         }
+    }
+    private static void mouse_Move(){
     }
     private static void full_false(){
         Mouse_Reft_Down = false;
