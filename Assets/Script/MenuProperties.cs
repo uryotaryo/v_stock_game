@@ -6,43 +6,24 @@ using System;
 public class MenuProperties : MonoBehaviour
 {
     [SerializeField]
-    private GameObject Show_Menu_Obj;
+    private GameObject Show_Menu_Obj;    
     private GameObject Parent_Obj;
-    private Vector3 _original_Position = Vector3.zero;
-    private bool _mouse_down = false;
     // Start is called before the first frame update
     void Start()
     {
-        _original_Position = this.transform.localPosition;
+        Parent_Obj = this.transform.parent.gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(_mouse_down){
-            _mouse_down = false;
-            return;
-        }else{
-            this.transform.localPosition = _original_Position;
-        }
-    }
-public void Set_Parent_Obj(GameObject g){
 
-}
-    public bool Mouse_Down_Move(Vector3 pos){
-        _mouse_down = true;
-        /*
-        var pos = this.transform.localPosition;
-        Debug.Log(this.transform.parent.position);
-        pos.x = v2.x + this.transform.parent.position.x;
-        pos.z = 0;
-        pos.z = v2.y + this.transform.parent.position.y;
-        this.transform.localPosition = pos;
-        */
-        this.transform.position = pos;
-        return false;
     }
-    private void Select_Menu(){
-
+    public bool Select_Check(){
+        if(Parent_Obj == null)return false;
+        var t_pos = this.GetComponent<RectTransform>().localPosition;
+        var select_size = Parent_Obj.GetComponent<RectTransform>().sizeDelta;
+        if(Vector2.Distance(new Vector2(t_pos.x,t_pos.y),Vector2.zero) <= select_size.x /3)return true;
+        else return false;
     }
 }

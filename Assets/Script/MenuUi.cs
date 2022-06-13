@@ -68,6 +68,7 @@ public class MenuUi : MonoBehaviour
             game_obj.transform.SetParent(parent.transform);
             game_obj.GetComponent<RectTransform>().position = pos;
             game_obj.GetComponent<RectTransform>().sizeDelta = size/4;
+            game_obj.AddComponent<MenuProperties>();
             game_obj.AddComponent<MenuMeta>();
         }
     }
@@ -91,9 +92,27 @@ public class MenuUi : MonoBehaviour
         }
         var ScreenPos = MainCam.GetComponent<Camera>().WorldToScreenPoint(_player.transform.position);
         this.GetComponent<RectTransform>().position = ScreenPos;
+        foreach (Transform c in this.transform){
+            Fit_Within_Area(c.gameObject);
+        }
 
     }
+    private void Fit_Within_Area(GameObject g){
+        var r_tf = g.GetComponent<RectTransform>();
+        if(r_tf == null)return;
+        var r_pos = r_tf.localPosition;
+        var t_size = this.GetComponent<RectTransform>().sizeDelta;
+        if((t_size.x/2) < r_pos.x)r_pos.x = (t_size.x/2);
+        else if(-(t_size.x/2) > r_pos.x)r_pos.x = -(t_size.x/2);
+
+        if((t_size.y/2) < r_pos.y)r_pos.y = (t_size.y/2);
+        else if(-(t_size.y/2) > r_pos.y)r_pos.y = -(t_size.y/2);
+
+        g.GetComponent<RectTransform>().localPosition = r_pos;
+    }
+
 }
+
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(MenuUi))]
