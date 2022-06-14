@@ -30,7 +30,12 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        this.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(0,0);
+        var stagesize = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().StageSize;
+        _x = stagesize.x/2;
+        _y = stagesize.y/2;
+        Set_target(_x,_y);
+        this.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
+        
         var pos = this.transform.position;
         target_vector3 = pos;
         pos.y = 1;
@@ -39,35 +44,31 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
-        if(this.transform.position == target_vector3)
-        {
-            var repos = StageManeger.BoxPos_Move(_x,_y,_t_x,_t_y);
-            _x = repos.Item1;
-            _y = repos.Item2;
-            target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
-            meta_pos = this.transform.position;
-            lerp_Intbal_meta = 0;
-        }
-        if(posCheck()){
+        if(posCheck() || this.transform.position != target_vector3){
             meta_lerp_pos += Time.deltaTime;
             if(1/move_speed <= meta_lerp_pos){
                 meta_lerp_pos = 0;
-                lerp_Intbal_meta += 0.01f;
-                this.transform.position = Vector3.Lerp(meta_pos,target_vector3,lerp_Intbal_meta);
+                lerp_Intbal_meta += 0.05f;
+                var pos = Vector3.Lerp(meta_pos,target_vector3,lerp_Intbal_meta);
+                XZMove(pos);
             }
         }
         if(lerp_Intbal_meta >= 1){
-            if(!posCheck())return;
-            var repos = StageManeger.BoxPos_Move(_x,_y,_t_x,_t_y);
-            _x = repos.Item1;
-            _y = repos.Item2;
-            target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
-            meta_pos = this.transform.position;
-            lerp_Intbal_meta = 0;
-            if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
+            if(posCheck()){
+                var repos = StageManeger.BoxPos_Move(_x,_y,_t_x,_t_y);
+                _x = repos.Item1;
+                _y = repos.Item2;
+                target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(_x,_y);
+                meta_pos = this.transform.position;
+                lerp_Intbal_meta = 0;
+                if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
+            }
         }
-        var pos = this.transform.position;
-        pos.y = 1;
-        this.transform.position = pos;
+    }
+    private void Pos_Teleport(int x,int y){
+
+    }
+    private void XZMove(Vector3 v){
+        this.transform.position = new Vector3(v.x,1,v.z);
     }
 }

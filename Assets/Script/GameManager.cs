@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         return _stage_Maneger;
     }
     private void Awake(){
+        Application.targetFrameRate = 60;
         _my_Maneger = this.GetComponent<GameManager>();
         _stage_Maneger = GameObject.FindWithTag("StageManeger");
     }
