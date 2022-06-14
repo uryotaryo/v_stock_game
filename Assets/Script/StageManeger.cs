@@ -16,7 +16,37 @@ public class StageManeger : MonoBehaviour
         {0,0,0,0},
         {0,0,0,0}
         };
-    private int[,]Design_map = {
+    private static int[,]prot_map = {
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
+        {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
+    };
+    private static int[,]Design_map = {
         {0,1,0,1,0,1,0,1,0,1},
         {1,0,1,0,1,0,1,0,1,0},
         {0,1,0,1,0,1,0,1,0,1},
@@ -26,13 +56,22 @@ public class StageManeger : MonoBehaviour
         {0,1,0,1,0,1,0,1,0,1},
         {1,0,1,0,1,0,1,0,1,0}
     };
+    private List<int[,]>Stage_Maps = new List<int[,]>();
     [SerializeField]
     private GameObject[] stageObj;
-    private (int x,int y)StageSize;
+
+    [SerializeField]
+    private StageType StageSet;
+    private enum StageType{
+        prot1 = 0,
+        prot2 = 1,
+    }
+    public (int x,int y)StageSize;
     private (int x,int y)targetpos;
 
     public void OnDate(){
-        StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
+        List_Load();
+        StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));
         var objname = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
         string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(objname);
         GameObject useObj;
@@ -45,9 +84,13 @@ public class StageManeger : MonoBehaviour
         PrefabUtility.UnloadPrefabContents(useObj);
     }
     public void Awake(){
-        StageSize = (Design_map.GetLength(0),Design_map.GetLength(1));
+        List_Load();
+        StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));
         GameManager.Set_Stage_Maneger(this.gameObject);
-
+    }
+    private void List_Load(){
+        Stage_Maps.Add(Design_map);
+        Stage_Maps.Add(prot_map);
     }
     private static void DestoryChild(GameObject parent){
         int childmax = parent.transform.childCount;
@@ -94,9 +137,13 @@ public class StageManeger : MonoBehaviour
         return (s - g) * (int)Mathf.Sign(s - g);
     }
     private void test(GameObject g){
-        for (int x = 0;x < Design_map.GetLength(0);x++){
-            for(int y = 0;y < Design_map.GetLength(1);y++){
-                samon(stageObj[Design_map[x,y]],x,y,g);
+        for (int x = 0;x < Stage_Maps[(int)StageSet].GetLength(0);x++){
+            for(int y = 0;y < Stage_Maps[(int)StageSet].GetLength(1);y++){
+                if(Stage_Maps[(int)StageSet][x,y]+1 > stageObj.Length){
+                    Debug.Log("このステージセットは使えません：オブジェクトの数が少ないです");
+                    return;
+                }
+                samon(stageObj[Stage_Maps[(int)StageSet][x,y]],x,y,g);
             }
 
         }
