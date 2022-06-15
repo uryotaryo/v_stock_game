@@ -18,7 +18,9 @@ public class Player : MonoBehaviour
         _t_x = x;
         _t_y = y;
     }
-
+    public (int,int) Get_Point(){
+        return (_x,_y);
+    }
     /// <summary>
     /// 格子の現在座標とターゲットと座標の比較
     /// </summary>

@@ -30,9 +30,20 @@ public class MenuMeta : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDrag
     public void OnEndDrag(PointerEventData eventData)
     {
         if(this.GetComponent<MenuProperties>().Select_Check()){
-            Debug.Log("選択された");
+            if(this.GetComponent<MenuProperties>().Get_Type() == MenuProperties.Type.akt){
+                Debug.Log("アクションコミュニケーションが選択された");
+            }
+            if(this.GetComponent<MenuProperties>().Get_Type() == MenuProperties.Type.speek){
+                Debug.Log("会話コミュニケーションが選択された");
+                prot();
+
+            }
         }
         // ドラッグ前の位置に戻す
         transform.localPosition = _prevpos;
+    }
+    private void prot(){
+        if(GameObject.FindWithTag("Player").GetComponent<Player>().Get_Point() != prot_cont.NPC_pos)return;
+        prot_NPC_cont.Move_Start();
     }
 }
