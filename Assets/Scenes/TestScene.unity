@@ -646,6 +646,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuDate
       objectReference: {fileID: 0}
+    - target: {fileID: 3593041143615386122, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 26802bf6a99c8a84681bd89ebacccc86, type: 3}
+    - target: {fileID: 3593041143615386122, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593041143615386122, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3593041143615386122, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4057311210969389308, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 69
@@ -741,6 +757,22 @@ PrefabInstance:
     - target: {fileID: 6781280839715914338, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808190888987456257, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 9a7c3a48d45237c44ba91b9f9e1ad2c7, type: 3}
+    - target: {fileID: 6808190888987456257, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808190888987456257, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6808190888987456257, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7795975551765301217, guid: 6f72e0a9e068efb47b0cbbf625c2d9a1, type: 3}
       propertyPath: thistype

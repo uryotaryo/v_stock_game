@@ -29,6 +29,7 @@ public class MenuUi : MonoBehaviour
     };
     private GameObject MainCam;
     private GameObject _player;
+#if UNITY_EDITOR
     public void OnDate(){
         if(Menus.Length < 1||Menus.Length > 8){
             Debug.Log("表示可能メニュー数を下回っているか数が多すぎます。");
@@ -46,6 +47,7 @@ public class MenuUi : MonoBehaviour
         PrefabUtility.SaveAsPrefabAsset(useObj,PrefabPath);
         PrefabUtility.UnloadPrefabContents(useObj);
     }
+#endif
     private static void DestroyChild(GameObject parent){
         int childMax = parent.transform.childCount;
         for (int c = 0;c < childMax;c++){

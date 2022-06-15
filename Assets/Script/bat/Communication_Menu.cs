@@ -43,6 +43,7 @@ public class Communication_Menu : MonoBehaviour
     void Update()
     {
     }
+#if UNITY_EDITOR
     public void OnDate(){
         if(ShowMenu.Length < 1||ShowMenu.Length > 8){
             Debug.Log("表示可能メニュー数を下回っているか数が多すぎます。");
@@ -60,6 +61,7 @@ public class Communication_Menu : MonoBehaviour
         PrefabUtility.SaveAsPrefabAsset(useObj,PrefabPath);
         PrefabUtility.UnloadPrefabContents(useObj);
     }
+#endif
     private static void DestoryChild(GameObject parent){
         int childmax = parent.transform.childCount;
         for (int c = 0;c < childmax;c++){
