@@ -227,6 +227,7 @@ MonoBehaviour:
   Max_Time: 10
   Timer_Bar: {fileID: 1784669658}
   BatLevel_Bar: {fileID: 69452931}
+
 --- !u!1 &1551861351
 GameObject:
   m_ObjectHideFlags: 0
@@ -516,7 +517,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7948928963517265713, guid: 8e7d7cf83ffcee54bbe1829e0c17a43b, type: 3}
       propertyPath: StageSet
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7948928963517265713, guid: 8e7d7cf83ffcee54bbe1829e0c17a43b, type: 3}
       propertyPath: m_Enabled

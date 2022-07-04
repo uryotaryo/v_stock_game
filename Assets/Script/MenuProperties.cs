@@ -8,6 +8,15 @@ public class MenuProperties : MonoBehaviour
     [SerializeField]
     private GameObject Show_Menu_Obj;    
     private GameObject Parent_Obj;
+    [SerializeField]
+    private Type thistype;
+    public enum Type{
+        akt = 0,
+        speek = 1,
+    }
+    public Type Get_Type(){
+        return thistype;
+    }
     // Start is called before the first frame update
     void Start()
     {
