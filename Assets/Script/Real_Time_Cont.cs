@@ -18,6 +18,7 @@ public class Real_Time_Cont : MonoBehaviour
     }
     private void timer_set(){
         Timer_Bar.maxValue = Max_Time;
+        Timer_Bar.value = Max_Time;
 
     }
     // Update is called once per frame
