@@ -3,17 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+/// <summary>
+/// ゲーム全体を管理するクラス
+/// 各機能の管理オブジェクトを返す
+/// </summary>
 public class GameManager : MonoBehaviour
 {
-    
+    //自身のクラスを格納する
     private static GameManager _my_Maneger;
     private static GameObject _stage_Maneger;
+    /// <summary>
+    /// 格納した自身のクラスを返す
+    /// </summary>
+    /// <returns>GameManager</returns>
     public static GameManager Get_GameManager(){
         return _my_Maneger;
     }
+    /// <summary>
+    /// ステージ管理オブジェクトを格納する
+    /// </summary>
+    /// <param name="obj">stageManeger</param>
+    
     public static void Set_Stage_Maneger(GameObject obj){
         _stage_Maneger = obj;
     }
+    /// <summary>
+    /// ステージ管理オブジェクトを返す
+    /// </summary>
+    /// <returns>GameObject:stage_maneger</returns>
     public static GameObject Get_Stage_Maneger(){
         return _stage_Maneger;
     }
