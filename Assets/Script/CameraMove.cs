@@ -3,30 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+
+/// <summary>
+/// 3人称カメラの移動や動作を管理する
+/// </summary>
 public class CameraMove : MonoBehaviour
 {
+    //自身のカメラコンポーネント
     private Camera myCamera;
+    // カメラの移動速度
     [SerializeField]
     private float speed;
     // Start is called before the first frame update
     void Start()
     {
+        //自身のカメラコンポーネントを格納する
         myCamera = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        //UI上にポインタがないときに処理を行う
         if(!EventSystem.current.IsPointerOverGameObject()){
             GameObject hit_obj;
             Ray ray = myCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit_info = new RaycastHit();
             float max_distance = 100f;
             bool is_hit = Physics.Raycast(ray, out hit_info, max_distance); 
-            
+            //何かしらのオブジェクトに触れたら処理を行う
             if (is_hit) {
-                if(Player_Input.Mouse_Reft_Click){   
+                //触れているときに左クリックしたとき
+                if(Player_Input.Mouse_Left_Click){ 
                     if(hit_info.transform.tag == "Stage_Box"){
+                        //触れたステージからステージ管理者へ位置座標を飛ばす
                         hit_info.transform.GetComponent<StagePropaty>().Hit();
                     }else{
                         hit_obj = hit_info.transform.gameObject;
@@ -35,6 +45,7 @@ public class CameraMove : MonoBehaviour
                 }
             }
         }
+        //マウスホイールがスクロールされたときにカメラを前後に動かす
         var mous = Input.mouseScrollDelta;
         var pos = this.transform.position;
         pos += this.transform.forward * mous.y * speed;

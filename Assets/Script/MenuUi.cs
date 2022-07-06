@@ -3,10 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
+/// <summary>
+/// 円状に広がるメニューを管理する
+/// </summary>
 public class MenuUi : MonoBehaviour
 {
+    //表示したい２Dメニュー格納
     [SerializeField]
     private GameObject[] Menus;
+    //メニュー配置用の方向ベクトル
     private Vector2[] point = {
         new Vector2(0,1),//上
         new Vector2(1,1),//右上
@@ -17,6 +22,7 @@ public class MenuUi : MonoBehaviour
         new Vector2(-1,0),//左
         new Vector2(-1,1),//左上
     };
+    //メニュー配置順
     private int[][] pos_setting = {
         new int[1]{1},
         new int[2]{6,2},
@@ -27,14 +33,21 @@ public class MenuUi : MonoBehaviour
         new int[7]{0,1,2,3,5,6,7},
         new int[8]{0,1,2,3,4,5,6,7},
     };
+    //メインカメラの格納
     private GameObject MainCam;
+    //プレイヤーのオブジェクト格納
     private GameObject _player;
 #if UNITY_EDITOR
+    /// <summary>
+    /// エディタ上で変更があった場合に呼び出される
+    /// </summary>
     public void OnDate(){
+        //メニュー配列が多かったり少ない場合の例外処理
         if(Menus.Length < 1||Menus.Length > 8){
             Debug.Log("表示可能メニュー数を下回っているか数が多すぎます。");
             return;
         }
+        //プレハブの中身を変更する
         var objName = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
         string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(objName);
         GameObject useObj;
@@ -48,7 +61,12 @@ public class MenuUi : MonoBehaviour
         PrefabUtility.UnloadPrefabContents(useObj);
     }
 #endif
+    /// <summary>
+    /// 親オブジェクトから子オブジェクトを全て削除する
+    /// </summary>
+    /// <param name="parent">親オブジェクト</param>
     private static void DestroyChild(GameObject parent){
+        //TODO:ゲームマネージャーにステージの奴とまとめて書いてもいいかもしれない
         int childMax = parent.transform.childCount;
         for (int c = 0;c < childMax;c++){
 #if UNITY_EDITOR
@@ -58,6 +76,10 @@ public class MenuUi : MonoBehaviour
 #endif
         }
     }
+    /// <summary>
+    /// 円状に広がるメニューを生成する
+    /// </summary>
+    /// <param name="parent">親となるオブジェクト</param>
     private void Create_menu(GameObject parent){        
         int Menu_count = Menus.Length;
         int[] this_setting = pos_setting[Menu_count-1];
@@ -77,6 +99,7 @@ public class MenuUi : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //3人称カメラとプレイヤーのゲームオブジェクトを取得する
         MainCam = GameObject.FindWithTag("Camera");
         _player = GameObject.FindWithTag("Player");
     }
@@ -84,6 +107,7 @@ public class MenuUi : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //3人称カメラとプレイヤーのゲームオブジェクトがない場合を取得する
         if(MainCam == null){
             MainCam = GameObject.FindWithTag("Camera");
             return;
@@ -92,13 +116,19 @@ public class MenuUi : MonoBehaviour
             _player = GameObject.FindWithTag("Player");
             return;
         }
+        //プレイヤーの位置に円形メニューを表示する
         var ScreenPos = MainCam.GetComponent<Camera>().WorldToScreenPoint(_player.transform.position);
         this.GetComponent<RectTransform>().position = ScreenPos;
+        //子オブジェクト全てをエリアに収める
         foreach (Transform c in this.transform){
             Fit_Within_Area(c.gameObject);
         }
 
     }
+    /// <summary>
+    /// 円形メニューのUIが一定エリアから出ないようにする
+    /// </summary>
+    /// <param name="g">エリアから出したくないオブジェクト</param>
     private void Fit_Within_Area(GameObject g){
         var r_tf = g.GetComponent<RectTransform>();
         if(r_tf == null)return;
@@ -118,6 +148,9 @@ public class MenuUi : MonoBehaviour
 
 #if UNITY_EDITOR
 [CustomEditor(typeof(MenuUi))]
+/// <summary>
+/// インスペクターに表示されるエディタ拡張
+/// </summary>
 public class MenuUi_Editor:Editor{
     void OnEnable()
     {
