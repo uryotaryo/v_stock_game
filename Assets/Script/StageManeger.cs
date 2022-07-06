@@ -69,6 +69,7 @@ public class StageManeger : MonoBehaviour
     public (int x,int y)StageSize;
     private (int x,int y)targetpos;
 
+#if UNITY_EDITOR
     public void OnDate(){
         List_Load();
         StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));
@@ -83,6 +84,7 @@ public class StageManeger : MonoBehaviour
         PrefabUtility.SaveAsPrefabAsset(useObj,PrefabPath);
         PrefabUtility.UnloadPrefabContents(useObj);
     }
+#endif
     public void Awake(){
         List_Load();
         StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));

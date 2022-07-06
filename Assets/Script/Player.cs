@@ -18,7 +18,13 @@ public class Player : MonoBehaviour
         _t_x = x;
         _t_y = y;
     }
-
+    public (int,int) Get_Point(){
+        return (_x,_y);
+    }
+    [SerializeField]
+    private GameObject FpsCam;
+    [SerializeField]
+    private GameObject TpsCam;
     /// <summary>
     /// 格子の現在座標とターゲットと座標の比較
     /// </summary>
@@ -41,6 +47,9 @@ public class Player : MonoBehaviour
         pos.y = 1;
         this.transform.position = pos;
         meta_pos = pos;
+        if(FpsCam == null || TpsCam == null)return;
+        FpsCam.SetActive(false);
+        TpsCam.SetActive(true);
     }
     void Update()
     {
@@ -62,8 +71,18 @@ public class Player : MonoBehaviour
                 meta_pos = this.transform.position;
                 lerp_Intbal_meta = 0;
                 if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
+                Quaternion quaternion = player_obj.transform.localRotation;
+                FpsCam.transform.localRotation =  quaternion;
             }
         }
+        if (Input.GetKeyDown(KeyCode.V)){
+            Cam_Change();
+        }
+    }
+    private void Cam_Change(){
+        FpsCam.SetActive(!FpsCam.activeSelf);
+        TpsCam.SetActive(!TpsCam.activeSelf);
+        Debug.Log("カメラチェンジ");
     }
     private void Pos_Teleport(int x,int y){
 
