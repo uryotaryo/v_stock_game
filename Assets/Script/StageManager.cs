@@ -133,14 +133,11 @@ public class StageManager : MonoBehaviour
         (int m_x,int m_y)move = ((n_x > g_x)?-1:+1,(n_y > g_y)?-1:+1);
 
         if((y_diff > x_diff||x_diff == 0)){
-            print("y");
             re_tup = (n_x,n_y + move.m_y);
         }else if((x_diff > y_diff||y_diff == 0||x_diff == y_diff)){
-            print("x");
             re_tup = (n_x + move.m_x,n_y);
         }
         else re_tup = (n_x,n_y);
-        Debug.Log(re_tup + ":" + g_x+""+g_y);
         return re_tup;
     }
     private static int diff(int s,int g){

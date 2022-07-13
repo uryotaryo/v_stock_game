@@ -8,6 +8,8 @@ public class CameraMove : MonoBehaviour
     private Camera myCamera;
     [SerializeField]
     private float speed;
+
+    private StageManager _S_Mana;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,10 +30,13 @@ public class CameraMove : MonoBehaviour
                 if(Player_Input.Mouse_Reft_Click){   
                     if(hit_info.transform.tag == "Stage_Box"){
                         hit_info.transform.GetComponent<StagePropaty>().Hit();
-                    }else{
+                    }else if(hit_info.transform.tag == "NPC"){
+                        if(_S_Mana == null) _S_Mana = GameManager.Get_Stage_Maneger().GetComponent<StageManager>();
+                        _S_Mana.DoTarget(hit_info.transform.GetComponent<NPC>().pos);
+                    } else{
                         hit_obj = hit_info.transform.gameObject;
                         Debug.Log(hit_obj);
-                    } 
+                    }
                 }
             }
         }

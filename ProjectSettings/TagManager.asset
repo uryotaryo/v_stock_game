@@ -6,8 +6,9 @@ TagManager:
   tags:
   - Camera
   - Stage_Box
-  - StageManeger
   - Menu
+  - StageManager
+  - NPC
   layers:
   - Default
   - TransparentFX

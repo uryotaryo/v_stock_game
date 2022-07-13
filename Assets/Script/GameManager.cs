@@ -6,21 +6,21 @@ using UnityEngine.InputSystem;
 public class GameManager : MonoBehaviour
 {
     
-    private static GameManager _my_Maneger;
-    private static GameObject _stage_Maneger;
+    private static GameManager _my_Manager;
+    private static GameObject _stage_Manager;
     public static GameManager Get_GameManager(){
-        return _my_Maneger;
+        return _my_Manager;
     }
-    public static void Set_Stage_Maneger(GameObject obj){
-        _stage_Maneger = obj;
+    public static void Set_Stage_Manager(GameObject obj){
+        _stage_Manager = obj;
     }
     public static GameObject Get_Stage_Maneger(){
-        return _stage_Maneger;
+        return _stage_Manager;
     }
     private void Awake(){
         Application.targetFrameRate = 60;
-        _my_Maneger = this.GetComponent<GameManager>();
-        _stage_Maneger = GameObject.FindWithTag("StageManeger");
+        _my_Manager = this.GetComponent<GameManager>();
+        _stage_Manager = GameObject.FindWithTag("StageManager");
     }
     // Start is called before the first frame update
     void Start()
