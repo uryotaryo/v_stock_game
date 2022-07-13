@@ -43,10 +43,8 @@ public class GameManager : MonoBehaviour
     private void Awake(){
         //1秒60フレームに固定する
         Application.targetFrameRate = 60;
-        //自身のクラスを格納
         _my_Manager = this.GetComponent<GameManager>();
-        //タグでステージ管理オブジェクトの格納
-        Set_Stage_Manager(GameObject.FindWithTag("StageManeger"));
+        _stage_Manager = GameObject.FindWithTag("StageManager");
     }
     // Start is called before the first frame update
     void Start()

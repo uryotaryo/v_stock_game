@@ -52,12 +52,11 @@ public class Player : MonoBehaviour
     }
     void Start()
     {
-        //ステージの真ん中にプレイヤーを移動させる
-        var stagesize = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().StageSize;
-        _x = stagesize.x/2;
-        _y = stagesize.y/2;
+        var stage_size = GameManager.Get_Stage_Manager().GetComponent<StageManager>().StageSize;
+        _x = stage_size.x/2;
+        _y = stage_size.y/2;
         Set_target(_x,_y);
-        this.transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(_x,_y);
+        this.transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(_x,_y);
         
         //変数初期化
         var pos = this.transform.position;
@@ -81,18 +80,33 @@ public class Player : MonoBehaviour
                 XZMove(pos);
             }
         }
-        //仮ターゲットへ到着したら仮ターゲットを更新する
+
         if(lerp_Intbal_meta >= 1){
             if(posCheck()){
-                var repos = StageManeger.BoxPos_Move(_x,_y,_t_x,_t_y);
-                _x = repos.Item1;
-                _y = repos.Item2;
-                target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(_x,_y);
-                meta_pos = this.transform.position;
-                lerp_Intbal_meta = 0;
-                if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
-                Quaternion quaternion = player_obj.transform.localRotation;
-                FpsCam.transform.localRotation =  quaternion;
+                var repos = StageManager.BoxPos_Move(_x,_y,_t_x,_t_y);
+
+                if(StageManager.route_map[repos.Item1,repos.Item2] == 1){
+                    var v3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(repos.Item1,repos.Item2);
+                    if(player_obj != null)player_obj.transform.LookAt(new Vector3( v3.x,player_obj.transform.position.y, v3.z));
+                    Quaternion quaternion = player_obj.transform.localRotation;
+                    FpsCam.transform.localRotation =  quaternion;
+                    _t_x = _x;
+                    _t_y = _y;
+
+                    GameObject hit_obj = forward_ray();
+                    if(hit_obj != null){
+                        hit_obj.GetComponent<NPC>().Look(this.transform.position);
+                    }
+                }else{
+                    _x = repos.Item1;
+                    _y = repos.Item2;
+                    target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(_x,_y);
+                    meta_pos = this.transform.position;
+                    lerp_Intbal_meta = 0;
+                    if(player_obj != null)player_obj.transform.LookAt(new Vector3( target_vector3.x,player_obj.transform.position.y, target_vector3.z));
+                    Quaternion quaternion = player_obj.transform.localRotation;
+                    FpsCam.transform.localRotation =  quaternion;
+                }
             }
         }
         //カメラを変える
@@ -110,6 +124,21 @@ public class Player : MonoBehaviour
     }
     private void Pos_Teleport(int x,int y){
         //TODO:即座にその位置に出現させる
+    }
+    private GameObject forward_ray(){
+        Vector3 point = transform.position;
+        Vector3 trget =  player_obj.transform.forward;
+
+        Ray ray = new Ray(point,trget);
+        RaycastHit hit_info = new RaycastHit();
+        float max_distance = 1f;
+
+        bool is_hit = Physics.Raycast(ray, out hit_info, max_distance); 
+        
+        if (is_hit) {
+            if(hit_info.transform.tag == "NPC")return hit_info.transform.gameObject;
+        }
+        return null;
     }
     /// <summary>
     /// Y位置を固定してプレイヤーを移動させる

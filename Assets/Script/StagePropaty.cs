@@ -29,7 +29,7 @@ public class StagePropaty : MonoBehaviour
     /// </summary>
     public void Hit(){
         if(_stageMane == null) return;
-        _stageMane.GetComponent<StageManeger>().DoTarget((x,y));
+        _stageMane.GetComponent<StageManager>().DoTarget((x,y));
     }
     // Start is called before the first frame update
     void Start()

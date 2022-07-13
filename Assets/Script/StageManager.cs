@@ -5,19 +5,13 @@ using UnityEditor;
 using System;
 
 [ExecuteInEditMode]
-public class StageManeger : MonoBehaviour
+public class StageManager : MonoBehaviour
 {
     //ステージ生成用objの間隔
     [SerializeField]
     private float stageBox_Interval;
     [NonSerialized]
-    //動作確認用2次配列
-    public int[,] Path_finding_map = {
-        {0,0,0,0},
-        {0,0,0,0},
-        {0,0,0,0},
-        {0,0,0,0}
-        };
+    public static int[,] route_map;
     private static int[,]prot_map = {
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
         {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -82,8 +76,8 @@ public class StageManeger : MonoBehaviour
     public void OnDate(){
         List_Load();
         StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));
-        var objname = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
-        string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(objname);
+        var obj_name = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
+        string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(obj_name);
         GameObject useObj;
         if(PrefabPath == "")useObj = this.gameObject;
         else useObj = PrefabUtility.LoadPrefabContents(PrefabPath);
@@ -114,9 +108,9 @@ public class StageManeger : MonoBehaviour
     /// <param name="parent">子を削除したいゲームオブジェクト</param>
     private static void DestoryChild(GameObject parent){
         //子オブジェクトの数を取得する
-        int childmax = parent.transform.childCount;
+        int child_max = parent.transform.childCount;
         //子オブジェクトの数だけ一つ目の子オブジェクトを削除する
-        for (int c = 0;c < childmax;c++){
+        for (int c = 0;c < child_max;c++){
 #if UNITY_EDITOR
             DestroyImmediate(parent.transform.GetChild(0).gameObject);
 #else
@@ -127,6 +121,7 @@ public class StageManeger : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        set_stage_route_map();
     }
 
     // Update is called once per frame
@@ -134,7 +129,14 @@ public class StageManeger : MonoBehaviour
     {
         //ゲームマネージャーにステージマネージャーが格納されていなければ格納する
         if(GameManager.Get_Stage_Manager() == null) GameManager.Set_Stage_Manager(this.gameObject);
-
+    }
+    private void set_stage_route_map(){
+        route_map = new int[StageSize.x,StageSize.y];
+        for (int y = 0; y < StageSize.y;y++){
+            for(int x = 0;x < StageSize.x;x++){
+                route_map[x,y] = 0;
+            }
+        }
     }
     /// <summary>
     /// ステージの位置からグローバル座標を返す
@@ -161,14 +163,16 @@ public class StageManeger : MonoBehaviour
     public static (int,int)BoxPos_Move(int n_x,int n_y,int g_x,int g_y){
         int x_diff = diff(n_x,g_x);
         int y_diff = diff(n_y,g_y);
-        if(y_diff > x_diff||x_diff == 0){
-            if(n_y > g_y)return(n_x,n_y-1);
-            else return(n_x,n_y+1);
-        }else if(x_diff > y_diff||y_diff == 0||x_diff == y_diff){
-            if(n_x>g_x)return(n_x-1,n_y);
-            else return(n_x+1,n_y);
+        (int x,int y)re_tup = (0,0);
+        (int m_x,int m_y)move = ((n_x > g_x)?-1:+1,(n_y > g_y)?-1:+1);
+
+        if((y_diff > x_diff||x_diff == 0)){
+            re_tup = (n_x,n_y + move.m_y);
+        }else if((x_diff > y_diff||y_diff == 0||x_diff == y_diff)){
+            re_tup = (n_x + move.m_x,n_y);
         }
-        else return (n_x,n_y);
+        else re_tup = (n_x,n_y);
+        return re_tup;
     }
     /// <summary>
     /// 座標位置からの距離
@@ -235,11 +239,8 @@ public class StageManeger : MonoBehaviour
 }
 
 #if UNITY_EDITOR
-[CustomEditor(typeof(StageManeger))]
-/// <summary>
-/// ステージマネージャー用拡張エディタ
-/// </summary>
-public class StageManegerEditer:Editor{
+[CustomEditor(typeof(StageManager))]
+public class StageManagerEditer:Editor{
     void OnEnable(){
 
     }
@@ -248,8 +249,7 @@ public class StageManegerEditer:Editor{
         base.OnInspectorGUI();
         if(GUILayout.Button("作成")){
             Debug.Log("ステージを再作成します。");
-            //ボタンを押したらステージを生成仕直す
-            ((StageManeger)target).OnDate();
+            ((StageManager)target).OnDate();
         }
     }
 }

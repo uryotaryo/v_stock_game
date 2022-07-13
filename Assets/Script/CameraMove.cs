@@ -14,6 +14,8 @@ public class CameraMove : MonoBehaviour
     // カメラの移動速度
     [SerializeField]
     private float speed;
+
+    private StageManager _S_Mana;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,10 +40,13 @@ public class CameraMove : MonoBehaviour
                     if(hit_info.transform.tag == "Stage_Box"){
                         //触れたステージからステージ管理者へ位置座標を飛ばす
                         hit_info.transform.GetComponent<StagePropaty>().Hit();
-                    }else{
+                    }else if(hit_info.transform.tag == "NPC"){
+                        if(_S_Mana == null) _S_Mana = GameManager.Get_Stage_Maneger().GetComponent<StageManager>();
+                        _S_Mana.DoTarget(hit_info.transform.GetComponent<NPC>().pos);
+                    } else{
                         hit_obj = hit_info.transform.gameObject;
                         Debug.Log(hit_obj);
-                    } 
+                    }
                 }
             }
         }
