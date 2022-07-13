@@ -41,7 +41,7 @@ public class CameraMove : MonoBehaviour
                         //触れたステージからステージ管理者へ位置座標を飛ばす
                         hit_info.transform.GetComponent<StagePropaty>().Hit();
                     }else if(hit_info.transform.tag == "NPC"){
-                        if(_S_Mana == null) _S_Mana = GameManager.Get_Stage_Maneger().GetComponent<StageManager>();
+                        if(_S_Mana == null) _S_Mana = GameManager.Get_Stage_Manager().GetComponent<StageManager>();
                         _S_Mana.DoTarget(hit_info.transform.GetComponent<NPC>().pos);
                     } else{
                         hit_obj = hit_info.transform.gameObject;

@@ -19,7 +19,7 @@ public class NPC : MonoBehaviour
     {
         pos._x = 10;
         pos._y = 10;
-        transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManager>().VectorReturn(10,10);
+        transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(10,10);
         Vector3 v = transform.position;
         v.y = 1;
         transform.position = v;

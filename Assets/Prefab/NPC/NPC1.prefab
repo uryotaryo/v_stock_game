@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3247675499488547605}
   - component: {fileID: 7577445104220116084}
+  - component: {fileID: 93868710}
   m_Layer: 0
   m_Name: NPC1
   m_TagString: NPC
@@ -44,6 +45,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5901dc0908310044ab051372998f674b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &93868710
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2763485056628509103}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.25
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &6616936723065745782
 GameObject:
   m_ObjectHideFlags: 0
@@ -55,7 +70,6 @@ GameObject:
   - component: {fileID: 2693781061246919245}
   - component: {fileID: 987718533937765127}
   - component: {fileID: 4364180346482016147}
-  - component: {fileID: 5624113019668999864}
   m_Layer: 0
   m_Name: default
   m_TagString: NPC
@@ -126,17 +140,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5624113019668999864
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6616936723065745782}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 1.45
-  m_Height: 4.7
-  m_Direction: 1
-  m_Center: {x: 0, y: 2.35, z: -0.050000012}
