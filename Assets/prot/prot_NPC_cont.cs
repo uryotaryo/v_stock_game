@@ -25,7 +25,7 @@ public class prot_NPC_cont : MonoBehaviour
         var repos = StageManeger.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
         pos._x = repos.Item1;
         pos._y = repos.Item2;
-        target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
+        target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
         meta_pos = this.transform.position;
         lerp_Intbal_meta = 0;    
     }
@@ -47,7 +47,7 @@ public class prot_NPC_cont : MonoBehaviour
                 var repos = StageManeger.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
                 pos._x = repos.Item1;
                 pos._y = repos.Item2;
-                target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
+                target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
                 meta_pos = this.transform.position;
                 lerp_Intbal_meta = 0;
             }

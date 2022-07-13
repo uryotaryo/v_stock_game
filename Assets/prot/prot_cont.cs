@@ -21,11 +21,11 @@ public class prot_cont : MonoBehaviour
     }
     public void remove(){
         Vector3 pos;
-        prot_npc.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(NPC_pos.x,NPC_pos.y);
+        prot_npc.transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(NPC_pos.x,NPC_pos.y);
         pos = prot_npc.transform.position;
         pos.y = 1;
         prot_npc.transform.position= pos;
-        prot_tree.transform.position = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(tree_pos.x,tree_pos.y);
+        prot_tree.transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManeger>().VectorReturn(tree_pos.x,tree_pos.y);
         pos = prot_tree.transform.position;
         pos.y = 1;
         prot_tree.transform.position= pos;
