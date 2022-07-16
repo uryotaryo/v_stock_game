@@ -54,7 +54,7 @@ public class Complain : MonoBehaviour
             Human10.SetActive(false);
         }
 
-        if (Human == 1)
+        if (Human == 1)//不満度が1なら不満度1の画像のみ表示
         {
             Human1.SetActive(true);
             Human0.SetActive(false);
@@ -69,7 +69,7 @@ public class Complain : MonoBehaviour
             Human10.SetActive(false);
         }
 
-        if (Human == 2)
+        if (Human == 2)//不満度が2なら～以下同様
         {
             Human2.SetActive(true);
             Human0.SetActive(false);
