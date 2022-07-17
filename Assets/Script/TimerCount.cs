@@ -1,19 +1,19 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class TimerCount : MonoBehaviour
 {
-	//@ƒg[ƒ^ƒ‹§ŒÀŠÔ
+	//ã€€ãƒˆãƒ¼ã‚¿ãƒ«åˆ¶é™æ™‚é–“
 	private float totalTime;
-	//@§ŒÀŠÔi•ªj
+	//ã€€åˆ¶é™æ™‚é–“ï¼ˆåˆ†ï¼‰
 	[SerializeField]
 	private int minute;
-	//@§ŒÀŠÔi•bj
+	//ã€€åˆ¶é™æ™‚é–“ï¼ˆç§’ï¼‰
 	[SerializeField]
 	private float seconds;
-	//@‘O‰ñUpdate‚Ì•b”
+	//ã€€å‰å›Updateæ™‚ã®ç§’æ•°
 	private float oldSeconds;
 	private Text timerText;
 
@@ -26,29 +26,29 @@ public class TimerCount : MonoBehaviour
 
 	void Update()
 	{
-		//@§ŒÀŠÔ‚ª0•bˆÈ‰º‚È‚ç‰½‚à‚µ‚È‚¢
+		//ã€€åˆ¶é™æ™‚é–“ãŒ0ç§’ä»¥ä¸‹ãªã‚‰ä½•ã‚‚ã—ãªã„
 		if (totalTime <= 0f)
 		{
 			return;
 		}
-		//@ˆê’Uƒg[ƒ^ƒ‹‚Ì§ŒÀŠÔ‚ğŒv‘ªG
+		//ã€€ä¸€æ—¦ãƒˆãƒ¼ã‚¿ãƒ«ã®åˆ¶é™æ™‚é–“ã‚’è¨ˆæ¸¬ï¼›
 		totalTime = minute * 60 + seconds;
 		totalTime -= Time.deltaTime;
 
-		//@Äİ’è
+		//ã€€å†è¨­å®š
 		minute = (int)totalTime / 60;
 		seconds = totalTime - minute * 60;
 
-		//@ƒ^ƒCƒ}[•\¦—pUIƒeƒLƒXƒg‚ÉŠÔ‚ğ•\¦‚·‚é
+		//ã€€ã‚¿ã‚¤ãƒãƒ¼è¡¨ç¤ºç”¨UIãƒ†ã‚­ã‚¹ãƒˆã«æ™‚é–“ã‚’è¡¨ç¤ºã™ã‚‹
 		if ((int)seconds != (int)oldSeconds)
 		{
 			timerText.text = minute.ToString("00") + ":" + ((int)seconds).ToString("00");
 		}
 		oldSeconds = seconds;
-		//@§ŒÀŠÔˆÈ‰º‚É‚È‚Á‚½‚çƒRƒ“ƒ\[ƒ‹‚Éw§ŒÀŠÔI—¹x‚Æ‚¢‚¤•¶š—ñ‚ğ•\¦‚·‚é
+		//ã€€åˆ¶é™æ™‚é–“ä»¥ä¸‹ã«ãªã£ãŸã‚‰ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã«ã€åˆ¶é™æ™‚é–“çµ‚äº†ã€ã¨ã„ã†æ–‡å­—åˆ—ã‚’è¡¨ç¤ºã™ã‚‹
 		if (totalTime <= 0f)
 		{
-			Debug.Log("§ŒÀŠÔI—¹");
+			Debug.Log("åˆ¶é™æ™‚é–“çµ‚äº†");
 		}
 	}
 }

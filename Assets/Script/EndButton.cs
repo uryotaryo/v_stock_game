@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -16,13 +16,13 @@ public class EndButton : MonoBehaviour
         
     }
 
-    //‰Ÿ‚³‚ê‚½‚çƒQ[ƒ€I—¹‚·‚éŠÖ”
+    //æŠ¼ã•ã‚ŒãŸã‚‰ã‚²ãƒ¼ãƒ çµ‚äº†ã™ã‚‹é–¢æ•°
     public void Endgame()
     {
-        //ƒGƒfƒBƒ^I—¹
+        //ã‚¨ãƒ‡ã‚£ã‚¿çµ‚äº†
         UnityEditor.EditorApplication.isPlaying = false;
 
-        //ƒXƒ^ƒ“ƒhƒAƒƒ“I—¹
+        //ã‚¹ã‚¿ãƒ³ãƒ‰ã‚¢ãƒ­ãƒ³çµ‚äº†
         UnityEngine.Application.Quit();
     }
 }

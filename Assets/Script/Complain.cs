@@ -1,12 +1,12 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Complain : MonoBehaviour
 {
-    public int Human;//•s–“x‚Ì“ü‚ê•¨
+    public int Human;//ä¸æº€åº¦ã®å…¥ã‚Œç‰©
 
-    //•s–“x‚ÌƒOƒ‰ƒt‚ğ“ü‚ê‚Ä‚¢‚éêŠ
+    //ä¸æº€åº¦ã®ã‚°ãƒ©ãƒ•ã‚’å…¥ã‚Œã¦ã„ã‚‹å ´æ‰€
     public GameObject Human0;
     public GameObject Human1;
     public GameObject Human2;
@@ -22,7 +22,7 @@ public class Complain : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Human = 0;//Å‰‚É•s–“x‚ğƒ[ƒ‚Ån‚ß‚é
+        Human = 0;//æœ€åˆã«ä¸æº€åº¦ã‚’ã‚¼ãƒ­ã§å§‹ã‚ã‚‹
         Human0.SetActive(false);
         Human1.SetActive(false);
         Human2.SetActive(false);
@@ -39,7 +39,7 @@ public class Complain : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Human == 0)//•s–“x‚ªƒ[ƒ‚È‚ç‘Î‰‚µ‚½•s–“xƒOƒ‰ƒt‚Ì‚İ•\¦‚·‚é
+        if(Human == 0)//ä¸æº€åº¦ãŒã‚¼ãƒ­ãªã‚‰å¯¾å¿œã—ãŸä¸æº€åº¦ã‚°ãƒ©ãƒ•ã®ã¿è¡¨ç¤ºã™ã‚‹
         {
             Human0.SetActive(true);
             Human1.SetActive(false);
@@ -54,7 +54,7 @@ public class Complain : MonoBehaviour
             Human10.SetActive(false);
         }
 
-        if (Human == 1)//•s–“x‚ª1‚È‚ç•s–“x1‚Ì‰æ‘œ‚Ì‚İ•\¦
+        if (Human == 1)//ä¸æº€åº¦ãŒ1ãªã‚‰ä¸æº€åº¦1ã®ç”»åƒã®ã¿è¡¨ç¤º
         {
             Human1.SetActive(true);
             Human0.SetActive(false);
@@ -69,7 +69,7 @@ public class Complain : MonoBehaviour
             Human10.SetActive(false);
         }
 
-        if (Human == 2)//•s–“x‚ª2‚È‚ç`ˆÈ‰º“¯—l
+        if (Human == 2)//ä¸æº€åº¦ãŒ2ãªã‚‰ï½ä»¥ä¸‹åŒæ§˜
         {
             Human2.SetActive(true);
             Human0.SetActive(false);
