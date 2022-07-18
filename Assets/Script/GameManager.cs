@@ -12,6 +12,8 @@ public class GameManager : MonoBehaviour
     //自身のクラスを格納する
     private static GameManager _my_Manager;
     private static GameObject _stage_Manager;
+    private static Player _Player;
+
     /// <summary>
     /// 格納した自身のクラスを返す
     /// </summary>
@@ -35,7 +37,15 @@ public class GameManager : MonoBehaviour
     public static GameObject Get_Stage_Manager(){
         return _stage_Manager;
     }
-    
+    ///
+    public static void Set_Player(Player p){
+        _Player = p;
+    }
+    public static Player Get_Player(){
+        return _Player;
+    }
+
+
     /// <summary>
     /// FPS制限
     /// 自身やほかの管理オブジェクトの格納
@@ -45,11 +55,12 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         _my_Manager = this.GetComponent<GameManager>();
         _stage_Manager = GameObject.FindWithTag("StageManager");
+        Set_Player(GameObject.FindWithTag("Player").GetComponent<Player>());
     }
     // Start is called before the first frame update
     void Start()
     {
-        
+        Conversation.Q_And_A_Load();
     }
 
     // Update is called once per frame

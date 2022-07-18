@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Conversation : MonoBehaviour
 {
-    private Dictionary<string,Question> Dict_Q;
+    public static Dictionary<string,Question> Dict_Q;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +16,11 @@ public class Conversation : MonoBehaviour
     {
         
     }
-    private void Q_And_A_Load(){
+    public static void Q_And_A_Load(){
         Question_Load();
         Reply_Load();
     }
-    private void Question_Load(){
+    private static void Question_Load(){
         Dict_Q = new Dictionary<string, Question>();
         Dict_Q.Add("2",new Question("何を話そう"));
 
@@ -31,7 +31,7 @@ public class Conversation : MonoBehaviour
 
         Dict_Q.Add("6-1",new Question("交渉"));
     }
-    private void Reply_Load(){  
+    private static void Reply_Load(){  
         Dict_Q["2"].Anss.Add(new Reply("要件","",Dict_Q["3-1"]));
         Dict_Q["2"].Anss.Add(new Reply("世間話","",Dict_Q["3-2"]));
         Dict_Q["2"].Anss.Add(new Reply("特になし","・・・",0));
@@ -45,7 +45,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["4-1"].Anss.Add(new Reply("木が不足している","それなら仕方がないですね",0));
         Dict_Q["4-1"].Anss.Add(new Reply("暇でしょ？","暇というわけではないですよ",Dict_Q["6-1"]));
         
-        Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",Dict_Q["7-1a"]));
+        Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",0));
         Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",10));
     }
 }
@@ -57,6 +57,7 @@ public class Question{
     public List<Reply> Anss;
     public Question (string text){
         Question_Text = text;
+        Anss = new List<Reply>();
     }
 }
 /// <summary>

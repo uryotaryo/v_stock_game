@@ -117,7 +117,7 @@ public class Player : MonoBehaviour
     /// <summary>
     /// 一人称カメラと3人称カメラの表示非表示を反転させる
     /// </summary>
-    private void Cam_Change(){
+    public void Cam_Change(){
         FpsCam.SetActive(!FpsCam.activeSelf);
         TpsCam.SetActive(!TpsCam.activeSelf);
         Debug.Log("カメラチェンジ");

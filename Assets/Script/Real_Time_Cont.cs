@@ -10,7 +10,11 @@ public class Real_Time_Cont : MonoBehaviour
     [SerializeField]
     private Slider Timer_Bar;
     [SerializeField]
-    private Slider BatLevel_Bar;
+    private Text NPC_Ans_box;
+    [SerializeField]
+    private Text[] Select_objs;
+
+    private Question now_Q;
     // Start is called before the first frame update
     void Start()
     {
@@ -25,5 +29,25 @@ public class Real_Time_Cont : MonoBehaviour
     void Update()
     {
         Timer_Bar.value -= Time.deltaTime;
+    }
+    public void Set_Q(Question q){
+        now_Q = q;
+        Set_Select_name(now_Q.Anss);
+    }
+    private void Set_Select_name(List<Reply> L_R){
+        int count = L_R.Count-1;
+        Debug.Log (count);
+        //TODO:ここでselect_objsのシャッフルを入れる
+        foreach(var s in Select_objs){
+            if(count < 0)break;
+            s.GetComponent<Text>().text = L_R[count].Select_string;
+            count --;
+        }
+    }
+    public Reply Get_Select_Reply(string s){
+        foreach(var a in  now_Q.Anss){
+            if(a.Select_string == s)return a;
+        }
+        return null;
     }
 }

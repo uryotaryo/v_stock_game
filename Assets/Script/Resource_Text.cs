@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class Resource_Text : MonoBehaviour
 {
-    //‘Ş‚ÌŠŠ„‡
+    //è³‡æã®æ‰€æŒå‰²åˆ
     public int resource_percent;
 
-    //‘Ş‚Ì–¼‘O
+    //è³‡æã®åå‰
     public string resouce_name;
 
-    //•\¦‚·‚éText‚ÌƒIƒuƒWƒFƒNƒg‚ğ‚±‚±‚É“ü‚ê‚é
+    //è¡¨ç¤ºã™ã‚‹Textã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’ã“ã“ã«å…¥ã‚Œã‚‹
     public Text resouce_text;
 
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class Resource_Text : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //‘Ş‚Ì–¼‘OFŠŠ„‡“‚Å•\¦‚·‚é
+        //è³‡æã®åå‰ï¼šæ‰€æŒå‰²åˆï¼…ã§è¡¨ç¤ºã™ã‚‹
         resouce_text.text = string.Format("{0}:{1}%",resouce_name,resource_percent);
     }
 }

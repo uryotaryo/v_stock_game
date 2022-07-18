@@ -50,7 +50,16 @@ public class MenuProperties : MonoBehaviour
         var t_pos = this.GetComponent<RectTransform>().localPosition;
         var select_size = Parent_Obj.GetComponent<RectTransform>().sizeDelta;
         //親の中心から幅3分の１の範囲にいれば選択されたことにする
-        if(Vector2.Distance(new Vector2(t_pos.x,t_pos.y),Vector2.zero) <= select_size.x /3)return true;
+        if(Vector2.Distance(new Vector2(t_pos.x,t_pos.y),Vector2.zero) <= select_size.x /3){
+            if(GameObject.FindWithTag("FPS_canvas") == null)prot_only();
+
+            return true;
+        }
         else return false;
+    }
+        
+    private void prot_only(){
+        GameManager.Get_Player().Cam_Change();
+        GameObject.FindWithTag("FPS_canvas").GetComponent<Real_Time_Cont>().Set_Q(Conversation.Dict_Q["2"]);
     }
 }

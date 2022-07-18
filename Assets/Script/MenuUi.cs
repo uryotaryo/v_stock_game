@@ -142,7 +142,6 @@ public class MenuUi : MonoBehaviour
 
         g.GetComponent<RectTransform>().localPosition = r_pos;
     }
-
 }
 
 
