@@ -22,12 +22,12 @@ public class prot_NPC_cont : MonoBehaviour
         return true;
     }
     public void Set_target(){
-        var repos = StageManeger.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
+        var repos = StageManager.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
         pos._x = repos.Item1;
         pos._y = repos.Item2;
-        target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
+        target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(pos._x,pos._y);
         meta_pos = this.transform.position;
-        lerp_Intbal_meta = 0;    
+        lerp_Intbal_meta = 0;
     }
     // Update is called once per frame
     void Update()
@@ -44,10 +44,10 @@ public class prot_NPC_cont : MonoBehaviour
         }
         if(lerp_Intbal_meta >= 1){
             if(posCheck()){
-                var repos = StageManeger.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
+                var repos = StageManager.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
                 pos._x = repos.Item1;
                 pos._y = repos.Item2;
-                target_vector3 = GameManager.Get_Stage_Maneger().GetComponent<StageManeger>().VectorReturn(pos._x,pos._y);
+                target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(pos._x,pos._y);
                 meta_pos = this.transform.position;
                 lerp_Intbal_meta = 0;
             }

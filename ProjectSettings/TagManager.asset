@@ -6,8 +6,14 @@ TagManager:
   tags:
   - Camera
   - Stage_Box
-  - StageManeger
   - Menu
+  - StageManager
+  - NPC
+  - StageManeger
+  - FPS_Cam
+  - TPS_Cam
+  - FPS_canvas
+  - TPS_canvas
   layers:
   - Default
   - TransparentFX
