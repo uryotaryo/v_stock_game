@@ -68,6 +68,7 @@ public class StageManager : MonoBehaviour
     }
     //　ステージの大きさ(横幅,縦幅)
     public (int x,int y)StageSize;
+    private static (int x,int y) _sSize;
 
 #if UNITY_EDITOR
     /// <summary>
@@ -76,6 +77,7 @@ public class StageManager : MonoBehaviour
     public void OnDate(){
         List_Load();
         StageSize = (Stage_Maps[(int)StageSet].GetLength(0),Stage_Maps[(int)StageSet].GetLength(1));
+        _sSize = StageSize;
         var obj_name = PrefabUtility.GetCorrespondingObjectFromSource(this.gameObject);
         string PrefabPath = UnityEditor.AssetDatabase.GetAssetPath(obj_name);
         GameObject useObj;
@@ -172,6 +174,13 @@ public class StageManager : MonoBehaviour
             re_tup = (n_x + move.m_x,n_y);
         }
         else re_tup = (n_x,n_y);
+
+        /*
+        if(re_tup.x < 0)re_tup.x = 0;
+        else if(re_tup.x > _sSize.x)re_tup.x = _sSize.x;
+        if(re_tup.y < 0)re_tup.y = 0;
+        else if(re_tup.y > _sSize.y)re_tup.y = _sSize.y;
+*/
         return re_tup;
     }
     /// <summary>

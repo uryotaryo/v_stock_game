@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        StageManager.route_map[_x,_y] = 1;
         //線形保管を使いながら仮ターゲットへ移動する
         if(posCheck() || this.transform.position != target_vector3){
             meta_lerp_pos += Time.deltaTime;
@@ -93,11 +94,12 @@ public class Player : MonoBehaviour
                     _t_x = _x;
                     _t_y = _y;
 
-                    GameObject hit_obj = forward_ray();
+                    GameObject hit_obj = Forward_NPC();
                     if(hit_obj != null){
-                        hit_obj.GetComponent<NPC>().Look(this.transform.position);
+                        hit_obj.GetComponent<NPC>().Look(player_obj.transform.position);
                     }
                 }else{
+                    StageManager.route_map[_x,_y] = 0;
                     _x = repos.Item1;
                     _y = repos.Item2;
                     target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(_x,_y);
@@ -126,11 +128,11 @@ public class Player : MonoBehaviour
     private void Pos_Teleport(int x,int y){
         //TODO:即座にその位置に出現させる
     }
-    public bool Forward_NPC(){
-        if(forward_ray() == null){
-            return false;
-        }
-        return true;
+    public GameObject Forward_NPC(){
+        var obj = forward_ray();
+        if (obj == null) return null;
+        if(obj.transform.tag == "NPC")return obj.transform.gameObject;
+        return null;
     }
     private GameObject forward_ray(){
         Vector3 point = transform.position;
@@ -141,11 +143,8 @@ public class Player : MonoBehaviour
         float max_distance = 1f;
 
         bool is_hit = Physics.Raycast(ray, out hit_info, max_distance); 
-        
-        if (is_hit) {
-            if(hit_info.transform.tag == "NPC")return hit_info.transform.gameObject;
-        }
-        return null;
+        if(is_hit)return hit_info.transform.gameObject;
+        else return null;
     }
     /// <summary>
     /// Y位置を固定してプレイヤーを移動させる
