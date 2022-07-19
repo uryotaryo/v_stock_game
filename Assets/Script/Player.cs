@@ -70,6 +70,7 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        StageManager.route_map[_x,_y] = 1;
         //線形保管を使いながら仮ターゲットへ移動する
         if(posCheck() || this.transform.position != target_vector3){
             meta_lerp_pos += Time.deltaTime;
@@ -95,9 +96,10 @@ public class Player : MonoBehaviour
 
                     GameObject hit_obj = Forward_NPC();
                     if(hit_obj != null){
-                        hit_obj.GetComponent<NPC>().Look(this.transform.position);
+                        hit_obj.GetComponent<NPC>().Look(player_obj.transform.position);
                     }
                 }else{
+                    StageManager.route_map[_x,_y] = 0;
                     _x = repos.Item1;
                     _y = repos.Item2;
                     target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(_x,_y);

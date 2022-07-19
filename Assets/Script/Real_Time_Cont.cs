@@ -97,7 +97,7 @@ public class Real_Time_Cont : MonoBehaviour
                 Set_Q(_select_reply.Next_Question);
                 break;
             case Reply.Reply_Type.Complain_fluctuation:
-                
+                Traget_NPC.Set_target(15,20);
                 GameManager.Get_Player().Cam_Change();
                 GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>().Human_level += _select_reply.Change_Complain;
                 break;
