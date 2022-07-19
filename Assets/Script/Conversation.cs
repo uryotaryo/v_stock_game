@@ -34,19 +34,19 @@ public class Conversation : MonoBehaviour
     private static void Reply_Load(){  
         Dict_Q["2"].Anss.Add(new Reply("要件","何か用事があるんですか？",Dict_Q["3-1"]));
         Dict_Q["2"].Anss.Add(new Reply("世間話","世間話ですか？",Dict_Q["3-2"]));
-        Dict_Q["2"].Anss.Add(new Reply("特になし","・・・",0));
+        Dict_Q["2"].Anss.Add(new Reply("特になし","・・・",1));
 
-        Dict_Q["3-1"].Anss.Add(new Reply("了解","了解した。",+5));
+        Dict_Q["3-1"].Anss.Add(new Reply("了解","了解した。",0));
         Dict_Q["3-1"].Anss.Add(new Reply("疑問","なぜ？",Dict_Q["4-1"]));
 
-        Dict_Q["3-2"].Anss.Add(new Reply("困っていることない？","あなたがこうして話しかけてきていることですかね？",6));
+        Dict_Q["3-2"].Anss.Add(new Reply("困っていることない？","あなたがこうして話しかけてきていることですかね？",1));
         Dict_Q["3-2"].Anss.Add(new Reply("趣味は？","読書ですかね落ち着きますよ",Dict_Q["6-1"]));
 
         Dict_Q["4-1"].Anss.Add(new Reply("木が不足している","それなら仕方がないですね",0));
         Dict_Q["4-1"].Anss.Add(new Reply("暇でしょ？","暇というわけではないですよ",Dict_Q["6-1"]));
         
         Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",0));
-        Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",10));
+        Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",1));
 
     }
 }
@@ -83,6 +83,7 @@ public class Reply{
     public Reply(string name,string info,int Complain){
         Select_string = name;
         NPC_Ans = info;
+        Change_Complain = Complain;
         Ans_Type = Reply_Type.Complain_fluctuation;
     }
     public Reply(string name,string info,Question next){

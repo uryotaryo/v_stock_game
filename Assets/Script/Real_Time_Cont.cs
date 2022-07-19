@@ -89,7 +89,6 @@ public class Real_Time_Cont : MonoBehaviour
         
     }
     public void To_Next_Reply(){
-        Debug.Log(_select_reply.Ans_Type);
         switch (_select_reply.Ans_Type)
         {
             case Reply.Reply_Type.Ans_Reply:
@@ -97,7 +96,17 @@ public class Real_Time_Cont : MonoBehaviour
                 Set_Q(_select_reply.Next_Question);
                 break;
             case Reply.Reply_Type.Complain_fluctuation:
-                Traget_NPC.Set_target(15,20);
+                if(_select_reply.Select_string == "了解"){
+                    Traget_NPC.Set_target(15,20);
+                }else if (_select_reply.Select_string == "木が不足している"){
+                    Traget_NPC.Set_target(15,20);
+                }
+                else if (_select_reply.Select_string == "本を渡す"){
+                    Traget_NPC.Set_target(15,20);
+                }
+                else if (_select_reply.Select_string == "強引に行かせる"){
+                    Traget_NPC.Set_target(15,20);
+                }
                 GameManager.Get_Player().Cam_Change();
                 GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>().Human_level += _select_reply.Change_Complain;
                 break;

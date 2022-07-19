@@ -15,6 +15,7 @@ public class TPS_UI_cont : MonoBehaviour
             if(Humans.Length > value)_Human_Level = value;
             else if (Humans.Length < 0)_Human_Level = 0;
             else _Human_Level = Humans.Length; 
+            Debug.Log(value);
             Set_Human();
         }
     }
