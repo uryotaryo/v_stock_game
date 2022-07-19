@@ -5,7 +5,8 @@ using UnityEngine;
 public class NPC : MonoBehaviour
 {
     public (int _x,int _y)pos;
-    
+    [SerializeField]
+    private Parts_Point emort;
     public (int _t_x,int _t_y)target;
     private float lerp_Intbal_meta = 0;
     private float meta_lerp_pos = 0;
@@ -20,6 +21,9 @@ public class NPC : MonoBehaviour
         return true;
     }
     // Start is called before the first frame update
+    public Parts_Point Get_Emort(){
+        return emort;
+    }
     void Start()
     {
         pos._x = 10;
