@@ -33,8 +33,9 @@ public class Real_Time_Cont : MonoBehaviour
         }
     public void Set_Q(Question q){
         now_Q = q;
-        NPC_Ans_box.gameObject.SetActive(false);
         Set_Select_name(now_Q.Anss);
+        NPC_Ans_box.text = "(" + now_Q.Question_Text + ")";
+
     }
     private void Ans_btn_Active(bool Set){
         foreach(var s in Select_objs){
@@ -46,20 +47,21 @@ public class Real_Time_Cont : MonoBehaviour
         Ans_btn_Active(true);
         //TODO:ここでselect_objsのシャッフルを入れる
         foreach(var s in Select_objs){
-            if(count < 0)break;
-            s.GetComponent<Ans_Down>().Set_Replay(L_R[count]);
+            if(count < 0){
+                s.GetComponent<Ans_Down>().Set_Replay(new Reply("ダミー","ダミー選択肢です",0));
+            }else {
+                s.GetComponent<Ans_Down>().Set_Replay(L_R[count]);
+            }
             count --;
         }
     }
     public void Click_Reply(Reply r){
         _select_reply = r;
         Ans_btn_Active(false);
-        NPC_Ans_box.gameObject.SetActive(true);
         NPC_Ans_box.text = r.NPC_Ans;
     }
     public void To_Next_Reply(){
         Debug.Log(_select_reply.Ans_Type);
-        NPC_Ans_box.gameObject.SetActive(false);
         switch (_select_reply.Ans_Type)
         {
             case Reply.Reply_Type.Ans_Reply:
@@ -68,7 +70,7 @@ public class Real_Time_Cont : MonoBehaviour
                 break;
             case Reply.Reply_Type.Complain_fluctuation:
                 GameManager.Get_Player().Cam_Change();
-                GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>().Human_level += 1;
+                GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>().Human_level += _select_reply.Change_Complain;
                 break;
             default:
                 break;

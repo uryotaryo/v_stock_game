@@ -47,6 +47,7 @@ public class Conversation : MonoBehaviour
         
         Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",0));
         Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",10));
+
     }
 }
 /// <summary>
@@ -87,6 +88,7 @@ public class Reply{
     public Reply(string name,string info,Question next){
         Select_string = name;
         NPC_Ans = info;
+        Next_Question = next;
         Ans_Type = Reply_Type.Ans_Reply;
     } 
 }

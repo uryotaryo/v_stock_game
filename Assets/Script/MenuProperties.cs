@@ -59,8 +59,8 @@ public class MenuProperties : MonoBehaviour
     }
         
     private void prot_only(){
+        if(!GameManager.Get_Player().Forward_NPC())return;
         GameManager.Get_Player().Cam_Change();
-        Debug.Log(Conversation.Dict_Q["3-2"]);
         GameObject.FindWithTag("FPS_canvas").GetComponent<Real_Time_Cont>().Set_Q(Conversation.Dict_Q["2"]);
     }
 }

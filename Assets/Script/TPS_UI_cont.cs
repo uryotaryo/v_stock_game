@@ -33,13 +33,4 @@ public class TPS_UI_cont : MonoBehaviour
     {
         Set_Human();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void NPC_to_Talk(){
-        
-    }
 }

@@ -126,6 +126,12 @@ public class Player : MonoBehaviour
     private void Pos_Teleport(int x,int y){
         //TODO:即座にその位置に出現させる
     }
+    public bool Forward_NPC(){
+        if(forward_ray() == null){
+            return false;
+        }
+        return true;
+    }
     private GameObject forward_ray(){
         Vector3 point = transform.position;
         Vector3 trget =  player_obj.transform.forward;
