@@ -12,9 +12,10 @@ public class Real_Time_Cont : MonoBehaviour
     [SerializeField]
     private Text NPC_Ans_box;
     [SerializeField]
-    private Text[] Select_objs;
+    private GameObject[] Select_objs;
 
     private Question now_Q;
+    private Reply _select_reply;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,25 +30,48 @@ public class Real_Time_Cont : MonoBehaviour
     void Update()
     {
         Timer_Bar.value -= Time.deltaTime;
-    }
+        }
     public void Set_Q(Question q){
         now_Q = q;
+        NPC_Ans_box.gameObject.SetActive(false);
         Set_Select_name(now_Q.Anss);
+    }
+    private void Ans_btn_Active(bool Set){
+        foreach(var s in Select_objs){
+            s.gameObject.SetActive(Set);
+        }
     }
     private void Set_Select_name(List<Reply> L_R){
         int count = L_R.Count-1;
-        Debug.Log (count);
+        Ans_btn_Active(true);
         //TODO:ここでselect_objsのシャッフルを入れる
         foreach(var s in Select_objs){
             if(count < 0)break;
-            s.GetComponent<Text>().text = L_R[count].Select_string;
+            s.GetComponent<Ans_Down>().Set_Replay(L_R[count]);
             count --;
         }
     }
-    public Reply Get_Select_Reply(string s){
-        foreach(var a in  now_Q.Anss){
-            if(a.Select_string == s)return a;
+    public void Click_Reply(Reply r){
+        _select_reply = r;
+        Ans_btn_Active(false);
+        NPC_Ans_box.gameObject.SetActive(true);
+        NPC_Ans_box.text = r.NPC_Ans;
+    }
+    public void To_Next_Reply(){
+        Debug.Log(_select_reply.Ans_Type);
+        NPC_Ans_box.gameObject.SetActive(false);
+        switch (_select_reply.Ans_Type)
+        {
+            case Reply.Reply_Type.Ans_Reply:
+                Debug.Log(_select_reply.Next_Question);
+                Set_Q(_select_reply.Next_Question);
+                break;
+            case Reply.Reply_Type.Complain_fluctuation:
+                GameManager.Get_Player().Cam_Change();
+                GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>().Human_level += 1;
+                break;
+            default:
+                break;
         }
-        return null;
     }
 }

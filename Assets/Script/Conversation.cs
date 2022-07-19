@@ -32,8 +32,8 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("6-1",new Question("交渉"));
     }
     private static void Reply_Load(){  
-        Dict_Q["2"].Anss.Add(new Reply("要件","",Dict_Q["3-1"]));
-        Dict_Q["2"].Anss.Add(new Reply("世間話","",Dict_Q["3-2"]));
+        Dict_Q["2"].Anss.Add(new Reply("要件","何か用事があるんですか？",Dict_Q["3-1"]));
+        Dict_Q["2"].Anss.Add(new Reply("世間話","世間話ですか？",Dict_Q["3-2"]));
         Dict_Q["2"].Anss.Add(new Reply("特になし","・・・",0));
 
         Dict_Q["3-1"].Anss.Add(new Reply("了解","了解した。",+5));
