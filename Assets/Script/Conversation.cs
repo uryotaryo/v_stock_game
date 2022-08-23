@@ -5,21 +5,16 @@ using UnityEngine;
 public class Conversation : MonoBehaviour
 {
     public static Dictionary<string,Question> Dict_Q;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public static Dictionary<string,Task>All_Tasks;
     public static void Q_And_A_Load(){
         Question_Load();
         Reply_Load();
+        Task_Load();
+        Task_Set();
     }
+    /// <summary>
+    /// NPCが質問する内容
+    /// </summary>
     private static void Question_Load(){
         Dict_Q = new Dictionary<string, Question>();
         Dict_Q.Add("2",new Question("何を話そう"));
@@ -31,6 +26,9 @@ public class Conversation : MonoBehaviour
 
         Dict_Q.Add("6-1",new Question("交渉"));
     }
+    /// <summary>
+    /// 質問に紐づけされる解答一覧
+    /// </summary>
     private static void Reply_Load(){  
         Dict_Q["2"].Anss.Add(new Reply("要件","何か用事があるんですか？",Dict_Q["3-1"]));
         Dict_Q["2"].Anss.Add(new Reply("世間話","世間話ですか？",Dict_Q["3-2"]));
@@ -47,6 +45,20 @@ public class Conversation : MonoBehaviour
         
         Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",0));
         Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",1));
+
+    }
+    /// <summary>
+    /// ゲーム内の全てのタスクをここで定義する 
+    /// </summary>
+    private static void Task_Load(){
+        All_Tasks = new Dictionary<string, Task>();
+        All_Tasks["例タスク"] = new Task("タスクの名前","タスクの詳細説明",10);//例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
+
+    }
+    /// <summary>
+    /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
+    /// </summary>
+    private static void Task_Set(){
 
     }
 }
@@ -92,4 +104,25 @@ public class Reply{
         Next_Question = next;
         Ans_Type = Reply_Type.Ans_Reply;
     } 
+}
+public class Task{
+    public string Name{get;}
+    public string Explanation{get;}
+    public int Content_Num{get{return _Num;}}
+    public int Content_Num_Max{get;}
+    private int _Num;
+    public Task(string name ,string expl,int count){
+        Name = name;
+        Explanation = expl;
+        _Num = 0;
+        Content_Num_Max = count;
+    }
+    public void Task_Stage_Clear(){
+        if(Task_Clear())return;
+        _Num++;
+    }
+    public bool Task_Clear(){
+        if(Content_Num >= Content_Num_Max)return true;
+        return false;
+    }
 }
