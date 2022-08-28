@@ -15,6 +15,8 @@ public class Stage_Property : MonoBehaviour
     
     private MeshRenderer _mesh_render;
     private MeshFilter _mesh_filter;
+    
+    private List<List<Task>> All_Task = new List<List<Task>>();
     private void OnValidate(){
         if(meta_obj == null)return;
         _mesh_render = transform.Find("Visual_Obj").GetComponent<MeshRenderer>();
