@@ -174,9 +174,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 4427136038119032168, guid: 7c1dd9641fc00cd48b60dad22bc2a803, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 8096717223143515554, guid: 27a18d4dcbd953443884f2e306a511f4, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 7619167240081458619, guid: 09f3a2e1588f58645b90cb6addf3e824, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object (1)
+      value: KINGYOSUKUI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
@@ -275,9 +291,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 556261740818707140, guid: 3ffa93cb0feeb7c439f091214d3d67a8, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 3037228943746911268, guid: 6c27cf5e48aa2be4f8e5c65f3a3060d2, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 6386751941848651486, guid: cf65a419c644ed94f864e65d1ca6bfa0, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object (4)
+      value: WATAAME
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
@@ -293,6 +325,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 305809089}
     m_Modifications:
+    - target: {fileID: 656354424725885157, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 980648449461070845, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -337,9 +373,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 8276180018549521466, guid: a9dd6d548483cd64981cfb606c820eba, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 6078238493910604037, guid: 28554b21f140d80479dec3efa32ea43e, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 1501026011905685502, guid: 348ef1a92d5dcb04cbab6ae002fb7296, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object (3)
+      value: SYATEKI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
@@ -607,9 +659,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_Facing
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 5403765130771898631, guid: cb1db5e0aea53d34da1e102a053cc7f9, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 5858865718500027100, guid: 393dd4afd5fcfa24c84c03726b88297a, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 3089586688094094100, guid: b479ceab7423d624fac3b35b76f8a605, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object (2)
+      value: OMEN
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
@@ -664,9 +736,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 4067714137002750350, guid: 15f4cac8589fa7b419c28e53f4e55968, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 4035346694230888621, guid: 4aa9f4f3b90ffad4c97ce3d052aed24a, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 4053958426909315464, guid: 3d917d44f34cf2e42853137d15b1a897, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object (5)
+      value: YAKITORI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
@@ -1034,9 +1122,29 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_Facing
+      value: 180
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[0]
+      value: 
+      objectReference: {fileID: 6464954963745935866, guid: 669e9d63e978eae40bd780555e1ea005, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[1]
+      value: 
+      objectReference: {fileID: 4689567503497214329, guid: dcb3368089efb744f804063b53472394, type: 3}
+    - target: {fileID: 1834362147362959688, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: after_frames.Array.data[2]
+      value: 
+      objectReference: {fileID: 4562197515268865832, guid: 670f7ddce3cfcf84f802b8771e56d248, type: 3}
     - target: {fileID: 6065320171247233715, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Name
-      value: Store_Object
+      value: KAKIGOORI
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
