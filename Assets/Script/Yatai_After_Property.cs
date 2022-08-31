@@ -8,6 +8,7 @@ public class Yatai_After_Property : MonoBehaviour
     private GameObject[] after_frames = new GameObject[3];
     [SerializeField]
     private facing_direction YATAI_Facing = facing_direction.NO_X;
+    private GameObject _visual_obj;
     private enum facing_direction{
         NO_X = 0,
         X = 180,
@@ -18,12 +19,13 @@ public class Yatai_After_Property : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _visual_obj = this.transform.GetChild(0).gameObject;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(this.transform.GetChild(0).GetChild(0) == null) return;
+        if(_visual_obj.transform.childCount <= 0)return;
         this.transform.GetChild(0).GetChild(0).eulerAngles =  new Vector3(0,(float)YATAI_Facing,0);
     }
     public void Set_Result(int level){
@@ -32,16 +34,16 @@ public class Yatai_After_Property : MonoBehaviour
             this.enabled = false;
             return;
         }
-        var g = Instantiate(after_frames[level]);
-        g.transform.SetParent(this.transform.GetChild(0));
+        var g = Instantiate(after_frames[level-1]);
+        g.transform.SetParent(_visual_obj.transform);
         g.transform.localPosition = Vector3.zero;
         g.transform.eulerAngles = new Vector3(0,(float)YATAI_Facing,0);
         g.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
         
     }
     private void Child_All_Destroy(){
-        for (int i = this.transform.GetChild(0).childCount;i > 0;i--){
-            Destroy(this.transform.GetChild(0).GetChild(0).gameObject,0f);
+        for (int i = _visual_obj.transform.childCount;i > 0;i--){
+            Destroy(_visual_obj.transform.GetChild(0).gameObject,0f);
         }
     }
 }
