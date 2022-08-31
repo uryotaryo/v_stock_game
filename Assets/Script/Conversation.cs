@@ -13,7 +13,7 @@ public class Conversation : MonoBehaviour
         Task_Set();
     }
     /// <summary>
-    /// NPCが質問する内容
+    /// NPCが質問する内容(P)
     /// </summary>
     private static void Question_Load(){
         Dict_Q = new Dictionary<string, Question>();
@@ -25,9 +25,12 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("4-1",new Question("理由説明"));
 
         Dict_Q.Add("6-1",new Question("交渉"));
+
+        Dict_Q.Add("会話例:)1",new Question("こんにちはNPC"));
+        Dict_Q.Add("会話例2", new Question("カイワレ２だヨ"));
     }
     /// <summary>
-    /// 質問に紐づけされる解答一覧
+    /// 質問に紐づけされる解答一覧(N)
     /// </summary>
     private static void Reply_Load(){  
         Dict_Q["2"].Anss.Add(new Reply("要件","何か用事があるんですか？",Dict_Q["3-1"]));
@@ -45,6 +48,14 @@ public class Conversation : MonoBehaviour
         
         Dict_Q["6-1"].Anss.Add(new Reply("本を渡す","これはまだ読んだことがないことですねいいでしょう行きますよ。",0));
         Dict_Q["6-1"].Anss.Add(new Reply("強引に行かせる","ﾁｯ…仕方がありませんね",1));
+
+        Dict_Q["会話例:)1"].Talks.Add("こんにちはプレイヤー");//
+        Dict_Q["会話例:)1"].Talks.Add("これは会話例です");
+        Dict_Q["会話例:)1"].Talks.Add("会話例じゃないです");
+        Dict_Q["会話例:)1"].Talks.Add("これで終了です");
+        Dict_Q["会話例:)1"].Next_Question = Dict_Q["会話例2"];
+        
+        
 
     }
     /// <summary>
@@ -68,6 +79,8 @@ public class Conversation : MonoBehaviour
 public class Question{
     public string Question_Text;
     public List<Reply> Anss;
+    public List<string> Talks;
+    public Question Next_Question;
     public Question (string text){
         Question_Text = text;
         Anss = new List<Reply>();
