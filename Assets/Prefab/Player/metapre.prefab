@@ -1908,6 +1908,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1249518407555640228}
   - component: {fileID: 6332305411107781031}
+  - component: {fileID: 3824890994308340210}
   m_Layer: 0
   m_Name: metapre
   m_TagString: Player
@@ -1946,6 +1947,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _NowEmort: 0
   emort_obj: []
+--- !u!114 &3824890994308340210
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1249518407555640231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3688b63f3926e4485de3c6d155c2ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player_obj: {fileID: 2005535556430871599}
+  FpsCam: {fileID: 9191624070876690646}
+  TpsCam: {fileID: 7413741842134499395}
 --- !u!1 &1658626852149985412
 GameObject:
   m_ObjectHideFlags: 0
@@ -2680,7 +2696,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7fcaf799c941d9847a32002f7b96ee9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _pm: {fileID: 3668879506746667655}
+  _pm: {fileID: 3824890994308340210}
   wheel_speed: 1
 --- !u!1 &7951162886587043910
 GameObject:
@@ -2974,7 +2990,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9191624070876690646}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.37, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 3759786740058604361}
@@ -3230,14 +3246,14 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 711543446850144180, guid: 73326562890a28a44be37de278367029, type: 3}
   m_PrefabInstance: {fileID: 1449481173}
   m_PrefabAsset: {fileID: 0}
---- !u!224 &711543447106585878 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 711543446207125187, guid: 73326562890a28a44be37de278367029, type: 3}
-  m_PrefabInstance: {fileID: 1449481173}
-  m_PrefabAsset: {fileID: 0}
 --- !u!224 &711543447249753146 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 711543446349891567, guid: 73326562890a28a44be37de278367029, type: 3}
+  m_PrefabInstance: {fileID: 1449481173}
+  m_PrefabAsset: {fileID: 0}
+--- !u!224 &711543447106585878 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 711543446207125187, guid: 73326562890a28a44be37de278367029, type: 3}
   m_PrefabInstance: {fileID: 1449481173}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1692749246
@@ -3488,25 +3504,10 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 9.2
-  m_BaseOffset: 4.6
+  m_Height: 4.6
+  m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &3668879506746667655
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2005535556430871599}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3688b63f3926e4485de3c6d155c2ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player_obj: {fileID: 2005535556430871599}
-  FpsCam: {fileID: 9191624070876690646}
-  TpsCam: {fileID: 7413741842134499395}
 --- !u!1001 &3759786740491401300
 PrefabInstance:
   m_ObjectHideFlags: 0

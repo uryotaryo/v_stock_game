@@ -19,4 +19,16 @@ public static class Info
         //TODO:パラメータによってNPCの性格を変える
         return "冷静";
     }
+    public enum NPC_TYPE{
+        YAKITORI,
+        KAKIGORI,
+        KINGYO,
+        SYATEKI,
+        OMEN,
+        WATAAME,
+        HANABI,
+        INFURENSER,
+        SONTYO,
+        OKYAKU,
+    }
 }
