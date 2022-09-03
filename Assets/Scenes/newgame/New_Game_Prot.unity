@@ -618,6 +618,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7870521503482290049, guid: 01b91b9e2abdaa747b7faa011c259c66, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870521503482290049, guid: 01b91b9e2abdaa747b7faa011c259c66, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870521503482290049, guid: 01b91b9e2abdaa747b7faa011c259c66, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7870521503482290049, guid: 01b91b9e2abdaa747b7faa011c259c66, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 7926987378728629347, guid: 01b91b9e2abdaa747b7faa011c259c66, type: 3}
       propertyPath: m_Name
       value: Tensyu_Wataame_render
@@ -894,6 +910,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tensyu_Kingyo
       objectReference: {fileID: 0}
+    - target: {fileID: 499620548420448544, guid: f39af9de356f758458ecd4c0dd1dec6e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 499620548420448544, guid: f39af9de356f758458ecd4c0dd1dec6e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 499620548420448544, guid: f39af9de356f758458ecd4c0dd1dec6e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 499620548420448544, guid: f39af9de356f758458ecd4c0dd1dec6e, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     - target: {fileID: 1053620277652160632, guid: f39af9de356f758458ecd4c0dd1dec6e, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -950,6 +982,22 @@ PrefabInstance:
     - target: {fileID: 2366438982767170081, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
       propertyPath: m_Name
       value: Tensyu_Omen
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588623285176777155, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588623285176777155, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588623285176777155, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2588623285176777155, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: 3142552782700611739, guid: e8dc8ceb78ac3ca4f9ba5c37fd70ead0, type: 3}
       propertyPath: m_RootOrder
@@ -1234,6 +1282,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tensyu_Syateki
       objectReference: {fileID: 0}
+    - target: {fileID: 5684589545399467173, guid: 0e9fb382704f0df46899c3d1c83b798d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684589545399467173, guid: 0e9fb382704f0df46899c3d1c83b798d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684589545399467173, guid: 0e9fb382704f0df46899c3d1c83b798d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5684589545399467173, guid: 0e9fb382704f0df46899c3d1c83b798d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e9fb382704f0df46899c3d1c83b798d, type: 3}
 --- !u!1001 &1276820423
@@ -1330,11 +1394,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3966745616181981172, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3966745616181981172, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3966745616181981172, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1351,6 +1415,22 @@ PrefabInstance:
     - target: {fileID: 4343553287231714638, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
       propertyPath: m_Name
       value: Tensyu_Kakigoori
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574674454244777644, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574674454244777644, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574674454244777644, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4574674454244777644, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e5371f9517b93644a1030ce4c7fdb79, type: 3}
@@ -1431,6 +1511,22 @@ PrefabInstance:
     - target: {fileID: 7827909821884534770, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
       propertyPath: m_Name
       value: Tensyu_Yakiyori
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041658842750477328, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041658842750477328, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041658842750477328, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8041658842750477328, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a3e5d6b68a3867946b9402604aa333e8, type: 3}
@@ -1855,6 +1951,10 @@ PrefabInstance:
     - target: {fileID: 3038220239484940075, guid: 12036b481e7fd2546bb3140488496437, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3824890994308340210, guid: 12036b481e7fd2546bb3140488496437, type: 3}
+      propertyPath: to_NPC_Distance
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 7305745177772306196, guid: 12036b481e7fd2546bb3140488496437, type: 3}
       propertyPath: m_LocalPosition.y

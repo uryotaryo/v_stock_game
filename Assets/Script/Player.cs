@@ -16,7 +16,8 @@ public class Player : MonoBehaviour
     private GameObject FpsCam;
     [SerializeField]
     private GameObject TpsCam;
-
+    [SerializeField,Range(0.1f,2.0f)]
+    private float to_NPC_Distance;
     private Vector3 _target;
     private NavMeshAgent _pobj_agent;
     private bool _stop = false;
@@ -76,9 +77,8 @@ public class Player : MonoBehaviour
         Vector3 trget = -player_obj.transform.forward;
         Ray ray = new Ray(point,trget);
         RaycastHit hit_info = new RaycastHit();
-        float max_distance = 1f;
-        bool is_hit = Physics.Raycast(ray, out hit_info, max_distance);
+        bool is_hit = Physics.Raycast(ray, out hit_info, to_NPC_Distance);
         if(is_hit) this.transform.position = hit_info.point;
-        else this.transform.position += (-player_obj.transform.forward) * 1; 
+        else this.transform.position += (-player_obj.transform.forward) * to_NPC_Distance; 
     }
 }
