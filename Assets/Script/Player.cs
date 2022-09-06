@@ -42,6 +42,9 @@ public class Player : MonoBehaviour
         this.transform.position = new Vector3(player_obj.transform.position.x,0,player_obj.transform.position.z);
         player_obj.transform.localPosition = new Vector3(0,0,0);
         FpsCam.transform.rotation = player_obj.transform.rotation;
+        if(Input.GetKey(KeyCode.C)&&Input.GetKey(KeyCode.K)){
+            GameManager.Get_GameManager().To_Result();
+        }
     }
     public void Set_Target(Vector3 t){
         _target = t;
