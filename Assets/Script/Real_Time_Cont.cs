@@ -38,7 +38,7 @@ public class Real_Time_Cont : MonoBehaviour
         Timer_Bar.value -= Time.deltaTime;
         }
     public void Set_Q(Question q){
-        Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.none);
+        //Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.none);
 
         now_Q = q;
         Set_Select_name(now_Q.Anss);
@@ -67,6 +67,7 @@ public class Real_Time_Cont : MonoBehaviour
         _select_reply = r;
         Ans_btn_Active(false);
         NPC_Ans_box.text = r.NPC_Ans;
+        /*
         if(r.Select_string == "特になし"){
             Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.angl);
         }else if (r.Select_string == "困っていることない？"){
@@ -83,7 +84,7 @@ public class Real_Time_Cont : MonoBehaviour
         }
         else if (r.Select_string == "強引に行かせる"){
             Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.angl);
-        }
+        }*/
     }
     private void prot_only(){
         

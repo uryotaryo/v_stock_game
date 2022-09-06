@@ -16,13 +16,15 @@ public class Player : MonoBehaviour
     private GameObject FpsCam;
     [SerializeField]
     private GameObject TpsCam;
-
+    [SerializeField,Range(0.1f,2.0f)]
+    private float to_NPC_Distance;
     private Vector3 _target;
-    private NavMeshAgent _this_agent;
+    private NavMeshAgent _pobj_agent;
+    private bool _stop = false;
     void Start()
     {
         _target = this.transform.position;
-        _this_agent = this.GetComponent<NavMeshAgent>();
+        _pobj_agent = player_obj.GetComponent<NavMeshAgent>();
         if(FpsCam == null || TpsCam == null)return;
         FpsCam.SetActive(false);
         TpsCam.SetActive(true);
@@ -33,12 +35,17 @@ public class Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.V)){
             Cam_Change();
         }
-        transform.parent.transform.position = new Vector3(transform.position.x,0,transform.position.z);
-        transform.localPosition = new Vector3(0,0,0);
+        if(_stop){
+            _pobj_agent.SetDestination(this.transform.position);
+            player_obj.transform.localPosition = Vector3.zero;
+        }
+        this.transform.position = new Vector3(player_obj.transform.position.x,0,player_obj.transform.position.z);
+        player_obj.transform.localPosition = new Vector3(0,0,0);
+        FpsCam.transform.rotation = player_obj.transform.rotation;
     }
     public void Set_Target(Vector3 t){
         _target = t;
-        _this_agent.SetDestination(_target);
+        _pobj_agent.SetDestination(_target);
     }
     /// <summary>
     /// 一人称カメラと3人称カメラの表示非表示を反転させる
@@ -47,24 +54,31 @@ public class Player : MonoBehaviour
         
         FpsCam.SetActive(!FpsCam.activeSelf);
         TpsCam.SetActive(!TpsCam.activeSelf);
+        Move(FpsCam.activeSelf);
+
         Debug.Log("カメラチェンジ");
     }
-    public GameObject Forward_NPC(){
-        var obj = forward_ray();
-        if (obj == null) return null;
-        if(obj.transform.tag == "NPC")return obj.transform.gameObject;
-        return null;
+    public void Move(bool b){
+        _pobj_agent.isStopped = b;
+        _stop = b;
     }
-    private GameObject forward_ray(){
-        Vector3 point = transform.position;
-        Vector3 trget =  player_obj.transform.forward;
+    public void NPC_Click(GameObject Click_OBJ){
+        if(Vector2.Distance(new Vector2(player_obj.transform.position.x,player_obj.transform.position.z),new Vector2(Click_OBJ.transform.position.x,Click_OBJ.transform.position.z))
+        >= 1f)return;
+        player_obj.transform.LookAt(Click_OBJ.transform.position);
+        to_back();
+        Click_OBJ.GetComponent<NPC>().Look(this.transform.position);
 
+        Cam_Change();
+    }
+    private void to_back(){
+        Vector3 point = transform.position;
+        point.y = 0.8f;
+        Vector3 trget = -player_obj.transform.forward;
         Ray ray = new Ray(point,trget);
         RaycastHit hit_info = new RaycastHit();
-        float max_distance = 1f;
-
-        bool is_hit = Physics.Raycast(ray, out hit_info, max_distance); 
-        if(is_hit)return hit_info.transform.gameObject;
-        else return null;
+        bool is_hit = Physics.Raycast(ray, out hit_info, to_NPC_Distance);
+        if(is_hit) this.transform.position = hit_info.point;
+        else this.transform.position += (-player_obj.transform.forward) * to_NPC_Distance; 
     }
 }

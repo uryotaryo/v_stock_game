@@ -83,6 +83,7 @@ public class Question{
     public Question Next_Question;
     public Question (string text){
         Question_Text = text;
+        Talks = new List<string>();
         Anss = new List<Reply>();
     }
 }
