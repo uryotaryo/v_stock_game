@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     //プレイヤーのオブジェクトを格納する
     private static GameObject _player_Obj;
 
+    [SerializeField]
+    private GameObject _Result;
+
     /// <summary>
     /// 格納した自身のクラスを返す
     /// </summary>
@@ -40,7 +43,10 @@ public class GameManager : MonoBehaviour
         _my_Manager = this.GetComponent<GameManager>();
         _player_Obj = GameObject.FindWithTag("Player");
     }
-    // Start is called before the first frame update
+    
+    public void To_Result(){
+        _Result.SetActive(true);
+    }
     void Start()
     {
         Conversation.Q_And_A_Load();
