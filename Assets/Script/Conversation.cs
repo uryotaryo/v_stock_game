@@ -30,7 +30,8 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("3", new Question("世間話"));
         Dict_Q.Add("3-1", new Question("好きなことの選択肢"));
         Dict_Q.Add("3-2", new Question("嫌いなことの選択肢"));
-        Dict_Q.Add("3-2", new Question("何者なのかの選択肢"));
+        //上に同じ名前が存在する
+        //Dict_Q.Add("3-2", new Question("何者なのかの選択肢"));
 
         Dict_Q.Add("会話1", new Question("好きなこと"));
         Dict_Q.Add("会話2", new Question("嫌いなこと"));
