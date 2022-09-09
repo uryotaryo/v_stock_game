@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.AI;
 public class Yatai_After_Property : MonoBehaviour
 {
     [SerializeField]
@@ -31,7 +31,7 @@ public class Yatai_After_Property : MonoBehaviour
     public void Set_Result(int level){
         Child_All_Destroy();
         if(level >= 4||level <= 0){
-            this.enabled = false;
+            this.gameObject.SetActive(false);
             return;
         }
         var g = Instantiate(after_frames[level-1]);

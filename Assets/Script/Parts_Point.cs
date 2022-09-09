@@ -2,10 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
-
 public class Parts_Point : MonoBehaviour
 {
     public emort _NowEmort = emort.none;
@@ -45,12 +41,3 @@ public class Parts_Point : MonoBehaviour
         }
     }
 }
-#if UNITY_EDITOR
-public class Parts_Point_Editor:Editor
-{
-    public override void OnInspectorGUI()
-    {
-        base.OnInspectorGUI();
-    }
-}
-#endif
