@@ -44,7 +44,7 @@ public class Result : MonoBehaviour
             Move_Stop = true;
             return;
         }
-        S_To_E_D += 0.005f;
+        S_To_E_D += 0.0025f;
         Move_Camera.transform.position =  Vector3.Lerp(S_Point[move_num],E_Point[move_num],S_To_E_D);
         if(Move_Camera.transform.position == E_Point[move_num]){
             move_num ++;
