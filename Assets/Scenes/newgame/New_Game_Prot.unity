@@ -433,7 +433,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 427767902}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 1, z: -8}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1198596962}
@@ -455,6 +455,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Move_Camera: {fileID: 1198596959}
   Result_Camera: {fileID: 1085248306}
+  Meta_ResultNPC: {fileID: 8118431771739427165, guid: 1be578d4447d6fe4aaad10a2acd723bb, type: 3}
 --- !u!1001 &467952558
 PrefabInstance:
   m_ObjectHideFlags: 0
