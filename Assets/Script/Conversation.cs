@@ -38,20 +38,33 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("会話4", new Question("なぜお面を？"));
         Dict_Q.Add("会話5", new Question("お祭りへの意気込み"));
         //綿あめ屋
-        Dict_Q.Add("綿あめ:1",new Question("どうも。お疲れ様です。"));
+        Dict_Q.Add("綿あめ:1", new Question("どうも。お疲れ様です。"));
 
-        Dict_Q.Add("2",new Question("ザラメを集めてほしい"));
-        Dict_Q.Add("2-4", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("綿あめ:挨拶", new Question("こんにちは"));
 
-        Dict_Q.Add("3",new Question("世間話"));
-        Dict_Q.Add("3-1", new Question("好きなことの選択肢"));
-        Dict_Q.Add("3-2", new Question("嫌いなことの選択肢"));
+        Dict_Q.Add("綿あめ:1", new Question("会話選択肢"));
 
-        Dict_Q.Add("会話1", new Question("好きなこと"));
-        Dict_Q.Add("会話2", new Question("嫌いなこと"));
-        Dict_Q.Add("会話3", new Question("趣味"));
-        Dict_Q.Add("会話4", new Question("焼き鳥屋店主について"));
-        Dict_Q.Add("会話5", new Question("悩み"));
+        Dict_Q.Add("綿あめ:2", new Question("ザラメを集めてほしい"));
+        Dict_Q.Add("綿あめ:2-1", new Question("綿あめ返答1"));
+        Dict_Q.Add("綿あめ:2-2", new Question("綿あめ返答2"));
+        Dict_Q.Add("綿あめ:2-3", new Question("綿あめ返答3"));
+        Dict_Q.Add("綿あめ:2-4", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("綿あめ:2-5", new Question("綿あめ返答4"));
+        Dict_Q.Add("綿あめ:2-6", new Question("綿あめ返答5"));
+
+        Dict_Q.Add("綿あめ:3", new Question("世間話"));
+        Dict_Q.Add("綿あめ:3-1", new Question("好きなことの選択肢"));
+        Dict_Q.Add("綿あめ:3-2", new Question("綿あめ返答6"));
+        Dict_Q.Add("綿あめ:3-3", new Question("綿あめ返答7"));
+        Dict_Q.Add("綿あめ:3-4", new Question("嫌いなことの選択肢"));
+        Dict_Q.Add("綿あめ:3-2", new Question("綿あめ返答8"));
+        Dict_Q.Add("綿あめ:3-3", new Question("綿あめ返答9"));
+
+        Dict_Q.Add("綿あめ会話:1", new Question("好きなこと"));
+        Dict_Q.Add("綿あめ会話:2", new Question("嫌いなこと"));
+        Dict_Q.Add("綿あめ会話:3", new Question("趣味"));
+        Dict_Q.Add("綿あめ会話:4", new Question("焼き鳥屋店主について"));
+        Dict_Q.Add("綿あめ会話:5", new Question("悩み"));
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -111,52 +124,67 @@ public class Conversation : MonoBehaviour
         Dict_Q["会話5"].Talks.Add("私もお祭りは好きだからね～そのために頑張らないとね");
         Dict_Q["会話5"].Talks.Add("一緒に頑張りましょう！");
         Dict_Q["会話5"].Talks.Add("もちろん～頑張りましょ～");
-        
+
         //綿あめ屋
-        Dict_Q["1"].Anss.Add(new Reply("要件","何か用事があるんですか？",Dict_Q["2"]));
-        Dict_Q["1"].Anss.Add(new Reply("世間話","世間話ですか？",Dict_Q["3"]));
-        Dict_Q["1"].Anss.Add(new Reply("特になし","わかりました。",0));
+        Dict_Q["綿あめ:挨拶"].Anss.Add(new Reply("挨拶", "どうも。お疲れ様です。", Dict_Q["綿あめ:1"]));
 
-        Dict_Q["2"].Anss.Add(new Reply("雑","いいですよ。喜んでやりましょう！",  -1));
-        Dict_Q["2"].Anss.Add(new Reply("一般", "分かりました。手伝います。", 0));
-        Dict_Q["2"].Anss.Add(new Reply("丁寧", "うーーん...", Dict_Q["2-4"]));
+        Dict_Q["綿あめ:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["綿あめ:2"]));
+        Dict_Q["綿あめ:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["綿あめ:3"]));
+        Dict_Q["綿あめ:1"].Anss.Add(new Reply("特になし", "わかりました。", 0));
 
-        Dict_Q["2-4"].Anss.Add(new Reply("一般", "分かりました", 0));
-        Dict_Q["2-4"].Anss.Add(new Reply("丁寧", "まぁできなくもないです。", +1));
+        Dict_Q["綿あめ:2"].Anss.Add(new Reply("雑", "頼みたいことがあるんだけどいい！？", Dict_Q["綿あめ:2-1"]));
+        Dict_Q["綿あめ:2"].Anss.Add(new Reply("一般", "お願いがあるんです！聞いてくれませんか！？",, Dict_Q["綿あめ:2-2"]));
+        Dict_Q["綿あめ:2"].Anss.Add(new Reply("丁寧", "恐縮ながら頼みたい事がありまして...", Dict_Q["綿あめ:2-3"]));
 
-        Dict_Q["3"].Anss.Add(new Reply("Like","好きなことは何ですか？",Dict_Q["会話1"]));
-        Dict_Q["3"].Anss.Add(new Reply("Hate","嫌いなことは？", Dict_Q["会話2"]));
-        Dict_Q["3"].Anss.Add(new Reply("Hobby","趣味は？", Dict_Q["会話3"]));
-        Dict_Q["3"].Anss.Add(new Reply("Friends","焼き鳥屋店主と仲が良いんですか？", Dict_Q["会話4"]));
-        Dict_Q["3"].Anss.Add(new Reply("Worries","悩みはありますか？", Dict_Q["会話5"]));
+        Dict_Q["綿あめ:2-1"].Anss.Add(new Reply("", "いいですよ。喜んでやりましょう！", +1));
+        Dict_Q["綿あめ:2-2"].Anss.Add(new Reply("", "分かりました。手伝います。", 0));
+        Dict_Q["綿あめ:2-3"].Anss.Add(new Reply("", "うーーん...", Dict_Q["綿あめ:2-4"]));
 
-        Dict_Q["3-1"].Anss.Add(new Reply("これからはラフな感じで話しかけるよ", "やはり敬語でない方が親しみやすくていいですね", -2));
-        Dict_Q["3-1"].Anss.Add(new Reply("今後も遠慮なく話しかけさせてもらいます", "ああ、敬語でなくて結構ですよ...", -2));
+        Dict_Q["綿あめ:2-4"].Anss.Add(new Reply("一般", "聞いてもらえませんか...？", Dict_Q["綿あめ:2-5"]));
+        Dict_Q["綿あめ:2-4"].Anss.Add(new Reply("丁寧", "お忙しい中大変だと思うのですが...", Dict_Q["綿あめ:2-6"]));
 
-        Dict_Q["3-2"].Anss.Add(new Reply("これからは僕が積極的に話しかけるよ！", "本当ですか？正直助かります", -2));
-        Dict_Q["3-2"].Anss.Add(new Reply("会話って難しいですよね。同感です。", "そうですね。相手から積極的に距離を詰めてもらえると楽でいいのですが。", -2));
+        Dict_Q["綿あめ:2-5"].Anss.Add(new Reply("", "分かりました", 0));
+        Dict_Q["綿あめ:2-6"].Anss.Add(new Reply("", "まぁできなくもないです。", -1));
 
-        Dict_Q["会話1"].Talks.Add("案外会話は好きですね");
-        Dict_Q["会話1"].Talks.Add("意外ですね！");
-        Dict_Q["会話1"].Talks.Add("気兼ねなく話しかけて下さい");
-        Dict_Q["会話1"].Next_Question = Dict_Q["3-1"];
+        Dict_Q["綿あめ:3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["綿あめ会話:1"]));
+        Dict_Q["綿あめ:3"].Anss.Add(new Reply("Hate", "嫌いなことは？", Dict_Q["綿あめ会話:2"]));
+        Dict_Q["綿あめ:3"].Anss.Add(new Reply("Hobby", "趣味は？", Dict_Q["綿あめ会話:3"]));
+        Dict_Q["綿あめ:3"].Anss.Add(new Reply("Friends", "焼き鳥屋店主と仲が良いんですか？", Dict_Q["綿あめ会話:4"]));
+        Dict_Q["綿あめ:3"].Anss.Add(new Reply("Worries", "悩みはありますか？", Dict_Q["綿あめ会話:5"]));
 
-        Dict_Q["会話2"].Talks.Add("嫌いというか、苦手なものはあります。");
-        Dict_Q["会話2"].Talks.Add("何が苦手なんですか？");
-        Dict_Q["会話2"].Talks.Add("人との距離を縮めるのが苦手で...。会話は好きなのですが。");
-        Dict_Q["会話2"].Next_Question = Dict_Q["3-2"];
+        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("敬語", "今後も遠慮なく話しかけさせてもらいます", Dict_Q["綿あめ会話:3-2"]));
+        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("一般", "これからはラフな感じで話しかけるよ", Dict_Q["綿あめ会話:3-3"]));
 
-        Dict_Q["会話3"].Talks.Add("お菓子作りが好きですね");
-        Dict_Q["会話3"].Talks.Add("なるほど。お菓子が好きなんですか？");
-        Dict_Q["会話3"].Talks.Add("好きですね。お祭りの綿あめとか好きです");
+        Dict_Q["綿あめ:3-2"].Anss.Add(new Reply("", "ああ、敬語でなくて結構ですよ...", -2));
+        Dict_Q["綿あめ:3-3"].Anss.Add(new Reply("", "やはり敬語でない方が親しみやすくていいですね", -2));
 
-        Dict_Q["会話4"].Talks.Add("結構仲は良いですね...!");
-        Dict_Q["会話4"].Talks.Add("相性が良いのかもしれないですね");
-        Dict_Q["会話4"].Talks.Add("敬語は距離を感じるので苦手なんです。敬語を使わない彼の遠慮のなさが逆に良いですね。");
+        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("一般", "これからは僕が積極的に話しかけるよ！", Dict_Q["綿あめ会話:3-5"]));
+        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("敬語", "会話って難しいですよね。同感です。", Dict_Q["綿あめ会話:3-6"]));
 
-        Dict_Q["会話5"].Talks.Add("縁日で屋台の手伝いをお願いしたいのですが...");
-        Dict_Q["会話5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
-        Dict_Q["会話5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
+        Dict_Q["綿あめ:3-5"].Anss.Add(new Reply("", "本当ですか？正直助かります", -2));
+        Dict_Q["綿あめ:3-6"].Anss.Add(new Reply("", "そうですね。相手から積極的に距離を詰めてもらえると楽でいいのですが。", -2));
+
+        Dict_Q["綿あめ会話:1"].Talks.Add("案外会話は好きですね");
+        Dict_Q["綿あめ会話:1"].Talks.Add("意外ですね！");
+        Dict_Q["綿あめ会話:1"].Talks.Add("気兼ねなく話しかけて下さい");
+        Dict_Q["綿あめ会話:1"].Next_Question = Dict_Q["綿あめ:3-1"];
+
+        Dict_Q["綿あめ会話:2"].Talks.Add("嫌いというか、苦手なものはあります。");
+        Dict_Q["綿あめ会話:2"].Talks.Add("何が苦手なんですか？");
+        Dict_Q["綿あめ会話:2"].Talks.Add("人との距離を縮めるのが苦手で...。会話は好きなのですが。");
+        Dict_Q["綿あめ会話:2"].Next_Question = Dict_Q["綿あめ:3-4"];
+
+        Dict_Q["綿あめ会話:3"].Talks.Add("お菓子作りが好きですね");
+        Dict_Q["綿あめ会話:3"].Talks.Add("なるほど。お菓子が好きなんですか？");
+        Dict_Q["綿あめ会話:3"].Talks.Add("好きですね。お祭りの綿あめとか好きです");
+
+        Dict_Q["綿あめ会話:4"].Talks.Add("結構仲は良いですね...！");
+        Dict_Q["綿あめ会話:4"].Talks.Add("相性が良いのかもしれないですね");
+        Dict_Q["綿あめ会話:4"].Talks.Add("敬語は距離を感じるので苦手なんです。敬語を使わない彼の遠慮のなさが逆に良いですね。");
+
+        Dict_Q["綿あめ会話:5"].Talks.Add("縁日で屋台の手伝いをお願いしたいのですが...");
+        Dict_Q["綿あめ会話:5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
+        Dict_Q["綿あめ会話:5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
