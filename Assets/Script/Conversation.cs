@@ -79,18 +79,24 @@ public class Conversation : MonoBehaviour
         Dict_Q["3"].Anss.Add(new Reply("Why", "なぜお面屋のボランティアを？", Dict_Q["会話4"]));
         Dict_Q["3"].Anss.Add(new Reply("Interview", "お祭りへの意気込みをお願いします！", Dict_Q["会話5"]));
 
+
+        //三つ目の引数が存在しないのでエラーが起きています
+        /*
         Dict_Q["3-1"].Anss.Add(new Reply("漫画ですか！？少し意外です", "あら、そう？最近は面白いものがたくさんあるから、読み飽きないし面白いわよ？"));
         Dict_Q["3-1"].Anss.Add(new Reply("おすすめとかあります？", "そうね…スポーツ系統の漫画はジャンルが多くておすすめね。"));
 
         Dict_Q["3-2"].Anss.Add(new Reply("あれ？金魚すくいありますけど…", "正直少し苦手ね…祭りということで妥協しているけれど…少しあのおじさまには気を使ってもらっているから申し訳ないわね。"));
+        */
         Dict_Q["3-2"].Anss.Add(new Reply("不気味な感じというと？", "あのギョロっとした目つきが特にゾッとするわ…もうこの話は終わりにしましょｗ", 0));
 
+        //三つ目の引数が存在しないのでエラーが起きています
+        /*
         Dict_Q["3-3"].Anss.Add(new Reply("気になります！", "ふふｗ見せたくないってわけではないけど、知らない方がいいわよ～後悔しちゃうから..."));
         Dict_Q["3-3"].Anss.Add(new Reply("そんなに気にならないかも", "あらそう？でもあんまりほかの方にそういうこといわない方がいいわよ、かき氷のお兄さん優しいけど、まじめだからしっかりね"));
         Dict_Q["3-3"].Talks.Add("(やっぱり少し気になるなぁ…)");
-
+        */
         Dict_Q["会話1"].Talks.Add("読書かしらね、最近は漫画をよく読むのよ");
-      　Dict_Q["会話1"].Next_Question = Dict_Q["3-1"];
+        Dict_Q["会話1"].Next_Question = Dict_Q["3-1"];
 
         Dict_Q["会話2"].Talks.Add("お魚が少し苦手ね…なんかこう不気味な感じがするわ。");
         Dict_Q["会話2"].Next_Question = Dict_Q["3-2"];
@@ -148,7 +154,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["会話3"].Talks.Add("なるほど。お菓子が好きなんですか？");
         Dict_Q["会話3"].Talks.Add("好きですね。お祭りの綿あめとか好きです");
 
-        Dict_Q["会話4"].Talks.Add("結構仲は良いですね...！");
+        Dict_Q["会話4"].Talks.Add("結構仲は良いですね...!");
         Dict_Q["会話4"].Talks.Add("相性が良いのかもしれないですね");
         Dict_Q["会話4"].Talks.Add("敬語は距離を感じるので苦手なんです。敬語を使わない彼の遠慮のなさが逆に良いですね。");
 
