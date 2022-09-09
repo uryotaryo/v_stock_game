@@ -20,7 +20,7 @@ public class Conversation : MonoBehaviour
     {
         Dict_Q = new Dictionary<string, Question>();
         //お面屋
-        Dict_Q.Add("挨拶", new Question("お疲れ様です～"));
+        Dict_Q.Add("お面:挨拶", new Question("お疲れ様です～"));
 
         Dict_Q.Add("1", new Question("プレイヤー行動選択肢"));
 
@@ -30,8 +30,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("3", new Question("世間話"));
         Dict_Q.Add("3-1", new Question("好きなことの選択肢"));
         Dict_Q.Add("3-2", new Question("嫌いなことの選択肢"));
-        //上に同じ名前が存在する
-        //Dict_Q.Add("3-2", new Question("何者なのかの選択肢"));
+        Dict_Q.Add("3-3", new Question("何者なのかの選択肢"));
 
         Dict_Q.Add("会話1", new Question("好きなこと"));
         Dict_Q.Add("会話2", new Question("嫌いなこと"));
@@ -39,7 +38,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("会話4", new Question("なぜお面を？"));
         Dict_Q.Add("会話5", new Question("お祭りへの意気込み"));
         //綿あめ屋
-        Dict_Q.Add("1",new Question("どうも。お疲れ様です。"));
+        Dict_Q.Add("綿あめ:1",new Question("どうも。お疲れ様です。"));
 
         Dict_Q.Add("2",new Question("ザラメを集めてほしい"));
         Dict_Q.Add("2-4", new Question("(もう一度頼もう)"));
@@ -75,28 +74,24 @@ public class Conversation : MonoBehaviour
         Dict_Q["2-4"].Anss.Add(new Reply("丁寧", "…まぁいいわよ", +1));
 
         Dict_Q["3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["会話1"]));
+        
         Dict_Q["3"].Anss.Add(new Reply("Hate", "嫌いなこととかありますか？", Dict_Q["会話2"]));
         Dict_Q["3"].Anss.Add(new Reply("Who", "あなたは一体何者ですか…？", Dict_Q["会話3"]));
         Dict_Q["3"].Anss.Add(new Reply("Why", "なぜお面屋のボランティアを？", Dict_Q["会話4"]));
         Dict_Q["3"].Anss.Add(new Reply("Interview", "お祭りへの意気込みをお願いします！", Dict_Q["会話5"]));
 
+        Dict_Q["3-1"].Anss.Add(new Reply("漫画ですか！？少し意外です", "あら、そう？最近は面白いものがたくさんあるから、読み飽きないし面白いわよ？",-2));
+        Dict_Q["3-1"].Anss.Add(new Reply("おすすめとかあります？", "そうね…スポーツ系統の漫画はジャンルが多くておすすめね。",-2));
 
-        //三つ目の引数が存在しないのでエラーが起きています
-        /*
-        Dict_Q["3-1"].Anss.Add(new Reply("漫画ですか！？少し意外です", "あら、そう？最近は面白いものがたくさんあるから、読み飽きないし面白いわよ？"));
-        Dict_Q["3-1"].Anss.Add(new Reply("おすすめとかあります？", "そうね…スポーツ系統の漫画はジャンルが多くておすすめね。"));
+        Dict_Q["3-2"].Anss.Add(new Reply("あれ？金魚すくいありますけど…", "正直少し苦手ね…祭りということで妥協しているけれど…少しあのおじさまには気を使ってもらっているから申し訳ないわね。",-2));
+        Dict_Q["3-2"].Anss.Add(new Reply("不気味な感じというと？", "あのギョロっとした目つきが特にゾッとするわ…もうこの話は終わりにしましょｗ", -2));
 
-        Dict_Q["3-2"].Anss.Add(new Reply("あれ？金魚すくいありますけど…", "正直少し苦手ね…祭りということで妥協しているけれど…少しあのおじさまには気を使ってもらっているから申し訳ないわね。"));
-        */
-        Dict_Q["3-2"].Anss.Add(new Reply("不気味な感じというと？", "あのギョロっとした目つきが特にゾッとするわ…もうこの話は終わりにしましょｗ", 0));
-
-        //三つ目の引数が存在しないのでエラーが起きています
-        /*
-        Dict_Q["3-3"].Anss.Add(new Reply("気になります！", "ふふｗ見せたくないってわけではないけど、知らない方がいいわよ～後悔しちゃうから..."));
-        Dict_Q["3-3"].Anss.Add(new Reply("そんなに気にならないかも", "あらそう？でもあんまりほかの方にそういうこといわない方がいいわよ、かき氷のお兄さん優しいけど、まじめだからしっかりね"));
+        Dict_Q["3-3"].Anss.Add(new Reply("気になります！", "ふふｗ見せたくないってわけではないけど、知らない方がいいわよ～後悔しちゃうから...",-2));
+        Dict_Q["3-3"].Anss.Add(new Reply("そんなに気にならないかも", "あらそう？でもあんまりほかの方にそういうこといわない方がいいわよ、かき氷のお兄さん優しいけど、まじめだからしっかりね",-2));
         Dict_Q["3-3"].Talks.Add("(やっぱり少し気になるなぁ…)");
-        */
+
         Dict_Q["会話1"].Talks.Add("読書かしらね、最近は漫画をよく読むのよ");
+        Dict_Q["会話1"].Talks.Add("漫画ですか！？少し意外です");
         Dict_Q["会話1"].Next_Question = Dict_Q["3-1"];
 
         Dict_Q["会話2"].Talks.Add("お魚が少し苦手ね…なんかこう不気味な感じがするわ。");
@@ -135,11 +130,11 @@ public class Conversation : MonoBehaviour
         Dict_Q["3"].Anss.Add(new Reply("Friends","焼き鳥屋店主と仲が良いんですか？", Dict_Q["会話4"]));
         Dict_Q["3"].Anss.Add(new Reply("Worries","悩みはありますか？", Dict_Q["会話5"]));
 
-        Dict_Q["3-1"].Anss.Add(new Reply("これからはラフな感じで話しかけるよ", "やはり敬語でない方が親しみやすくていいですね", 0));
-        Dict_Q["3-1"].Anss.Add(new Reply("今後も遠慮なく話しかけさせてもらいます", "ああ、敬語でなくて結構ですよ...", 0));
+        Dict_Q["3-1"].Anss.Add(new Reply("これからはラフな感じで話しかけるよ", "やはり敬語でない方が親しみやすくていいですね", -2));
+        Dict_Q["3-1"].Anss.Add(new Reply("今後も遠慮なく話しかけさせてもらいます", "ああ、敬語でなくて結構ですよ...", -2));
 
-        Dict_Q["3-2"].Anss.Add(new Reply("これからは僕が積極的に話しかけるよ！", "本当ですか？正直助かります", 0));
-        Dict_Q["3-2"].Anss.Add(new Reply("会話って難しいですよね。同感です。", "そうですね。相手から積極的に距離を詰めてもらえると楽でいいのですが。", 0));
+        Dict_Q["3-2"].Anss.Add(new Reply("これからは僕が積極的に話しかけるよ！", "本当ですか？正直助かります", -2));
+        Dict_Q["3-2"].Anss.Add(new Reply("会話って難しいですよね。同感です。", "そうですね。相手から積極的に距離を詰めてもらえると楽でいいのですが。", -2));
 
         Dict_Q["会話1"].Talks.Add("案外会話は好きですね");
         Dict_Q["会話1"].Talks.Add("意外ですね！");
@@ -187,6 +182,7 @@ public class Conversation : MonoBehaviour
 /// </summary>
 public class Question
 {
+    //質問->返答->会話
     public string Question_Text;
     public List<Reply> Anss;
     public List<string> Talks;
