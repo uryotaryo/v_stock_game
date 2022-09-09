@@ -38,8 +38,6 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("会話4", new Question("なぜお面を？"));
         Dict_Q.Add("会話5", new Question("お祭りへの意気込み"));
         //綿あめ屋
-        Dict_Q.Add("綿あめ:1", new Question("どうも。お疲れ様です。"));
-
         Dict_Q.Add("綿あめ:挨拶", new Question("こんにちは"));
 
         Dict_Q.Add("綿あめ:1", new Question("会話選択肢"));
@@ -57,8 +55,8 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("綿あめ:3-2", new Question("綿あめ返答6"));
         Dict_Q.Add("綿あめ:3-3", new Question("綿あめ返答7"));
         Dict_Q.Add("綿あめ:3-4", new Question("嫌いなことの選択肢"));
-        Dict_Q.Add("綿あめ:3-2", new Question("綿あめ返答8"));
-        Dict_Q.Add("綿あめ:3-3", new Question("綿あめ返答9"));
+        Dict_Q.Add("綿あめ:3-5", new Question("綿あめ返答8"));
+        Dict_Q.Add("綿あめ:3-6", new Question("綿あめ返答9"));
 
         Dict_Q.Add("綿あめ会話:1", new Question("好きなこと"));
         Dict_Q.Add("綿あめ会話:2", new Question("嫌いなこと"));
