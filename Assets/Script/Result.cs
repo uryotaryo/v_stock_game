@@ -19,11 +19,15 @@ public class Result : MonoBehaviour
     private GameObject Move_Camera;
     [SerializeField]
     private GameObject Result_Camera;
+    [SerializeField]
+    private GameObject Meta_ResultNPC;
     private float S_To_E_D = 0;
     private bool Move_Stop = false;
 
     private void OnEnable(){
-
+        for(int i = 0; i < 20;i++){
+            var v = Instantiate(Meta_ResultNPC,Vector3.zero,new Quaternion(0,0,0,0));
+        }
     }
 
     // Update is called once per frame
