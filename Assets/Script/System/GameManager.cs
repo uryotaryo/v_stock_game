@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     private static GameManager _my_Manager;
     //プレイヤーのオブジェクトを格納する
     private static GameObject _player_Obj;
+    public static TPS_UI_cont _TPS_UI;
+    public static string Now_Task_Name;
 
     [SerializeField]
     private GameObject _Result;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
         Application.targetFrameRate = 60;
         _my_Manager = this.GetComponent<GameManager>();
         _player_Obj = GameObject.FindWithTag("Player");
+        _TPS_UI = GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>();
     }
     
     public void To_Result(){

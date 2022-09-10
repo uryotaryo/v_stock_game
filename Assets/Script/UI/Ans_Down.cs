@@ -9,24 +9,15 @@ public class Ans_Down : MonoBehaviour
     private Real_Time_Cont R_T_C;
     [SerializeField]
     private Text text;
-    private Reply SetReply;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public Reply SetReply;
     public void Set_Replay(Reply r){
         SetReply = r;
-        text.text = SetReply.Select_string;
+        Set_TextBox(SetReply.Select_string);
     }
     public void Point_check(){
-        Debug.Log("選択された");//w
         R_T_C.Click_Reply(SetReply);
+    }
+    public void Set_TextBox(string s){
+        text.text = s;
     }
 }
