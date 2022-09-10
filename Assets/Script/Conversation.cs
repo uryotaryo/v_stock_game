@@ -70,8 +70,8 @@ public class Conversation : MonoBehaviour
     private static void Reply_Load()
     {
         //お面屋
-        Dict_Q["挨拶"].Talks.Add("お疲れ様～");
-        Dict_Q["挨拶"].Next_Question = Dict_Q["1"];
+        Dict_Q["お面:挨拶"].Talks.Add("お疲れ様～");
+        Dict_Q["お面:挨拶"].Next_Question = Dict_Q["1"];
 
         Dict_Q["1"].Anss.Add(new Reply("要件", "何か御用かしら？", Dict_Q["2"]));
         Dict_Q["1"].Anss.Add(new Reply("世間話", "お話？いいわよ", Dict_Q["3"]));
@@ -134,7 +134,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ:2"].Anss.Add(new Reply("一般", "お願いがあるんです！聞いてくれませんか！？", Dict_Q["綿あめ:2-2"]));
         Dict_Q["綿あめ:2"].Anss.Add(new Reply("丁寧", "恐縮ながら頼みたい事がありまして...", Dict_Q["綿あめ:2-3"]));
 
-        Dict_Q["綿あめ:2-1"].Anss.Add(new Reply("", "いいですよ。喜んでやりましょう！", +1));
+        Dict_Q["綿あめ:2-1"].Anss.Add(new Reply("", "いいですよ。喜んでやりましょう！",+1));
         Dict_Q["綿あめ:2-2"].Anss.Add(new Reply("", "分かりました。手伝います。", 0));
         Dict_Q["綿あめ:2-3"].Anss.Add(new Reply("", "うーーん...", Dict_Q["綿あめ:2-4"]));
 
@@ -150,14 +150,14 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ:3"].Anss.Add(new Reply("Friends", "焼き鳥屋店主と仲が良いんですか？", Dict_Q["綿あめ会話:4"]));
         Dict_Q["綿あめ:3"].Anss.Add(new Reply("Worries", "悩みはありますか？", Dict_Q["綿あめ会話:5"]));
 
-        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("敬語", "今後も遠慮なく話しかけさせてもらいます", Dict_Q["綿あめ会話:3-2"]));
-        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("一般", "これからはラフな感じで話しかけるよ", Dict_Q["綿あめ会話:3-3"]));
+        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("敬語", "今後も遠慮なく話しかけさせてもらいます", Dict_Q["綿あめ:3-2"]));
+        Dict_Q["綿あめ:3-1"].Anss.Add(new Reply("一般", "これからはラフな感じで話しかけるよ", Dict_Q["綿あめ:3-3"]));
 
         Dict_Q["綿あめ:3-2"].Anss.Add(new Reply("", "ああ、敬語でなくて結構ですよ...", -2));
         Dict_Q["綿あめ:3-3"].Anss.Add(new Reply("", "やはり敬語でない方が親しみやすくていいですね", -2));
 
-        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("一般", "これからは僕が積極的に話しかけるよ！", Dict_Q["綿あめ会話:3-5"]));
-        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("敬語", "会話って難しいですよね。同感です。", Dict_Q["綿あめ会話:3-6"]));
+        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("一般", "これからは僕が積極的に話しかけるよ！", Dict_Q["綿あめ:3-5"]));
+        Dict_Q["綿あめ:3-4"].Anss.Add(new Reply("敬語", "会話って難しいですよね。同感です。", Dict_Q["綿あめ:3-6"]));
 
         Dict_Q["綿あめ:3-5"].Anss.Add(new Reply("", "本当ですか？正直助かります", -2));
         Dict_Q["綿あめ:3-6"].Anss.Add(new Reply("", "そうですね。相手から積極的に距離を詰めてもらえると楽でいいのですが。", -2));
@@ -212,12 +212,19 @@ public class Question
     public string Question_Text;
     public List<Reply> Anss;
     public List<string> Talks;
+    private int Talk_num = 0;
     public Question Next_Question;
     public Question(string text)
     {
         Question_Text = text;
         Talks = new List<string>();
         Anss = new List<Reply>();
+    }
+    public string Get_Talk(){
+        string Re_str = "";
+        if(Talks.Count > Talk_num)Re_str = Talks[Talk_num];
+        Talk_num ++;
+        return Re_str;
     }
 }
 /// <summary>
