@@ -73,6 +73,7 @@ public class Player : MonoBehaviour
         var g_npc = Click_OBJ.GetComponent<NPC>();
         g_npc.Look(this.transform.position);
         FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().Set_Q(g_npc.Get_Question("通常"));
+        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().Set_Task(g_npc.Get_NPC_String());
         Cam_Change();
     }
     private void to_back(){

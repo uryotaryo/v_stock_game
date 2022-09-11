@@ -16,6 +16,7 @@ public class Real_Time_Cont : MonoBehaviour
 
     private NPC Traget_NPC;
     private Question now_Q;
+    private Task now_T;
     private Reply _select_reply;
     
     public void Set_Target_NPC(NPC n){
@@ -36,7 +37,10 @@ public class Real_Time_Cont : MonoBehaviour
     void Update()
     {
         Timer_Bar.value -= Time.deltaTime;
-        }
+    }
+    public void Set_Task(string name){
+        now_T = Conversation.All_Tasks[name];
+    }
     public void Set_Q(Question q){
         //Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.none);
 
@@ -100,19 +104,23 @@ public class Real_Time_Cont : MonoBehaviour
                 case Reply.Reply_Type.Complain_fluctuation:
                     int Add_Human = 0;
 
-                    if(_select_reply.Change_Complain == -2);
+                    //if(_select_reply.Change_Complain == -2);
                     switch (_select_reply.Change_Complain){
                         case -1:
                             Add_Human = -1;
+                            now_T.Add_ReWard(0);
                             break;
                         case 0:
+                            now_T.Add_ReWard(1);
                             break;
                         case +1:
                             Add_Human = +1;
+                            now_T.Add_ReWard(2);
                             break;
                         default:
                             break;
                     }
+                    Debug.Log(now_T.Content_Num);
                     GameManager._TPS_UI.Human_level += Add_Human;
                     GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
                     break;
