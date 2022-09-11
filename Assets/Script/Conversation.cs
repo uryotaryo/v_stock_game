@@ -52,6 +52,23 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("会話3", new Question("趣味"));
         Dict_Q.Add("会話4", new Question("焼き鳥屋店主について"));
         Dict_Q.Add("会話5", new Question("悩み"));
+
+        //焼き鳥
+        Dict_Q.Add("焼き鳥:1", new Question("こんにちは、お疲れ様です"));
+
+        Dict_Q.Add("焼き鳥:2", new Question("鶏肉１００個発注してもらってもいい？"));
+        Dict_Q.Add("焼き鳥:2-4", new Question("(もう一度お願いしよう)"));
+
+        Dict_Q.Add("焼き鳥:3", new Question("世間話"));
+        Dict_Q.Add("焼き鳥:3-1", new Question("好きなことの選択肢"));
+
+        Dict_Q.Add("焼き鳥:4-1", new Question("射的やについての選択肢"));
+
+        Dict_Q.Add("焼き鳥:会話1", new Question("嫌いなこと"));
+        Dict_Q.Add("焼き鳥:会話2", new Question("好きなこと"));
+        Dict_Q.Add("焼き鳥:会話3", new Question("金魚屋の店主との関係"));
+        Dict_Q.Add("焼き鳥:会話4", new Question("射的屋の店主について"));
+        Dict_Q.Add("焼き鳥:会話5", new Question("今回のお祭りの意気込みは？"));
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -157,6 +174,65 @@ public class Conversation : MonoBehaviour
         Dict_Q["会話5"].Talks.Add("縁日で屋台の手伝いをお願いしたいのですが...");
         Dict_Q["会話5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
         Dict_Q["会話5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
+
+        //焼き鳥
+        Dict_Q["焼き鳥:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["2"]));
+        Dict_Q["焼き鳥:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["3"]));
+        Dict_Q["焼き鳥:1"].Anss.Add(new Reply("特になし", "・・・", -2));
+
+        Dict_Q["焼き鳥:2"].Anss.Add(new Reply("適切", "こんにちは！！ちょっと頼み事してもいいっすか？", Dict_Q["焼き鳥:2-1"]));
+        Dict_Q["焼き鳥:2"].Anss.Add(new Reply("普通", "お願いがあるんです！聞いてくれますか？", Dict_Q["焼き鳥:2-2"]));
+        Dict_Q["焼き鳥:2"].Anss.Add(new Reply("不適切", "申し訳ないですが、一つお願いを聞いていただけませんか？", Dict_Q["焼き鳥2-3"]));
+
+        Dict_Q["焼き鳥:2-1"].Anss.Add(new Reply("", "もちろんいいぜ！よろこんでやるよ！なにをすればいいんだ？", +1));
+        Dict_Q["焼き鳥:2-2"].Anss.Add(new Reply("", "おう！いいぜ。何をすればいい？", 0));
+        Dict_Q["焼き鳥:2-3"].Anss.Add(new Reply("", "仕方ねえな。。。やってやるよ", Dict_Q["焼き鳥2-4"]));
+
+        Dict_Q["焼き鳥:2-4"].Anss.Add(new Reply("適切", "そこまで言われちゃあしかたないな", +1));
+        Dict_Q["焼き鳥:2-4"].Anss.Add(new Reply("不適切", "まあ、最大限頑張ってくるわ！", 0));
+
+        Dict_Q["焼き鳥:3"].Anss.Add(new Reply("Hate", "嫌いなことは何ですか？", Dict_Q["会話1"]));
+        Dict_Q["焼き鳥:3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["会話2"]));
+        Dict_Q["焼き鳥:3"].Anss.Add(new Reply("Friends", "金魚屋の店主とはどんな関係ですか？", Dict_Q["会話3"]));
+        Dict_Q["焼き鳥:3"].Anss.Add(new Reply("Friends", "射的屋の店主についてどう思いますか？", Dict_Q["会話4"]));
+        Dict_Q["焼き鳥:3"].Anss.Add(new Reply("Heartiness", "今回の祭りの意気込みは？", Dict_Q["会話5"]));
+
+        Dict_Q["焼き鳥:3-1"].Anss.Add(new Reply("善処", "まあ全然敬語でも問題はないよ！", -2));
+        Dict_Q["焼き鳥:3-1"].Anss.Add(new Reply("敬語無し", "にいちゃんわかってるじゃねえか。次からタメ口でいいぜ", -2));
+
+        Dict_Q["焼き鳥:4-1"].Anss.Add(new Reply("感謝", "おうよ、兄ちゃんもがんばれ", -2));
+        Dict_Q["焼き鳥:4-1"].Anss.Add(new Reply("理解", "まあそうだな、簡潔に要件を伝えるのが重要かもな。。。", -2));
+
+
+        Dict_Q["焼き鳥:会話1"].Talks.Add("やっぱり嫌いなことはかたくるしいことかな");
+        Dict_Q["焼き鳥:会話1"].Talks.Add("たとえばどんなことですか？");
+        Dict_Q["焼き鳥:会話1"].Talks.Add("簡単にいえば敬語とかだな。敬語で話されるとむず痒いんだ！！");
+        Dict_Q["焼き鳥:会話1"].Next_Question = Dict_Q["3 - 1"];
+
+
+        Dict_Q["焼き鳥:会話2"].Talks.Add("好きなことは釣りかな。魚が釣れた時の喜びがいいのよ！");
+        Dict_Q["焼き鳥:会話2"].Talks.Add("すごくいいですね");
+        Dict_Q["焼き鳥:会話2"].Talks.Add("最近だとよ結構上等なやつもつれるようになってより楽しいんだ！");
+
+
+        Dict_Q["焼き鳥:会話3"].Talks.Add("金魚屋の店主は無口で話しづらいけど、いいひとだよ。");
+        Dict_Q["焼き鳥:会話3"].Talks.Add("無口なんですね。何が好きとかどういう風にすればいいとかあったりしますか？");
+        Dict_Q["焼き鳥:会話3"].Talks.Add("そうだなあ、やっぱり初対面は敬語で話したほうが良いかもしれないな。");
+        Dict_Q["焼き鳥:会話3"].Talks.Add("そうなんですね。ありがとうございます。話すときは気を付けてみます！！");
+        Dict_Q["焼き鳥:会話3"].Talks.Add("おうよ！！またなんかあったらいってくれ！！");
+
+
+        Dict_Q["焼き鳥:会話4"].Talks.Add("礼儀はしっかりしてるけど、印象が暗くて話しづらいな！");
+        Dict_Q["焼き鳥:会話4"].Talks.Add("てっきりもっとへらへらしてるのかと思いました。");
+        Dict_Q["焼き鳥:会話4"].Talks.Add("しっかり気遣いもできて空気が読める良いやつだよ！ただ根が暗いから俺は話しづらいがな。。。");
+        Dict_Q["焼き鳥:会話4"].Next_Question = Dict_Q["4 - 1"];
+
+
+        Dict_Q["焼き鳥:会話5"].Talks.Add("今回のお祭りもそうだがいつもお祭りは気合入れてやってるよ！！");
+        Dict_Q["焼き鳥:会話5"].Talks.Add("なんでですか？");
+        Dict_Q["焼き鳥:会話5"].Talks.Add("俺の作った焼き鳥をいろんな人が食ってくれるからだな！");
+        Dict_Q["焼き鳥:会話5"].Talks.Add("いろんな人が食べて美味しいって言ってもらえるとうれしいですよね。");
+        Dict_Q["焼き鳥:会話5"].Talks.Add("全くその通りだよ！美味しいって言ってもらえるのが一番うれしいな。");
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
@@ -168,6 +244,7 @@ public class Conversation : MonoBehaviour
         //例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
+        All_Tasks["焼き鳥"] = new Task("焼き鳥", "鶏肉100個受注しよう", 100);
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
