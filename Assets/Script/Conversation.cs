@@ -491,9 +491,16 @@ public class Conversation : MonoBehaviour
         //例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
-        All_Tasks["射的"] = new Task("射的", "射的の景品を10個用意しよう", 10);
         All_Tasks["金魚"] = new Task("金魚", "金魚を100匹発注しよう", 100);
+        All_Tasks["射的"] = new Task("射的", "射的の景品を10個用意しよう", 10);
         All_Tasks["かき氷"] = new Task("かき氷", "大きい氷を100個用意しよう", 100);
+
+        All_Tasks["お面"].Add_ReWard(new int[]{10,25,50});
+        All_Tasks["綿あめ"].Add_ReWard(new int[]{500,1000,2000});
+        All_Tasks["金魚"].Add_ReWard(new int[]{25,50,100});
+        All_Tasks["射的"].Add_ReWard(new int[]{2,5,10});
+        All_Tasks["かき氷"].Add_ReWard(new int[]{25,50,100});
+        All_Tasks["焼き鳥"].Add_ReWard(new int[]{25,50,100});
 
         All_Tasks["共通1"] = new Task("共通1", "建材を用意しよう", 1);
         All_Tasks["共通2"] = new Task("共通2", "看板を豪華にしよう", 1);
@@ -573,12 +580,21 @@ public class Task
     public int Content_Num { get { return _Num; } }
     public int Content_Num_Max { get; }
     private int _Num;
+    private int[] ReWards;
     public Task(string name, string expl, int count)
     {
         Name = name;
         Explanation = expl;
         _Num = 0;
         Content_Num_Max = count;
+    }
+    public void Add_ReWard(int[] i_s){
+        ReWards = i_s;
+    }
+    public void Add_ReWard(int i){
+        if(Task_Clear())return;
+        if(ReWards.Length <= 0&&ReWards.Length <= i)return;
+        _Num += ReWards[i];
     }
     public void Task_Stage_Clear()
     {

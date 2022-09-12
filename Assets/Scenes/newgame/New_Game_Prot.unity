@@ -190,6 +190,10 @@ PrefabInstance:
       propertyPath: after_frames.Array.data[2]
       value: 
       objectReference: {fileID: 7619167240081458619, guid: 09f3a2e1588f58645b90cb6addf3e824, type: 3}
+    - target: {fileID: 2322199683257413985, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_TYPE
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2594265217295420614, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -523,6 +527,10 @@ PrefabInstance:
       propertyPath: after_frames.Array.data[2]
       value: 
       objectReference: {fileID: 6386751941848651486, guid: cf65a419c644ed94f864e65d1ca6bfa0, type: 3}
+    - target: {fileID: 2322199683257413985, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_TYPE
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2594265217295420614, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -698,6 +706,10 @@ PrefabInstance:
       propertyPath: after_frames.Array.data[2]
       value: 
       objectReference: {fileID: 1501026011905685502, guid: 348ef1a92d5dcb04cbab6ae002fb7296, type: 3}
+    - target: {fileID: 2322199683257413985, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_TYPE
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2594265217295420614, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1197,6 +1209,10 @@ PrefabInstance:
       propertyPath: after_frames.Array.data[2]
       value: 
       objectReference: {fileID: 3089586688094094100, guid: b479ceab7423d624fac3b35b76f8a605, type: 3}
+    - target: {fileID: 2322199683257413985, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_TYPE
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2594265217295420614, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -1563,6 +1579,10 @@ PrefabInstance:
       propertyPath: after_frames.Array.data[2]
       value: 
       objectReference: {fileID: 4053958426909315464, guid: 3d917d44f34cf2e42853137d15b1a897, type: 3}
+    - target: {fileID: 2322199683257413985, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
+      propertyPath: YATAI_TYPE
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 2594265217295420614, guid: f528e9f4901340145be860aed37d2bbc, type: 3}
       propertyPath: m_Enabled
       value: 0

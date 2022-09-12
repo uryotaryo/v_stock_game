@@ -75,7 +75,15 @@ public class NPC : MonoBehaviour
         }
     }
     public Question Get_Question(string s){
-        string name;
+        string name = "";
+        name += Get_NPC_String();
+        name += ":";
+        if(s == "通常")name += "挨拶";
+        else if (s == "共通")name += "共通";
+        return Conversation.Dict_Q[name];
+    }
+    public string Get_NPC_String(){
+        string name = "";
         switch (_Type){
             case Info.NPC_TYPE.KAKIGORI:
                 name = "かき氷";
@@ -100,10 +108,7 @@ public class NPC : MonoBehaviour
                 name = "";
                 break;
         }
-        name += ":";
-        if(s == "通常")name += "挨拶";
-        else if (s == "共通")name += "共通";
-        return Conversation.Dict_Q[name];
+        return name;
     }
     /// <summary>
     /// NPCオブジェクトを指定座標へ向けさせる
