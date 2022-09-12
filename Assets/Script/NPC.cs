@@ -1,95 +1,133 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPC : MonoBehaviour
 {
-    public (int _x,int _y)pos;
-    public (int _t_x,int _t_y)target;
-    private float lerp_Intbal_meta = 0;
-    private float meta_lerp_pos = 0;
-    private int move_speed = 1000;
-    private bool random_move = true;
-    private Vector3 target_vector3;
-    private Vector3 meta_pos;
+    //NPCのビジュアル表示オブジェクト
     private GameObject _npc_obj;
-
+    //NPCの役割
+    [SerializeField]
+    private Info.NPC_TYPE _Type;
+    //子オブジェクトのナビメッシュ管理
+    private NavMeshAgent _agent;
+    //オブジェクトの座標変更を停止する
+    public bool Stop;
+    //一フレーム前の座標
+    private Vector3 _lastpos;
+    //スタート時の回転
+    private Quaternion _base_rotate;
+    //プレイヤーオブジェクト
+    private GameObject _player;
+/*
     [SerializeField]
     private Parts_Point emort;
-    private bool posCheck(){
-        if(pos._x==target._t_x &&pos._y == target._t_y)return false;
-        return true;
-    }
+
     // Start is called before the first frame update
     public Parts_Point Get_Emort(){
         return emort;
     }
+*/
     void Start()
     {
-        pos._x = 10;
-        pos._y = 10;
-        transform.position = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(10,10);
-        Vector3 v = transform.position;
-        v.y = 1;
-        transform.position = v;
-        target = pos;
-        _npc_obj = transform.GetChild(0).gameObject;
-
-        meta_pos = this.transform.position;
-        target_vector3 = this.transform.position;
-
+        init();
     }
-
-
+    /// <summary>
+    /// 初期化関数
+    /// </summary>
+    private void init(){
+        if(_npc_obj == null) _npc_obj = transform.GetChild(0).gameObject;
+        if(_player == null) _player = GameManager.Get_Player_OBJ();
+        if(_agent == null)_agent = _npc_obj.GetComponent<NavMeshAgent>();
+        else _agent.isStopped = false;
+        _lastpos = transform.position;
+        _base_rotate = _npc_obj.transform.rotation;
+        Stop = true;
+    }
     // Update is called once per frame
     void Update()
     {
-        Move();
-    }
-    private void Move(){
-        StageManager.route_map[pos._x,pos._y] = 1;
-        //線形保管を使いながら仮ターゲットへ移動する
-        if(posCheck() || this.transform.position != target_vector3){
-            meta_lerp_pos += Time.deltaTime;
-            if(1/move_speed <= meta_lerp_pos){
-                meta_lerp_pos = 0;
-                lerp_Intbal_meta += 0.05f;
-                var pos = Vector3.Lerp(meta_pos,target_vector3,lerp_Intbal_meta);
-                XZMove(pos);
-            }
+        if(_player == null)_player = GameManager.Get_Player_OBJ();
+        
+        if(GameManager.Now_Mode == GameManager.Game_Mode.After){
+            this.gameObject.SetActive(false);
         }
+        //停止判定の際に前フレームの座標を代入する
+        if(Stop)transform.position = _lastpos;
+        else _lastpos = transform.position;
 
-        if(lerp_Intbal_meta >= 1){
-            if(posCheck()){
-
-                var repos = StageManager.BoxPos_Move(pos._x,pos._y,target._t_x,target._t_y);
-                if(StageManager.route_map[repos.Item1,repos.Item2] == 1){
-                    var v3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(repos.Item1,repos.Item2);
-                    if(_npc_obj != null)_npc_obj.transform.LookAt(new Vector3( v3.x,_npc_obj.transform.position.y, v3.z));
-                    target = pos;
-                }else{
-                    StageManager.route_map[pos._x,pos._y] = 0;
-                    pos = repos;
-                    target_vector3 = GameManager.Get_Stage_Manager().GetComponent<StageManager>().VectorReturn(pos._x,pos._y);
-                    meta_pos = this.transform.position;
-                    lerp_Intbal_meta = 0;
-                    if(_npc_obj != null)_npc_obj.transform.LookAt(new Vector3( target_vector3.x,_npc_obj.transform.position.y, target_vector3.z));
-                }
-                
-            }
+        //NPCオブジェクトの座標を親オブジェクトの座標へ変更する
+        transform.position = new Vector3(_npc_obj.transform.position.x,0,_npc_obj.transform.position.z);
+        
+        //お面のNPCのみ位置座標を補完する
+        switch(_Type){
+            case Info.NPC_TYPE.OMEN:
+                _npc_obj.transform.localPosition = new Vector3(0,-1.5f,0);
+                break;
+            default:
+                _npc_obj.transform.localPosition = new Vector3(0,0,0);
+                break;
+        }
+        
+        //範囲内にプレイヤーが存在したらプレイヤーのほうを向く
+        if(Vector3.Distance(this.transform.position,_player.transform.position) <= 2){
+            Look(_player.transform.position);
+        }else{
+            _npc_obj.transform.rotation =_base_rotate;
         }
     }
-    public void Set_target(int x ,int y){
-        target = (x,y);
+    public Question Get_Question(string s){
+        string name = "";
+        name += Get_NPC_String();
+        name += ":";
+        if(s == "通常")name += "挨拶";
+        else if (s == "共通")name += "共通";
+        return Conversation.Dict_Q[name];
+    }
+    public string Get_NPC_String(){
+        string name = "";
+        switch (_Type){
+            case Info.NPC_TYPE.KAKIGORI:
+                name = "かき氷";
+                break;
+            case Info.NPC_TYPE.KINGYO:
+                name = "金魚";
+                break;
+            case Info.NPC_TYPE.OMEN:
+                name = "お面";
+                break;
+            case Info.NPC_TYPE.SYATEKI:
+                name = "射的";
+                break;
+            case Info.NPC_TYPE.WATAAME:
+                name = "綿あめ";
+                GameManager.Now_Task_Name = "綿あめ";
+                break;
+            case Info.NPC_TYPE.YAKITORI:
+                name = "焼き鳥";
+                break;
+            default:
+                name = "";
+                break;
+        }
+        return name;
     }
     /// <summary>
-    /// Y位置を固定してプレイヤーを移動させる
+    /// NPCオブジェクトを指定座標へ向けさせる
     /// </summary>
-    /// <param name="v"></param>
-    private void XZMove(Vector3 v){
-        this.transform.position = new Vector3(v.x,1,v.z);
-    }
+    /// <param name="v">指定座標</param>
     public void Look(Vector3 v){
+        v.y = _npc_obj.transform.localPosition.y;
         _npc_obj.transform.LookAt(v);
+    }
+    /// <summary>
+    /// 指定した座標へ動く:AIナビ
+    /// </summary>
+    /// <param name="v">指定座標</param>
+    public void Set_Target_Point(Vector3 v)
+    {
+        if(_agent == null) return;
+        _agent.SetDestination(v);
     }
 }
