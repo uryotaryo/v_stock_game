@@ -183,6 +183,46 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ会話:5"].Talks.Add("縁日で屋台の手伝いをお願いしたいのですが...");
         Dict_Q["綿あめ会話:5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
         Dict_Q["綿あめ会話:5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
+
+        //共通タスク
+        Dict_Q["共通:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ様～何用かな？", Dict_Q["共通:1"]));
+
+        Dict_Q["共通:1"].Anss.Add(new Reply("要件", "OK!人手が足りないから、何人かボランティアの人を呼んできて頂戴ね", Dict_Q["共通:2"]));
+        Dict_Q["共通:1"].Anss.Add(new Reply("世間話", "世間話かい？", Dict_Q["共通:3"]));
+        Dict_Q["共通:1"].Anss.Add(new Reply("特になし", "そうかい", -2));
+
+        //このセリフの後町長との会話がいったん終了して他NPCに話しかけに行く
+        Dict_Q["共通:2"].Anss.Add(new Reply("", "了解です！", -2));
+
+        //他NPCに話しかけた後の町長との会話
+        Dict_Q["共通会話:0"].Talks.Add("集めてきました！");
+        Dict_Q["共通会話:0"].Talks.Add("ありがとう！じゃあ取りに行ってくるね");
+        Dict_Q["共通会話:0"].Next_Question = Dict_Q["綿あめ:2-1"];
+        Dict_Q["共通:2-1"].Anss.Add(new Reply("よろしくお願いします。", "任せておくれ", 0));
+        Dict_Q["共通:2-1"].Anss.Add(new Reply("頼みます", "任せておくれ", 0));
+
+        Dict_Q["共通:3"].Anss.Add(new Reply("volunteers", "ボランティアの人たちってどんな人？", Dict_Q["共通会話:1"]));
+        Dict_Q["共通:3"].Anss.Add(new Reply("target", "お祭りへの意気込みはありますか？", Dict_Q["共通会話:2"]));
+        Dict_Q["共通:3"].Anss.Add(new Reply("to do", "お祭りと言っても何から始めればいいですかね", Dict_Q["共通会話:3"]));
+
+        Dict_Q["共通会話:1"].Talks.Add("私もあんまり話したことはないけれど、みんな個性的な人だよ");
+        Dict_Q["共通会話:1"].Talks.Add("個性的ですかw");
+        Dict_Q["共通会話:1"].Talks.Add("実際に本人たちと話してみなさい、そうしたら色んなことが分かるよ");
+        Dict_Q["共通会話:1"].Talks.Add("分かりました！");
+        Dict_Q["共通会話:1"].Talks.Add("頑張ってね～");
+
+        Dict_Q["共通会話:2"].Talks.Add("このお祭りを成功させて町を活性化させたいね");
+        Dict_Q["共通会話:2"].Talks.Add("かなり真面目な回答ですねw");
+        Dict_Q["共通会話:2"].Talks.Add("まぁこれは建前で、実際は楽しんでもらえればいいかなw\n夏の良い思い出にしてほしいね");
+        Dict_Q["共通会話:2"].Talks.Add("頑張りましょう！");
+        Dict_Q["共通会話:2"].Talks.Add("うん、期待してるよ～");
+
+        Dict_Q["共通会話:2"].Talks.Add("まずは屋台から作ろう。\n建材はこちらで用意できるから、欲しい時はいつでも言って");
+        Dict_Q["共通会話:2"].Talks.Add("わかりました");
+        Dict_Q["共通会話:2"].Talks.Add("その後はボランティアの人たちにそれぞれお店の商品や備品を用意してもらうのがいいと思うよ");
+        Dict_Q["共通会話:2"].Talks.Add("なるほど、頑張ります！");
+        Dict_Q["共通会話:2"].Talks.Add("分からないことがあったらいつでも相談してね");
+
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
