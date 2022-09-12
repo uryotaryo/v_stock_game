@@ -232,7 +232,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["焼き鳥:会話4"].Talks.Add("礼儀はしっかりしてるけど、印象が暗くて話しづらいな！");
         Dict_Q["焼き鳥:会話4"].Talks.Add("てっきりもっとへらへらしてるのかと思いました。");
         Dict_Q["焼き鳥:会話4"].Talks.Add("しっかり気遣いもできて空気が読める良いやつだよ！ただ根が暗いから俺は話しづらいがな。。。");
-        Dict_Q["焼き鳥:会話4"].Next_Question = Dict_Q["焼き鳥:3-1"];
+        Dict_Q["焼き鳥:会話4"].Next_Question = Dict_Q["焼き鳥:4-1"];
 
 
         Dict_Q["焼き鳥:会話5"].Talks.Add("今回のお祭りもそうだがいつもお祭りは気合入れてやってるよ！！");
