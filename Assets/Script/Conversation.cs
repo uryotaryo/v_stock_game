@@ -54,9 +54,14 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("会話5", new Question("悩み"));
 
         //焼き鳥
-        Dict_Q.Add("焼き鳥:1", new Question("こんにちは、お疲れ様です"));
+        Dict_Q.Add("焼き鳥:挨拶", new Question("こんにちは、お疲れ様です"));
+
+        Dict_Q.Add("焼き鳥:1", new Question("行動選択肢"));
 
         Dict_Q.Add("焼き鳥:2", new Question("鶏肉１００個発注してもらってもいい？"));
+        Dict_Q.Add("焼き鳥:2-1", new Question("適切返答"));
+        Dict_Q.Add("焼き鳥:2-2", new Question("普通返答"));
+        Dict_Q.Add("焼き鳥:2-3", new Question("不適切返答"));
         Dict_Q.Add("焼き鳥:2-4", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("焼き鳥:3", new Question("世間話"));
@@ -176,6 +181,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["会話5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
 
         //焼き鳥
+        Dict_Q["焼き鳥:挨拶"].Anss.Add(new Reply("おつかれさん！！", Dict_Q["1"]));
+
         Dict_Q["焼き鳥:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["2"]));
         Dict_Q["焼き鳥:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["3"]));
         Dict_Q["焼き鳥:1"].Anss.Add(new Reply("特になし", "・・・", -2));
