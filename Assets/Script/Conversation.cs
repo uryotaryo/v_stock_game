@@ -99,7 +99,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("射的:3", new Question("世間話"));
         Dict_Q.Add("射的:3-1", new Question("嫌いなことの選択肢"));
         Dict_Q.Add("射的:3-2", new Question("射的返答5"));
-        Dict_Q.Add("射的:3-2", new Question("射的返答6"));
+        Dict_Q.Add("射的:3-3", new Question("射的返答6"));
 
         Dict_Q.Add("射的:会話1", new Question("好きなこと"));
         Dict_Q.Add("射的:会話2", new Question("嫌いなこと"));
@@ -110,13 +110,13 @@ public class Conversation : MonoBehaviour
         //かき氷
         Dict_Q.Add("かき氷:挨拶", new Question("こんにちは、お疲れ様です"));
 
-        Dict_Q.Add("かき氷:1", new Question("会話選択肢"))
+        Dict_Q.Add("かき氷:1", new Question("会話選択肢"));
 
-        Dict_Q.Add("かき氷:2", new Question("適切", "大きい氷を１００個用意してもらってもいい？"));
+        Dict_Q.Add("かき氷:2", new Question("エラーが起きていたのでこの文章を上書きしました"));
         Dict_Q.Add("かき氷:2-1", new Question("綿あめ返答1"));
         Dict_Q.Add("かき氷:2-2", new Question("綿あめ返答2"));
         Dict_Q.Add("かき氷:2-3", new Question("綿あめ返答3"));
-        Dict_Q.Add("かき氷:2-4", new Question("(もう一度お願いしよう)"))
+        Dict_Q.Add("かき氷:2-4", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("かき氷:3", new Question("世間話"));
         Dict_Q.Add("かき氷:3-1", new Question("苦手なことの選択肢"));
@@ -372,7 +372,7 @@ public class Conversation : MonoBehaviour
 
 
         //かき氷
-        Dict_Q["かき氷:挨拶"].Anss.Add(new Reply("挨拶","こんにちは、お疲れ様です",Dict_Q["かき氷:1"]))
+        Dict_Q["かき氷:挨拶"].Anss.Add(new Reply("挨拶","こんにちは、お疲れ様です",Dict_Q["かき氷:1"]));
 
         Dict_Q["かき氷:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["2"]));
         Dict_Q["かき氷:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["3"]));
@@ -384,7 +384,7 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["かき氷:2-1"].Anss.Add(new Reply("", "僕にできることなら喜んで引き受けるよ！", +1));
         Dict_Q["かき氷:2-2"].Anss.Add(new Reply("", "わかったやってくるね！", 0));
-        Dict_Q["かき氷:2-3"].Anss.Add(new Reply("", "そうだな。。。できなくはないからやってくるね", Dict_Q["焼き鳥2-4"]))
+        Dict_Q["かき氷:2-3"].Anss.Add(new Reply("", "そうだな。。。できなくはないからやってくるね", Dict_Q["焼き鳥2-4"]));
 
         Dict_Q["かき氷:2-4"].Anss.Add(new Reply("適切", "ごめんなさい。おねがいします", +1));
         Dict_Q["かき氷:2-4"].Anss.Add(new Reply("不適切", "おねがいします", 0));
@@ -404,7 +404,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["かき氷:会話1"].Talks.Add("時間を守らない人が苦手かな");
         Dict_Q["かき氷:会話1"].Talks.Add("遅刻する人いやですよね");
         Dict_Q["かき氷:会話1"].Talks.Add("大抵の事は許せるけど時間だけは許せないかな");
-        Dict_Q["かき氷:会話1"].Next_Question = Dict_Q["3 - 1"];
+        Dict_Q["かき氷:会話1"].Next_Question = Dict_Q["かき氷:3-1"];
 
         Dict_Q["かき氷:会話2"].Talks.Add("好きなことは家族と一緒にすごすことかな");
         Dict_Q["かき氷:会話2"].Talks.Add("すごくいいですね");
@@ -420,7 +420,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["かき氷:会話4"].Talks.Add("少し怖いけど、話すといい人だよ！");
         Dict_Q["かき氷:会話4"].Talks.Add("もっと怖くて距離感あると思ってました。");
         Dict_Q["かき氷:会話4"].Talks.Add("そんなことないよ。すごく仲がいいからお互いに助け合ったりもするよ");
-        Dict_Q["かき氷:会話4"].Next_Question = Dict_Q["4 - 1"];
+        Dict_Q["かき氷:会話4"].Next_Question = Dict_Q["かき氷:4-1"];
 
         Dict_Q["かき氷:会話5"].Talks.Add("みんなで作り上げてお客さんに喜んでもらえるように頑張りたいな");
         Dict_Q["かき氷:会話5"].Talks.Add("喜んでもらえるとうれしいですね");
