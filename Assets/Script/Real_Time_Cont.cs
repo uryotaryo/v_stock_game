@@ -61,7 +61,7 @@ public class Real_Time_Cont : MonoBehaviour
         if(now_Q.Anss.Count == 1){
             Click_Reply(now_Q.Anss[0]);
         }else if (now_Q.Anss.Count > 4){
-            now_Q.Anss = now_Q.Anss.OrderBy(a => Guid.NewGuid()).ToList();
+            //now_Q.Anss = now_Q.Anss.OrderBy(a => Guid.NewGuid()).ToList();
         }
         else{
             NPC_Ans_box.text = "(" + now_Q.Question_Text + ")";
