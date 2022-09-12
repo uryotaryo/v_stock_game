@@ -181,7 +181,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["会話5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
 
         //焼き鳥
-        Dict_Q["焼き鳥:挨拶"].Anss.Add(new Reply("おつかれさん！！", Dict_Q["1"]));
+        Dict_Q["焼き鳥:挨拶"].Talks.Add("おつかれさん");
+        Dict_Q["焼き鳥:挨拶"].Next_Question = Dict_Q["1"];
 
         Dict_Q["焼き鳥:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["2"]));
         Dict_Q["焼き鳥:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["3"]));
