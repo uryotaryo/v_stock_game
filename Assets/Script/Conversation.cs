@@ -194,7 +194,14 @@ public class Conversation : MonoBehaviour
         //例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
+
+        
+        All_Tasks["お面"].Add_ReWard(new int[]{10,25,50});
         All_Tasks["綿あめ"].Add_ReWard(new int[]{500,1000,2000});
+        All_Tasks["金魚"].Add_ReWard(new int[]{25,50,100});
+        All_Tasks["射的"].Add_ReWard(new int[]{2,5,10});
+        All_Tasks["かき氷"].Add_ReWard(new int[]{25,50,100});
+        All_Tasks["焼き鳥"].Add_ReWard(new int[]{25,50,100});
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
