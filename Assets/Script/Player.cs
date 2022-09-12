@@ -31,6 +31,9 @@ public class Player : MonoBehaviour
     }
     void Update()
     {
+        if(GameManager.Now_Mode == GameManager.Game_Mode.After){
+            this.gameObject.SetActive(false);
+        }
         //カメラを変える
         if (Input.GetKeyDown(KeyCode.V)){
             Cam_Change();
@@ -58,7 +61,11 @@ public class Player : MonoBehaviour
         FpsCam.SetActive(!FpsCam.activeSelf);
         TpsCam.SetActive(!TpsCam.activeSelf);
         Move(FpsCam.activeSelf);
-
+        if(FpsCam.activeSelf){
+            GameManager.Get_GameManager().Game_Scenes = GameManager.Scenes.Comyu;
+        }else{
+            GameManager.Get_GameManager().Game_Scenes = GameManager.Scenes.Default;
+        }
         Debug.Log("カメラチェンジ");
     }
     public void Move(bool b){
@@ -72,8 +79,7 @@ public class Player : MonoBehaviour
         to_back();
         var g_npc = Click_OBJ.GetComponent<NPC>();
         g_npc.Look(this.transform.position);
-        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().Set_Q(g_npc.Get_Question("通常"));
-        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().Set_Task(g_npc.Get_NPC_String());
+        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().init_Set(g_npc.Get_NPC_String(),g_npc.Get_Question("通常"));
         Cam_Change();
     }
     private void to_back(){

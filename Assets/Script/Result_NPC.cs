@@ -31,7 +31,6 @@ public class Result_NPC : MonoBehaviour
     void Update()
     {
         ReTarget_meta_time += Time.deltaTime;
-        Debug.Log(ReTarget_meta_time);
         if(ReTarget <= ReTarget_meta_time){
             ReTarget_meta_time = 0;
             _Agent.SetDestination(this.transform.Find("Targets").GetChild(Random.Range(0,this.transform.Find("Targets").childCount-1)).position);

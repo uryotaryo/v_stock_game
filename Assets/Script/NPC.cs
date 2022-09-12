@@ -50,6 +50,9 @@ public class NPC : MonoBehaviour
     {
         if(_player == null)_player = GameManager.Get_Player_OBJ();
         
+        if(GameManager.Now_Mode == GameManager.Game_Mode.After){
+            this.gameObject.SetActive(false);
+        }
         //停止判定の際に前フレームの座標を代入する
         if(Stop)transform.position = _lastpos;
         else _lastpos = transform.position;
