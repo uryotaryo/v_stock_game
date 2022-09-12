@@ -68,7 +68,6 @@ public class Conversation : MonoBehaviour
         //金魚
         Dict_Q.Add("金魚:挨拶", new Question("お疲れ様です～"));
 
-
         Dict_Q.Add("金魚:1", new Question("プレイヤー行動選択肢"));
 
         Dict_Q.Add("金魚:2", new Question("金魚を仕入れてもらいたい"));
@@ -84,6 +83,23 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("金魚:会話4", new Question("金魚のコツ"));
         Dict_Q.Add("金魚:会話5", new Question("お祭りへの意気込み"));
 
+
+        
+       //共通タスク
+        Dict_Q.Add("共通:挨拶", new Question("こんにちは"));
+
+        Dict_Q.Add("共通:1", new Question("プレイヤー行動選択肢"));
+
+        Dict_Q.Add("共通:2", new Question("お面を作ってもらいたい"));
+        Dict_Q.Add("共通:2-1", new Question("要件選択後後の返事"));
+
+        Dict_Q.Add("共通:3", new Question("世間話"));
+
+        Dict_Q.Add("共通会話0", new Question("ボランティアを集めた後の会話"));
+        Dict_Q.Add("共通会話1", new Question("ボランティアについて"));
+        Dict_Q.Add("共通会話2", new Question("意気込み"));
+        Dict_Q.Add("共通会話3", new Question("やるべきこと"));
+        
         //Dict_Q.Add("金魚:共通", new Question("お疲れ様です～"));
         //Dict_Q.Add("金魚:1-1", new Question("丁寧のプレイヤーの返し"));
         //Dict_Q.Add("金魚:1-2", new Question("雑のプレイヤーの返し"));
@@ -203,7 +219,6 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ会話:5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
         Dict_Q["綿あめ会話:5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
 
-
         //金魚//
         Dict_Q["金魚:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ～", Dict_Q["金魚:1"]));
 
@@ -256,7 +271,47 @@ public class Conversation : MonoBehaviour
         Dict_Q["金魚:会話5"].Talks.Add("そのためにあなたも頑張ってくれているから、こちらも頑張らないと");
         Dict_Q["金魚:会話5"].Talks.Add("ありがとうございます。絶対成功させましょう！");
         Dict_Q["金魚:会話5"].Talks.Add("頑張ろうね");
+        
+        
+        
+        //共通タスク
+        Dict_Q["共通:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ様～何用かな？", Dict_Q["共通:1"]));
 
+        Dict_Q["共通:1"].Anss.Add(new Reply("要件", "OK!人手が足りないから、何人かボランティアの人を呼んできて頂戴ね", Dict_Q["共通:2"]));
+        Dict_Q["共通:1"].Anss.Add(new Reply("世間話", "世間話かい？", Dict_Q["共通:3"]));
+        Dict_Q["共通:1"].Anss.Add(new Reply("特になし", "そうかい", -2));
+
+        //このセリフの後町長との会話がいったん終了して他NPCに話しかけに行く
+        Dict_Q["共通:2"].Anss.Add(new Reply("", "了解です！", -2));
+
+        //他NPCに話しかけた後の町長との会話
+        Dict_Q["共通会話:0"].Talks.Add("集めてきました！");
+        Dict_Q["共通会話:0"].Talks.Add("ありがとう！じゃあ取りに行ってくるね");
+        Dict_Q["共通会話:0"].Next_Question = Dict_Q["綿あめ:2-1"];
+        Dict_Q["共通:2-1"].Anss.Add(new Reply("よろしくお願いします。", "任せておくれ", 0));
+        Dict_Q["共通:2-1"].Anss.Add(new Reply("頼みます", "任せておくれ", 0));
+
+        Dict_Q["共通:3"].Anss.Add(new Reply("volunteers", "ボランティアの人たちってどんな人？", Dict_Q["共通会話:1"]));
+        Dict_Q["共通:3"].Anss.Add(new Reply("target", "お祭りへの意気込みはありますか？", Dict_Q["共通会話:2"]));
+        Dict_Q["共通:3"].Anss.Add(new Reply("to do", "お祭りと言っても何から始めればいいですかね", Dict_Q["共通会話:3"]));
+
+        Dict_Q["共通会話:1"].Talks.Add("私もあんまり話したことはないけれど、みんな個性的な人だよ");
+        Dict_Q["共通会話:1"].Talks.Add("個性的ですかw");
+        Dict_Q["共通会話:1"].Talks.Add("実際に本人たちと話してみなさい、そうしたら色んなことが分かるよ");
+        Dict_Q["共通会話:1"].Talks.Add("分かりました！");
+        Dict_Q["共通会話:1"].Talks.Add("頑張ってね～");
+
+        Dict_Q["共通会話:2"].Talks.Add("このお祭りを成功させて町を活性化させたいね");
+        Dict_Q["共通会話:2"].Talks.Add("かなり真面目な回答ですねw");
+        Dict_Q["共通会話:2"].Talks.Add("まぁこれは建前で、実際は楽しんでもらえればいいかなw\n夏の良い思い出にしてほしいね");
+        Dict_Q["共通会話:2"].Talks.Add("頑張りましょう！");
+        Dict_Q["共通会話:2"].Talks.Add("うん、期待してるよ～");
+
+        Dict_Q["共通会話:3"].Talks.Add("まずは屋台から作ろう。\n建材はこちらで用意できるから、欲しい時はいつでも言って");
+        Dict_Q["共通会話:3"].Talks.Add("わかりました");
+        Dict_Q["共通会話:3"].Talks.Add("その後はボランティアの人たちにそれぞれお店の商品や備品を用意してもらうのがいいと思うよ");
+        Dict_Q["共通会話:3"].Talks.Add("なるほど、頑張ります！");
+        Dict_Q["共通会話:3"].Talks.Add("分からないことがあったらいつでも相談してね");
         //共通タスクのやつ//
         /*
         //お面
@@ -271,8 +326,6 @@ public class Conversation : MonoBehaviour
         //Dict_Q["金魚:1-1"].Talks.Add("ありがとうございます！");
         //Dict_Q["金魚:1-2"].Talks.Add("ありがとう！頼むね");
 
-
-
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
@@ -285,6 +338,10 @@ public class Conversation : MonoBehaviour
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
         All_Tasks["金魚"] = new Task("金魚", "金魚を100匹発注しよう", 100);
+
+
+        All_Tasks["共通1"] = new Task("共通1", "建材を用意しよう", 1);
+        All_Tasks["共通2"] = new Task("共通2", "看板を豪華にしよう", 1);
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
