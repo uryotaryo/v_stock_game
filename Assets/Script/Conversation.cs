@@ -64,6 +64,29 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("綿あめ会話:3", new Question("趣味"));
         Dict_Q.Add("綿あめ会話:4", new Question("焼き鳥屋店主について"));
         Dict_Q.Add("綿あめ会話:5", new Question("悩み"));
+
+        //金魚
+        Dict_Q.Add("金魚:挨拶", new Question("お疲れ様です～"));
+
+
+        Dict_Q.Add("金魚:1", new Question("プレイヤー行動選択肢"));
+
+        Dict_Q.Add("金魚:2", new Question("お面を作ってもらいたい"));
+        Dict_Q.Add("金魚:2-1", new Question("(もう一度頼もう)"));
+
+        Dict_Q.Add("金魚:3", new Question("世間話"));
+        Dict_Q.Add("金魚:3-1", new Question("好きなことの選択肢"));
+        Dict_Q.Add("金魚:3-2", new Question("趣味の選択肢"));
+
+        Dict_Q.Add("金魚:会話1", new Question("好きなこと"));
+        Dict_Q.Add("金魚:会話2", new Question("嫌いなこと"));
+        Dict_Q.Add("金魚:会話3", new Question("趣味"));
+        Dict_Q.Add("金魚:会話4", new Question("金魚のコツ"));
+        Dict_Q.Add("金魚:会話5", new Question("お祭りへの意気込み"));
+
+        //Dict_Q.Add("金魚:共通", new Question("お疲れ様です～"));
+        //Dict_Q.Add("金魚:1-1", new Question("丁寧のプレイヤーの返し"));
+        //Dict_Q.Add("金魚:1-2", new Question("雑のプレイヤーの返し"));
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -93,7 +116,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["お面:3-1"].Anss.Add(new Reply("意外です", "あら、そう？最近は面白いものがたくさんあるから、読み飽きないし面白いわよ？", -2));
         Dict_Q["お面:3-1"].Anss.Add(new Reply("おすすめを聞く", "そうね…スポーツ系統の漫画はジャンルが多くておすすめね。", -2));
 
-        Dict_Q["お面:3-2"].Anss.Add(new Reply("金魚すくいは？", "正直少し苦手ね…祭りということで妥協しているけれど…少しあのおじさまには気を使ってもらっているから申し訳ないわね。", -2));
+        Dict_Q["お面:3-2"].Anss.Add(new Reply("金魚は？", "正直少し苦手ね…祭りということで妥協しているけれど…少しあのおじさまには気を使ってもらっているから申し訳ないわね。", -2));
         Dict_Q["お面:3-2"].Anss.Add(new Reply("不気味な感じ？", "あのギョロっとした目つきが特にゾッとするわ…もうこの話は終わりにしましょ…", -2));
 
         Dict_Q["お面:3-3"].Anss.Add(new Reply("気になる", "ふふｗ見せたくないってわけではないけど、知らない方がいいわよ～後悔しちゃうから...", -2));
@@ -180,6 +203,60 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ会話:5"].Talks.Add("大歓迎です！どんな手伝いがしたいんですか？");
         Dict_Q["綿あめ会話:5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
 
+
+        //金魚//
+        Dict_Q["金魚:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ～", Dict_Q["金魚:1"]));
+
+        //タスク消化
+        Dict_Q["金魚:1"].Anss.Add(new Reply("要件", "何か用かな？", Dict_Q["金魚:2"]));
+        Dict_Q["金魚:1"].Anss.Add(new Reply("世間話", "世間話ですか？いいですね", Dict_Q["金魚:3"]));
+        Dict_Q["金魚:1"].Anss.Add(new Reply("特になし", "あ、そう？", 0));
+
+        Dict_Q["金魚:2"].Anss.Add(new Reply("丁寧", "大丈夫だよ、任せてください", -1));
+        Dict_Q["金魚:2"].Anss.Add(new Reply("一般", "OKです。やってきますね", 0));
+        Dict_Q["金魚:2"].Anss.Add(new Reply("雑", "それはちょっと…", Dict_Q["金魚:2-1"]));
+
+        Dict_Q["金魚:2-1"].Anss.Add(new Reply("一般", "OKです。やってきますね", 0));
+        Dict_Q["金魚:2-1"].Anss.Add(new Reply("雑", "うーん、まあいいですけど", +1));
+
+        Dict_Q["金魚:3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["金魚:会話1"]));
+        Dict_Q["金魚:3"].Anss.Add(new Reply("Hate", "嫌いなこととかありますか？", Dict_Q["金魚:会話2"]));
+        Dict_Q["金魚:3"].Anss.Add(new Reply("hobby", "趣味はありますか", Dict_Q["金魚:会話3"]));
+        Dict_Q["金魚:3"].Anss.Add(new Reply("point", "金魚のコツは？", Dict_Q["金魚:会話4"]));
+        Dict_Q["金魚:3"].Anss.Add(new Reply("Interview", "お祭りへの意気込みをお願いします！", Dict_Q["金魚:会話5"]));
+        
+        Dict_Q["金魚:3-1"].Anss.Add(new Reply("いいですよね", "わかる～見てると癒されるんだよね", -2));
+        Dict_Q["金魚:3-1"].Anss.Add(new Reply("ほかの方はどうだろう？", "どうなんだろう？お面の方は狐が好きそうだね笑", -2));
+
+        Dict_Q["金魚:3-2"].Anss.Add(new Reply("読んでみます", "ぜひ感想教えてね", -2));
+        Dict_Q["金魚:3-2"].Anss.Add(new Reply("活字苦手…", "そういえば、お面の方も読書をたしなむって聞きました。話しかけたら、何かおすすめの本を教えてくれるかも", -2));
+
+        Dict_Q["金魚:会話1"].Talks.Add("動物を育てることかな");
+        Dict_Q["金魚:会話1"].Next_Question = Dict_Q["金魚:3-1"];
+
+        Dict_Q["金魚:会話2"].Talks.Add("少し騒がしいところが苦手かな");
+        Dict_Q["金魚:会話2"].Talks.Add("なるほど…");
+        Dict_Q["金魚:会話2"].Talks.Add("祭りとかはいいんだけど、どうも気分が乗らなくてね");
+        Dict_Q["金魚:会話2"].Talks.Add("注意しておきます");
+        Dict_Q["金魚:会話2"].Talks.Add("頼みます。焼き鳥の人とか少し苦手…");
+
+        Dict_Q["金魚:会話3"].Talks.Add("小説を読むのが好きだね。");
+        Dict_Q["金魚:会話3"].Talks.Add("どんなものが好き？");
+        Dict_Q["金魚:会話3"].Talks.Add("謎解き系を読むかな。少し難しいけど面白いですよ");
+        Dict_Q["金魚:会話3"].Next_Question = Dict_Q["金魚:3-2"];
+
+        Dict_Q["金魚:会話4"].Talks.Add("あまり教えたくないのだけど…");
+        Dict_Q["金魚:会話4"].Talks.Add("少しだけ教えてください");
+        Dict_Q["金魚:会話4"].Talks.Add("しいて言えば壁際の水面近くの金魚なんかがねらい目だよ");
+        Dict_Q["金魚:会話4"].Talks.Add("なるほど…");
+        Dict_Q["金魚:会話4"].Talks.Add("あまり広めないでくださいね笑");
+
+        Dict_Q["金魚:会話5"].Talks.Add("やっぱりたくさんの人に楽しんでほしいね");
+        Dict_Q["金魚:会話5"].Talks.Add("そうですよね！");
+        Dict_Q["金魚:会話5"].Talks.Add("そのためにあなたも頑張ってくれているから、こちらも頑張らないと");
+        Dict_Q["金魚:会話5"].Talks.Add("ありがとうございます。絶対成功させましょう！");
+        Dict_Q["金魚:会話5"].Talks.Add("頑張ろうね");
+
         //共通タスクのやつ//
         /*
         //お面
@@ -188,6 +265,14 @@ public class Conversation : MonoBehaviour
         Dict_Q["1-1"].Talks.Add("お願いします！");
         Dict_Q["1-2"].Talks.Add("任せる。頼むね～");
         */
+        //金魚救い
+        //Dict_Q["金魚:共通"].Anss.Add(new Reply("丁寧", "大丈夫だよ～", Dict_Q["金魚:1-1"]));
+        //Dict_Q["金魚:共通"].Anss.Add(new Reply("雑", "了解", Dict_Q["金魚:1-2"]));
+        //Dict_Q["金魚:1-1"].Talks.Add("ありがとうございます！");
+        //Dict_Q["金魚:1-2"].Talks.Add("ありがとう！頼むね");
+
+
+
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
@@ -199,6 +284,7 @@ public class Conversation : MonoBehaviour
         //例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
+        All_Tasks["金魚"] = new Task("金魚", "金魚を100匹発注しよう", 100);
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
