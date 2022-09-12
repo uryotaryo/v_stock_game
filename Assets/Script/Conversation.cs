@@ -165,10 +165,22 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("共通会話:1", new Question("ボランティアについて"));
         Dict_Q.Add("共通会話:2", new Question("意気込み"));
         Dict_Q.Add("共通会話:3", new Question("やるべきこと"));
-        
+
         //Dict_Q.Add("金魚:共通", new Question("お疲れ様です～"));
         //Dict_Q.Add("金魚:1-1", new Question("丁寧のプレイヤーの返し"));
         //Dict_Q.Add("金魚:1-2", new Question("雑のプレイヤーの返し"));
+
+        //個別タスク
+        //花火師
+        Dict_Q.Add("花火師:挨拶", new Question("挨拶しよう"));
+        Dict_Q.Add("花火師:会話1", new Question("陽気な花火師が話しかけてきた"));
+        //2回目以降
+        Dict_Q.Add("花火師:1", new Question("挨拶しよう"));
+        Dict_Q.Add("花火師:1-1", new Question("NPC返答1"));
+        Dict_Q.Add("花火師:1-2", new Question("どうする？"));
+        Dict_Q.Add("花火師:1-3", new Question("NPC返答2"));
+
+
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -559,6 +571,27 @@ public class Conversation : MonoBehaviour
         //Dict_Q["金魚:共通"].Anss.Add(new Reply("雑", "了解", Dict_Q["金魚:1-2"]));
         //Dict_Q["金魚:1-1"].Talks.Add("ありがとうございます！");
         //Dict_Q["金魚:1-2"].Talks.Add("ありがとう！頼むね");
+
+        //個別タスク
+
+        //以下花火師１回目の会話
+        Dict_Q["花火師:挨拶"].Anss.Add(new Reply("挨拶", "よう！花火は好きかい！？", Dict_Q["花火師:会話1"]));
+
+        Dict_Q["花火師:会話1"].Talks.Add("(いきなり...？)");
+        Dict_Q["花火師:会話1"].Talks.Add("す、好きです．．．？");
+        Dict_Q["花火師:会話1"].Talks.Add("本当か！？花火好きに悪い奴はいねぇ！\n仲良くしようや！！");
+        Dict_Q["花火師:会話1"].Talks.Add("(悪い人ではなさそう、また話しかけようかな)");
+
+        //以下花火師２回目の会話
+        Dict_Q["花火師:1"].Anss.Add(new Reply("挨拶", "あんちゃんか！！", Dict_Q["花火師:1-1"]));
+
+        Dict_Q["花火師:1-1"].Anss.Add(new Reply("", "ここの手伝いをさせてくれねぇか！？\nきっと良いものになるぜ！！", Dict_Q["花火師:1-2"]));
+
+        Dict_Q["花火師:1-2"].Anss.Add(new Reply("yes", "そうこなくっちゃな！！", Dict_Q["花火師:1-3"]));
+        Dict_Q["花火師:1-2"].Anss.Add(new Reply("no", "まあまあそう言わずによ！\nきっと良いものになるぜ！", Dict_Q["花火師:1-3"]));
+
+        Dict_Q["花火師:1-3"].Anss.Add(new Reply("", "当日、楽しみにしててくれよな", -1));
+
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
@@ -584,6 +617,10 @@ public class Conversation : MonoBehaviour
 
         All_Tasks["共通1"] = new Task("共通1", "建材を用意しよう", 1);
         All_Tasks["共通2"] = new Task("共通2", "看板を豪華にしよう", 1);
+
+        //個別タスク・花火師
+        All_Tasks["花火師"] = new Task("花火師", "花火を打ち上げてもらおう", 1);
+
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
