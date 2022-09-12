@@ -44,7 +44,6 @@ public class Real_Time_Cont : MonoBehaviour
     private void init(){
         now_Q = null;
         now_T = null;
-
     }
     public void init_Set(string name,Question q){
         init();
@@ -57,11 +56,11 @@ public class Real_Time_Cont : MonoBehaviour
     public void Set_Q(Question q){
         //Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.none);
         now_Q = q;
-        if(!shuffle)now_Q.init();
+        now_Q.init();
         Set_Select_name(now_Q.Anss);
         if(now_Q.Anss.Count == 1){
             Click_Reply(now_Q.Anss[0]);
-        }else if (now_Q.Anss.Count > 4&&!shuffle){
+        }else if (now_Q.Anss.Count > 4){
             now_Q.Anss = now_Q.Anss.OrderBy(a => Guid.NewGuid()).ToList();
         }
         else{
@@ -113,9 +112,7 @@ public class Real_Time_Cont : MonoBehaviour
                     if(_select_reply.Next_Question == null){
                         GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
                     }else{
-                        shuffle = true;
                         Set_Q(_select_reply.Next_Question);
-                        shuffle = false;
                     }
                     break;
                 case Reply.Reply_Type.Complain_fluctuation:
