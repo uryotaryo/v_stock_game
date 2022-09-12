@@ -63,6 +63,22 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("綿あめ会話:3", new Question("趣味"));
         Dict_Q.Add("綿あめ会話:4", new Question("焼き鳥屋店主について"));
         Dict_Q.Add("綿あめ会話:5", new Question("悩み"));
+
+        //共通タスク
+        Dict_Q.Add("共通:挨拶", new Question("こんにちは"));
+
+        Dict_Q.Add("共通:1", new Question("プレイヤー行動選択肢"));
+
+        Dict_Q.Add("共通:2", new Question("お面を作ってもらいたい"));
+        Dict_Q.Add("共通:2-1", new Question("要件選択後後の返事"));
+
+        Dict_Q.Add("共通:3", new Question("世間話"));
+
+        Dict_Q.Add("共通会話0", new Question("ボランティアを集めた後の会話"));
+        Dict_Q.Add("共通会話1", new Question("ボランティアについて"));
+        Dict_Q.Add("共通会話2", new Question("意気込み"));
+        Dict_Q.Add("共通会話3", new Question("やるべきこと"));
+
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -217,11 +233,11 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通会話:2"].Talks.Add("頑張りましょう！");
         Dict_Q["共通会話:2"].Talks.Add("うん、期待してるよ～");
 
-        Dict_Q["共通会話:2"].Talks.Add("まずは屋台から作ろう。\n建材はこちらで用意できるから、欲しい時はいつでも言って");
-        Dict_Q["共通会話:2"].Talks.Add("わかりました");
-        Dict_Q["共通会話:2"].Talks.Add("その後はボランティアの人たちにそれぞれお店の商品や備品を用意してもらうのがいいと思うよ");
-        Dict_Q["共通会話:2"].Talks.Add("なるほど、頑張ります！");
-        Dict_Q["共通会話:2"].Talks.Add("分からないことがあったらいつでも相談してね");
+        Dict_Q["共通会話:3"].Talks.Add("まずは屋台から作ろう。\n建材はこちらで用意できるから、欲しい時はいつでも言って");
+        Dict_Q["共通会話:3"].Talks.Add("わかりました");
+        Dict_Q["共通会話:3"].Talks.Add("その後はボランティアの人たちにそれぞれお店の商品や備品を用意してもらうのがいいと思うよ");
+        Dict_Q["共通会話:3"].Talks.Add("なるほど、頑張ります！");
+        Dict_Q["共通会話:3"].Talks.Add("分からないことがあったらいつでも相談してね");
 
     }
     /// <summary>
@@ -234,6 +250,8 @@ public class Conversation : MonoBehaviour
         //例タスクはプログラム内で使う文字列同名だと上書きされる　最後はタスクの作業量
         All_Tasks["お面"] = new Task("お面", "お面を50個作ろう", 50);
         All_Tasks["綿あめ"] = new Task("綿あめ","ザラメを2000g用意しよう",2000);
+        All_Tasks["共通1"] = new Task("共通1", "建材を用意しよう", 1);
+        All_Tasks["共通2"] = new Task("共通2", "看板を豪華にしよう", 1);
     }
     /// <summary>
     /// 仮:)すべてのタスクから建物ごとに関係のあるタスクを振り分ける。
