@@ -45,8 +45,6 @@ public class NPC : MonoBehaviour
         _base_rotate = _npc_obj.transform.rotation;
         Stop = true;
     }
-
-
     // Update is called once per frame
     void Update()
     {
@@ -75,6 +73,37 @@ public class NPC : MonoBehaviour
         }else{
             _npc_obj.transform.rotation =_base_rotate;
         }
+    }
+    public Question Get_Question(string s){
+        string name;
+        switch (_Type){
+            case Info.NPC_TYPE.KAKIGORI:
+                name = "かき氷";
+                break;
+            case Info.NPC_TYPE.KINGYO:
+                name = "金魚";
+                break;
+            case Info.NPC_TYPE.OMEN:
+                name = "お面";
+                break;
+            case Info.NPC_TYPE.SYATEKI:
+                name = "射的";
+                break;
+            case Info.NPC_TYPE.WATAAME:
+                name = "綿あめ";
+                GameManager.Now_Task_Name = "綿あめ";
+                break;
+            case Info.NPC_TYPE.YAKITORI:
+                name = "焼き鳥";
+                break;
+            default:
+                name = "";
+                break;
+        }
+        name += ":";
+        if(s == "通常")name += "挨拶";
+        else if (s == "共通")name += "共通";
+        return Conversation.Dict_Q[name];
     }
     /// <summary>
     /// NPCオブジェクトを指定座標へ向けさせる

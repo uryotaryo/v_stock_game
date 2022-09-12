@@ -70,8 +70,9 @@ public class Player : MonoBehaviour
         >= 1f)return;
         player_obj.transform.LookAt(Click_OBJ.transform.position);
         to_back();
-        Click_OBJ.GetComponent<NPC>().Look(this.transform.position);
-
+        var g_npc = Click_OBJ.GetComponent<NPC>();
+        g_npc.Look(this.transform.position);
+        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().Set_Q(g_npc.Get_Question("通常"));
         Cam_Change();
     }
     private void to_back(){
