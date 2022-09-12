@@ -65,9 +65,14 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("綿あめ会話:5", new Question("悩み"));
 
         //かき氷
-        Dict_Q.Add("かき氷:1", new Question("こんにちは、お疲れ様です"));
+        Dict_Q.Add("かき氷:挨拶", new Question("こんにちは、お疲れ様です"));
+
+        Dict_Q.Add("かき氷:1", new Question("会話選択肢"))
 
         Dict_Q.Add("かき氷:2", new Question("適切", "大きい氷を１００個用意してもらってもいい？"));
+        Dict_Q.Add("かき氷:2-1", new Question("綿あめ返答1"));
+        Dict_Q.Add("かき氷:2-2", new Question("綿あめ返答2"));
+        Dict_Q.Add("かき氷:2-3", new Question("綿あめ返答3"));
         Dict_Q.Add("かき氷:2-4", new Question("(もう一度お願いしよう)"))
 
         Dict_Q.Add("かき氷:3", new Question("世間話"));
@@ -203,6 +208,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ会話:5"].Talks.Add("甘い物を作る屋台などがあれば、手伝いたいですね。");
 
         //かき氷
+        Dict_Q["かき氷:挨拶"].Anss.Add(new Reply("挨拶","こんにちは、お疲れ様です",Dict_Q["かき氷:1"]))
+
         Dict_Q["かき氷:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["2"]));
         Dict_Q["かき氷:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["3"]));
         Dict_Q["かき氷:1"].Anss.Add(new Reply("特になし", "・・・", -2));
