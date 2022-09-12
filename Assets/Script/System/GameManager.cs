@@ -15,9 +15,36 @@ public class GameManager : MonoBehaviour
     private static GameObject _player_Obj;
     public static TPS_UI_cont _TPS_UI;
     public static string Now_Task_Name;
+    public static Game_Mode Now_Mode = Game_Mode.Before;
+    public enum  Game_Mode
+    {
+        Before,
+        After,
+    }
 
     [SerializeField]
     private GameObject _Result;
+
+    [SerializeField]
+    private AudioClip[] BGMs;
+    private AudioSource AS; 
+    private Scenes _game_scenes = Scenes.Default;
+    public Scenes Game_Scenes{
+        get{
+            return _game_scenes;
+            }
+        set{
+            Audio_Change(value);
+            _game_scenes = value;
+        }
+    }
+    public enum Scenes{
+        Default,
+        Comyu,
+        Result,
+        Stop,
+
+    }
 
     /// <summary>
     /// 格納した自身のクラスを返す
@@ -45,18 +72,44 @@ public class GameManager : MonoBehaviour
         _my_Manager = this.GetComponent<GameManager>();
         _player_Obj = GameObject.FindWithTag("Player");
         _TPS_UI = GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>();
+        AS = this.GetComponent<AudioSource>();
     }
     
     public void To_Result(){
+        Now_Mode = Game_Mode.After;
         _Result.SetActive(true);
     }
     void Start()
     {
+        Game_Scenes = Scenes.Default;
         Conversation.Q_And_A_Load();
     }
 
+    private void Audio_Change(Scenes S){
+        switch(S){
+            case Scenes.Default:
+                AS.clip = BGMs[0];
+                AS.Play();
+                break;
+            case Scenes.Comyu:
+                AS.clip = BGMs[Random.Range(1,3)];
+                AS.Play();
+                break;
+            case Scenes.Result:
+                AS.clip = BGMs[3];
+                AS.Play();
+                break;
+            case Scenes.Stop:
+                AS.Stop();
+                break;
+            default:
+                AS.Stop();
+                break;
+        }
+    }
     // Update is called once per frame
     void Update()
     {
+        if(AS == null)AS = this.GetComponent<AudioSource>();
     }
 }

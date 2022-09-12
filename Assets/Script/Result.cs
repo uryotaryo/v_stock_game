@@ -28,6 +28,7 @@ public class Result : MonoBehaviour
         for(int i = 0; i < 20;i++){
             var v = Instantiate(Meta_ResultNPC,Vector3.zero,new Quaternion(0,0,0,0));
         }
+        GameManager.Get_GameManager().Game_Scenes = GameManager.Scenes.Result;
     }
 
     // Update is called once per frame
@@ -42,9 +43,10 @@ public class Result : MonoBehaviour
     private void Camera_Move(){
         if(move_num >= E_Point.Length){
             Move_Stop = true;
+            GameManager.Get_GameManager().Game_Scenes = GameManager.Scenes.Stop;
             return;
         }
-        S_To_E_D += 0.0025f;
+        S_To_E_D += 0.0022f;
         Move_Camera.transform.position =  Vector3.Lerp(S_Point[move_num],E_Point[move_num],S_To_E_D);
         if(Move_Camera.transform.position == E_Point[move_num]){
             move_num ++;

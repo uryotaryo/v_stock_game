@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
+using System.Linq;
 
 public class Real_Time_Cont : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class Real_Time_Cont : MonoBehaviour
     private Question now_Q;
     private Task now_T;
     private Reply _select_reply;
+    private bool shuffle = false;
     
     public void Set_Target_NPC(NPC n){
         Traget_NPC = n;
@@ -38,18 +41,30 @@ public class Real_Time_Cont : MonoBehaviour
     {
         Timer_Bar.value -= Time.deltaTime;
     }
+    private void init(){
+        now_Q = null;
+        now_T = null;
+
+    }
+    public void init_Set(string name,Question q){
+        init();
+        Set_Task(name);
+        Set_Q(q);
+    }
     public void Set_Task(string name){
         now_T = Conversation.All_Tasks[name];
     }
     public void Set_Q(Question q){
         //Traget_NPC.Get_Emort().Set_Emort(Parts_Point.emort.none);
-
         now_Q = q;
+        if(!shuffle)now_Q.init();
         Set_Select_name(now_Q.Anss);
         if(now_Q.Anss.Count == 1){
-            Debug.Log("選択肢が一つのみ");
             Click_Reply(now_Q.Anss[0]);
-        }else{
+        }else if (now_Q.Anss.Count > 4&&!shuffle){
+            now_Q.Anss = now_Q.Anss.OrderBy(a => Guid.NewGuid()).ToList();
+        }
+        else{
             NPC_Ans_box.text = "(" + now_Q.Question_Text + ")";
         }
 
@@ -98,13 +113,14 @@ public class Real_Time_Cont : MonoBehaviour
                     if(_select_reply.Next_Question == null){
                         GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
                     }else{
+                        shuffle = true;
                         Set_Q(_select_reply.Next_Question);
+                        shuffle = false;
                     }
                     break;
                 case Reply.Reply_Type.Complain_fluctuation:
                     int Add_Human = 0;
 
-                    //if(_select_reply.Change_Complain == -2);
                     switch (_select_reply.Change_Complain){
                         case -1:
                             Add_Human = -1;
@@ -123,6 +139,7 @@ public class Real_Time_Cont : MonoBehaviour
                     Debug.Log(now_T.Content_Num);
                     GameManager._TPS_UI.Human_level += Add_Human;
                     GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
+                    
                     break;
                 default:
                     break;

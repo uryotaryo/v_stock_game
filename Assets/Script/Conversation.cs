@@ -610,6 +610,9 @@ public class Question
         Talks = new List<string>();
         Anss = new List<Reply>();
     }
+    public void init(){
+        Talk_num = 0;
+    }
     public string Get_Talk(){
         string Re_str = "";
         if(Talks.Count > Talk_num)Re_str = Talks[Talk_num];
