@@ -163,13 +163,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["綿あめ:1"].Anss.Add(new Reply("要件", "何か用事があるんですか？", Dict_Q["綿あめ:2"]));
         Dict_Q["綿あめ:1"].Anss.Add(new Reply("世間話", "世間話ですか？", Dict_Q["綿あめ:3"]));
-        Dict_Q["綿あめ:1"].Anss.Add(new Reply("特になし", "わかりました。", 0));
+        Dict_Q["綿あめ:1"].Anss.Add(new Reply("特になし", "わかりました。", -2));
 
         Dict_Q["綿あめ:2"].Anss.Add(new Reply("雑", "頼みたいことがあるんだけどいい！？", Dict_Q["綿あめ:2-1"]));
         Dict_Q["綿あめ:2"].Anss.Add(new Reply("一般", "お願いがあるんです！聞いてくれませんか！？", Dict_Q["綿あめ:2-2"]));
         Dict_Q["綿あめ:2"].Anss.Add(new Reply("丁寧", "恐縮ながら頼みたい事がありまして...", Dict_Q["綿あめ:2-3"]));
 
-        Dict_Q["綿あめ:2-1"].Anss.Add(new Reply("", "いいですよ。喜んでやりましょう！",+1));
+        Dict_Q["綿あめ:2-1"].Anss.Add(new Reply("", "いいですよ。喜んでやりましょう！",-1));
         Dict_Q["綿あめ:2-2"].Anss.Add(new Reply("", "分かりました。手伝います。", 0));
         Dict_Q["綿あめ:2-3"].Anss.Add(new Reply("", "うーーん...", Dict_Q["綿あめ:2-4"]));
 
@@ -177,7 +177,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["綿あめ:2-4"].Anss.Add(new Reply("丁寧", "お忙しい中大変だと思うのですが...", Dict_Q["綿あめ:2-6"]));
 
         Dict_Q["綿あめ:2-5"].Anss.Add(new Reply("", "分かりました", 0));
-        Dict_Q["綿あめ:2-6"].Anss.Add(new Reply("", "まぁできなくもないです。", -1));
+        Dict_Q["綿あめ:2-6"].Anss.Add(new Reply("", "まぁできなくもないです。", +1));
 
         Dict_Q["綿あめ:3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["綿あめ会話:1"]));
         Dict_Q["綿あめ:3"].Anss.Add(new Reply("Hate", "嫌いなことは？", Dict_Q["綿あめ会話:2"]));
