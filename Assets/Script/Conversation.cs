@@ -71,11 +71,11 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("射的:3-2", new Question("射的返答5"));
         Dict_Q.Add("射的:3-2", new Question("射的返答6"));
 
-        Dict_Q.Add("会話1", new Question("好きなこと"));
-        Dict_Q.Add("会話2", new Question("嫌いなこと"));
-        Dict_Q.Add("会話3", new Question("目標"));
-        Dict_Q.Add("会話4", new Question("お面屋店主について"));
-        Dict_Q.Add("会話5", new Question("旅行に行くなら"));
+        Dict_Q.Add("射的:会話1", new Question("好きなこと"));
+        Dict_Q.Add("射的:会話2", new Question("嫌いなこと"));
+        Dict_Q.Add("射的:会話3", new Question("目標"));
+        Dict_Q.Add("射的:会話4", new Question("お面屋店主について"));
+        Dict_Q.Add("射的:会話5", new Question("旅行に行くなら"));
 
     }
     /// <summary>
