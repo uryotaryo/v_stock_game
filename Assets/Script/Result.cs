@@ -6,13 +6,13 @@ public class Result : MonoBehaviour
 {
     private int move_num = 0;
     private Vector3[] S_Point = {
-        new Vector3(0,0.8f,-8f),
+        new Vector3(0,0.8f,-7f),
         new Vector3(0,0.8f,1f),
         new Vector3(0,4f,1.5f)
     };
     private Vector3[] E_Point = {
         new Vector3(0,0.8f,1f),
-        new Vector3(0,0.8f,-8),
+        new Vector3(0,0.8f,-7),
         new Vector3(0,1f,-3)
     };
     [SerializeField]
