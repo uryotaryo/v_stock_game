@@ -150,6 +150,16 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("焼き鳥:会話3", new Question("金魚屋の店主との関係"));
         Dict_Q.Add("焼き鳥:会話4", new Question("射的屋の店主について"));
         Dict_Q.Add("焼き鳥:会話5", new Question("今回のお祭りの意気込みは？"));
+
+        //個別タスク
+        //花火師
+        Dict_Q.Add("花火師:挨拶", new Question("挨拶しよう"));
+        Dict_Q.Add("花火師:会話1", new Question("陽気な花火師が話しかけてきた"));
+        //2回目以降
+        Dict_Q.Add("花火師:1", new Question("挨拶しよう"));
+        Dict_Q.Add("花火師:1-1", new Question("NPC返答1"));
+        Dict_Q.Add("花火師:1-2", new Question("どうする？"));
+        Dict_Q.Add("花火師:1-3", new Question("NPC返答2"));
         
        //共通タスク
         Dict_Q.Add("共通:挨拶", new Question("こんにちは"));
@@ -166,21 +176,29 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("共通会話:2", new Question("意気込み"));
         Dict_Q.Add("共通会話:3", new Question("やるべきこと"));
 
-        //Dict_Q.Add("金魚:共通", new Question("お疲れ様です～"));
-        //Dict_Q.Add("金魚:1-1", new Question("丁寧のプレイヤーの返し"));
-        //Dict_Q.Add("金魚:1-2", new Question("雑のプレイヤーの返し"));
+        Dict_Q.Add("共通:金魚", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:金魚1-1", new Question("丁寧のプレイヤーの返し"));
+        Dict_Q.Add("共通:金魚1-2", new Question("雑のプレイヤーの返し"));
 
-        //個別タスク
-        //花火師
-        Dict_Q.Add("花火師:挨拶", new Question("挨拶しよう"));
-        Dict_Q.Add("花火師:会話1", new Question("陽気な花火師が話しかけてきた"));
-        //2回目以降
-        Dict_Q.Add("花火師:1", new Question("挨拶しよう"));
-        Dict_Q.Add("花火師:1-1", new Question("NPC返答1"));
-        Dict_Q.Add("花火師:1-2", new Question("どうする？"));
-        Dict_Q.Add("花火師:1-3", new Question("NPC返答2"));
+        Dict_Q.Add("共通:お面", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:お面1-1", new Question("丁寧のプレイヤーの返し"));
+        Dict_Q.Add("共通:お面1-2", new Question("雑のプレイヤーの返し"));
 
+        Dict_Q.Add("共通:焼き鳥", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:焼き鳥1-1", new Question("一般のプレイヤーの返し"));
+        Dict_Q.Add("共通:焼き鳥1-2", new Question("丁寧のプレイヤーの返し"));
 
+        Dict_Q.Add("共通:かき氷", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:かき氷1-1", new Question("丁寧のプレイヤーの返し"));
+        Dict_Q.Add("共通:かき氷1-2", new Question("一般のプレイヤーの返し"));
+
+        Dict_Q.Add("共通:綿あめ", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:綿あめ1-1", new Question("丁寧のプレイヤーの返し"));
+        Dict_Q.Add("共通:綿あめ1-2", new Question("一般のプレイヤーの返し"));
+
+        Dict_Q.Add("共通:射的", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:射的1-1", new Question("丁寧のプレイヤーの返し"));
+        Dict_Q.Add("共通:射的1-2", new Question("雑のプレイヤーの返し"));
     }
     /// <summary>
     /// 質問に紐づけされる解答一覧(N)
@@ -518,7 +536,27 @@ public class Conversation : MonoBehaviour
         Dict_Q["焼き鳥:会話5"].Talks.Add("俺の作った焼き鳥をいろんな人が食ってくれるからだな！");
         Dict_Q["焼き鳥:会話5"].Talks.Add("いろんな人が食べて美味しいって言ってもらえるとうれしいですよね。");
         Dict_Q["焼き鳥:会話5"].Talks.Add("全くその通りだよ！美味しいって言ってもらえるのが一番うれしいな。");
+        
+        //個別タスク
 
+        //以下花火師１回目の会話
+        Dict_Q["花火師:挨拶"].Anss.Add(new Reply("挨拶", "よう！花火は好きかい！？", Dict_Q["花火師:会話1"]));
+
+        Dict_Q["花火師:会話1"].Talks.Add("(いきなり...？)");
+        Dict_Q["花火師:会話1"].Talks.Add("す、好きです．．．？");
+        Dict_Q["花火師:会話1"].Talks.Add("本当か！？花火好きに悪い奴はいねぇ！\n仲良くしようや！！");
+        Dict_Q["花火師:会話1"].Talks.Add("(悪い人ではなさそう、また話しかけようかな)");
+
+        //以下花火師２回目の会話
+        Dict_Q["花火師:1"].Anss.Add(new Reply("挨拶", "あんちゃんか！！", Dict_Q["花火師:1-1"]));
+
+        Dict_Q["花火師:1-1"].Anss.Add(new Reply("", "ここの手伝いをさせてくれねぇか！？\nきっと良いものになるぜ！！", Dict_Q["花火師:1-2"]));
+
+        Dict_Q["花火師:1-2"].Anss.Add(new Reply("yes", "そうこなくっちゃな！！", Dict_Q["花火師:1-3"]));
+        Dict_Q["花火師:1-2"].Anss.Add(new Reply("no", "まあまあそう言わずによ！\nきっと良いものになるぜ！", Dict_Q["花火師:1-3"]));
+
+        Dict_Q["花火師:1-3"].Anss.Add(new Reply("", "当日、楽しみにしててくれよな", -1));
+        
         //共通タスク
         Dict_Q["共通:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ様～何用かな？", Dict_Q["共通:1"]));
 
@@ -558,40 +596,67 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通会話:3"].Talks.Add("その後はボランティアの人たちにそれぞれお店の商品や備品を用意してもらうのがいいと思うよ");
         Dict_Q["共通会話:3"].Talks.Add("なるほど、頑張ります！");
         Dict_Q["共通会話:3"].Talks.Add("分からないことがあったらいつでも相談してね");
-        //共通タスクのやつ//
-        /*
+
+        //共通タスクの店主別個別の会話//
         //お面
-        Dict_Q["お面:共通"].Anss.Add(new Reply("丁寧", "わかったわ～頑張るわね", Dict_Q["1-1"]));
-        Dict_Q["お面:共通"].Anss.Add(new Reply("雑", "OK～", Dict_Q["1-2"]));
-        Dict_Q["1-1"].Talks.Add("お願いします！");
-        Dict_Q["1-2"].Talks.Add("任せる。頼むね～");
-        */
+        Dict_Q["共通:お面1"].Anss.Add(new Reply("丁寧", "町長さんが人手を集めていて\n一緒に作業を手伝いに言ってもらえないですか？", Dict_Q["共通:お面1-1"]));
+        Dict_Q["共通:お面1"].Anss.Add(new Reply("雑", "少しの間お手伝いをしてほしいのだけど\nお願いできる？", Dict_Q["共通:お面1-2"]));
+
+        Dict_Q["共通:お面1-1"].Talks.Add("わかったわ～\nお力添えできるかわからないけど頑張るわね");
+        Dict_Q["共通:お面1-1"].Talks.Add("お願いします！");
+
+        Dict_Q["共通:お面1-2"].Talks.Add("OK～");
+        Dict_Q["共通:お面1-2"].Talks.Add("任せる。頼むね～");
+
         //金魚すくい
-        //Dict_Q["金魚:共通"].Anss.Add(new Reply("丁寧", "大丈夫だよ～", Dict_Q["金魚:1-1"]));
-        //Dict_Q["金魚:共通"].Anss.Add(new Reply("雑", "了解", Dict_Q["金魚:1-2"]));
-        //Dict_Q["金魚:1-1"].Talks.Add("ありがとうございます！");
-        //Dict_Q["金魚:1-2"].Talks.Add("ありがとう！頼むね");
+        Dict_Q["共通:金魚"].Anss.Add(new Reply("丁寧", "町長さんと手伝ってほしいことがあるんですが...\nお願いできます？", Dict_Q["共通:金魚1-1"]));
+        Dict_Q["共通:金魚"].Anss.Add(new Reply("雑", "少しお手伝いをしてきて欲しいのだけど\nお願いできる？", Dict_Q["共通:金魚1-2"]));
 
-        //個別タスク
+        Dict_Q["共通:金魚1-1"].Talks.Add("大丈夫だよ～");
+        Dict_Q["共通:金魚1-1"].Talks.Add("ありがとうございます！");
 
-        //以下花火師１回目の会話
-        Dict_Q["花火師:挨拶"].Anss.Add(new Reply("挨拶", "よう！花火は好きかい！？", Dict_Q["花火師:会話1"]));
+        Dict_Q["共通:金魚1-2"].Talks.Add("了解");
+        Dict_Q["共通:金魚1-2"].Talks.Add("ありがとう！頼むね");
 
-        Dict_Q["花火師:会話1"].Talks.Add("(いきなり...？)");
-        Dict_Q["花火師:会話1"].Talks.Add("す、好きです．．．？");
-        Dict_Q["花火師:会話1"].Talks.Add("本当か！？花火好きに悪い奴はいねぇ！\n仲良くしようや！！");
-        Dict_Q["花火師:会話1"].Talks.Add("(悪い人ではなさそう、また話しかけようかな)");
+        //焼き鳥
+        Dict_Q["共通:焼き鳥"].Anss.Add(new Reply("一般", "人手が欲しくて手伝ってほしいのだけど\nお願いできます？", Dict_Q["共通:焼き鳥1-1"]));
+        Dict_Q["共通:焼き鳥"].Anss.Add(new Reply("丁寧", "お願いがあるんだけど、聞いてくれますか？", Dict_Q["共通:焼き鳥1-2"]));
 
-        //以下花火師２回目の会話
-        Dict_Q["花火師:1"].Anss.Add(new Reply("挨拶", "あんちゃんか！！", Dict_Q["花火師:1-1"]));
+        Dict_Q["共通:焼き鳥1-1"].Talks.Add("おうよ！なんだい？");
+        Dict_Q["共通:焼き鳥1-1"].Talks.Add("ありがとう～");
 
-        Dict_Q["花火師:1-1"].Anss.Add(new Reply("", "ここの手伝いをさせてくれねぇか！？\nきっと良いものになるぜ！！", Dict_Q["花火師:1-2"]));
+        Dict_Q["共通:焼き鳥1-2"].Talks.Add("いいですよ～！");
+        Dict_Q["共通:焼き鳥1-2"].Talks.Add("ありがとうございます！");
 
-        Dict_Q["花火師:1-2"].Anss.Add(new Reply("yes", "そうこなくっちゃな！！", Dict_Q["花火師:1-3"]));
-        Dict_Q["花火師:1-2"].Anss.Add(new Reply("no", "まあまあそう言わずによ！\nきっと良いものになるぜ！", Dict_Q["花火師:1-3"]));
+        //かき氷
+        Dict_Q["共通:かき氷"].Anss.Add(new Reply("丁寧", "人手を集めてるんですけど\n協力してくれませんか？", Dict_Q["共通:かき氷1-1"]));
+        Dict_Q["共通:かき氷"].Anss.Add(new Reply("一般", "お願いがあるんだけど、今空いてますか？", Dict_Q["共通:かき氷1-2"]));
 
-        Dict_Q["花火師:1-3"].Anss.Add(new Reply("", "当日、楽しみにしててくれよな", -1));
+        Dict_Q["共通:かき氷1-1"].Talks.Add("いいですよ。\n詳細も教えて頂いてありがとうございます。");
+        Dict_Q["共通:かき氷1-1"].Talks.Add("いえいえ、ありがとうございます");
 
+        Dict_Q["共通:かき氷1-2"].Talks.Add("問題ないですよ");
+        Dict_Q["共通:かき氷1-2"].Talks.Add("ありがとうございます");
+
+        //綿あめ
+        Dict_Q["共通:綿あめ"].Anss.Add(new Reply("丁寧", "人手が足りないんですけど、今手伝えますか？", Dict_Q["共通:綿あめ1-1"]));
+        Dict_Q["共通:綿あめ"].Anss.Add(new Reply("一般", "今人手不足なんだ！手伝ってもらえない？", Dict_Q["共通:綿あめ1-2"]));
+
+        Dict_Q["共通:綿あめ1-1"].Talks.Add("はい。");
+        Dict_Q["共通:綿あめ1-1"].Talks.Add("ありがとうございます...！");
+
+        Dict_Q["共通:綿あめ1-2"].Talks.Add("いいですよ。なんでも手伝いましょう！");
+        Dict_Q["共通:綿あめ1-2"].Talks.Add("ありがとう！");
+
+        //射的
+        Dict_Q["共通:射的"].Anss.Add(new Reply("丁寧", "お手伝いをお願いしてもいいですか...？", Dict_Q["共通:射的1-1"]));
+        Dict_Q["共通:射的"].Anss.Add(new Reply("雑", "ちょっと手伝ってほしいんだ", Dict_Q["共通:射的1-2"]));
+
+        Dict_Q["共通:射的1-1"].Talks.Add("はい！大丈夫ですよ");
+        Dict_Q["共通:射的1-1"].Talks.Add("すみません助かります");
+
+        Dict_Q["共通:射的1-2"].Talks.Add("おっけー。");
+        Dict_Q["共通:射的1-2"].Talks.Add("ごめんありがとう");
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
