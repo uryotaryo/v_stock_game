@@ -25,8 +25,9 @@ public class Result : MonoBehaviour
     private bool Move_Stop = false;
 
     private void OnEnable(){
-        for(int i = 0; i < 20;i++){
+        for(int i = 0; i < 12;i++){
             var v = Instantiate(Meta_ResultNPC,Vector3.zero,new Quaternion(0,0,0,0));
+            v.GetComponent<Result_NPC>().Pop_NPC_OBj(i);
         }
         GameManager.Get_GameManager().Game_Scenes = GameManager.Scenes.Result;
     }
