@@ -85,7 +85,12 @@ public class Player : MonoBehaviour
         if(Click_NPC_name == "花火師"){
             if(g_npc.Talk_num == 0)Question_name = "挨拶";
             else Question_name = "1";
-        }else if (Click_NPC_name == "")
+        }else if (Click_NPC_name == "町長"){
+            
+        }
+        else {
+            Question_name = "挨拶";
+        }
         RTC.init_Set(Click_NPC_name,g_npc.Get_Question(Question_name));
         Cam_Change();
     }

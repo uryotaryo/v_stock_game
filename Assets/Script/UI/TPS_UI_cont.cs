@@ -12,10 +12,9 @@ public class TPS_UI_cont : MonoBehaviour
             return _Human_Level;
         }
         set{
-            if(Humans.Length > value)_Human_Level = value;
-            else if (Humans.Length < 0)_Human_Level = 0;
+            if(Humans.Length > value&&value >= 0)_Human_Level = value;
+            else if (value < 0)_Human_Level = 0;
             else _Human_Level = Humans.Length; 
-            Debug.Log(value);
             Set_Human();
         }
     }
