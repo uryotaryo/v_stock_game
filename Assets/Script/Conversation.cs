@@ -176,27 +176,27 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("共通会話:2", new Question("意気込み"));
         Dict_Q.Add("共通会話:3", new Question("やるべきこと"));
 
-        Dict_Q.Add("共通:金魚", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:金魚1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:金魚1-1", new Question("丁寧のプレイヤーの返し"));
         Dict_Q.Add("共通:金魚1-2", new Question("雑のプレイヤーの返し"));
 
-        Dict_Q.Add("共通:お面", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:お面1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:お面1-1", new Question("丁寧のプレイヤーの返し"));
         Dict_Q.Add("共通:お面1-2", new Question("雑のプレイヤーの返し"));
 
-        Dict_Q.Add("共通:焼き鳥", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:焼き鳥1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:焼き鳥1-1", new Question("一般のプレイヤーの返し"));
         Dict_Q.Add("共通:焼き鳥1-2", new Question("丁寧のプレイヤーの返し"));
 
-        Dict_Q.Add("共通:かき氷", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:かき氷1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:かき氷1-1", new Question("丁寧のプレイヤーの返し"));
         Dict_Q.Add("共通:かき氷1-2", new Question("一般のプレイヤーの返し"));
 
-        Dict_Q.Add("共通:綿あめ", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:綿あめ1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:綿あめ1-1", new Question("丁寧のプレイヤーの返し"));
         Dict_Q.Add("共通:綿あめ1-2", new Question("一般のプレイヤーの返し"));
 
-        Dict_Q.Add("共通:射的", new Question("タスクのお願い"));
+        Dict_Q.Add("共通:射的1", new Question("タスクのお願い"));
         Dict_Q.Add("共通:射的1-1", new Question("丁寧のプレイヤーの返し"));
         Dict_Q.Add("共通:射的1-2", new Question("雑のプレイヤーの返し"));
     }
@@ -609,8 +609,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通:お面1-2"].Talks.Add("任せる。頼むね～");
 
         //金魚すくい
-        Dict_Q["共通:金魚"].Anss.Add(new Reply("丁寧", "町長さんと手伝ってほしいことがあるんですが...\nお願いできます？", Dict_Q["共通:金魚1-1"]));
-        Dict_Q["共通:金魚"].Anss.Add(new Reply("雑", "少しお手伝いをしてきて欲しいのだけど\nお願いできる？", Dict_Q["共通:金魚1-2"]));
+        Dict_Q["共通:金魚1"].Anss.Add(new Reply("丁寧", "町長さんと手伝ってほしいことがあるんですが...\nお願いできます？", Dict_Q["共通:金魚1-1"]));
+        Dict_Q["共通:金魚1"].Anss.Add(new Reply("雑", "少しお手伝いをしてきて欲しいのだけど\nお願いできる？", Dict_Q["共通:金魚1-2"]));
 
         Dict_Q["共通:金魚1-1"].Talks.Add("大丈夫だよ～");
         Dict_Q["共通:金魚1-1"].Talks.Add("ありがとうございます！");
@@ -619,8 +619,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通:金魚1-2"].Talks.Add("ありがとう！頼むね");
 
         //焼き鳥
-        Dict_Q["共通:焼き鳥"].Anss.Add(new Reply("一般", "人手が欲しくて手伝ってほしいのだけど\nお願いできます？", Dict_Q["共通:焼き鳥1-1"]));
-        Dict_Q["共通:焼き鳥"].Anss.Add(new Reply("丁寧", "お願いがあるんだけど、聞いてくれますか？", Dict_Q["共通:焼き鳥1-2"]));
+        Dict_Q["共通:焼き鳥1"].Anss.Add(new Reply("一般", "人手が欲しくて手伝ってほしいのだけど\nお願いできます？", Dict_Q["共通:焼き鳥1-1"]));
+        Dict_Q["共通:焼き鳥1"].Anss.Add(new Reply("丁寧", "お願いがあるんだけど、聞いてくれますか？", Dict_Q["共通:焼き鳥1-2"]));
 
         Dict_Q["共通:焼き鳥1-1"].Talks.Add("おうよ！なんだい？");
         Dict_Q["共通:焼き鳥1-1"].Talks.Add("ありがとう～");
@@ -629,8 +629,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通:焼き鳥1-2"].Talks.Add("ありがとうございます！");
 
         //かき氷
-        Dict_Q["共通:かき氷"].Anss.Add(new Reply("丁寧", "人手を集めてるんですけど\n協力してくれませんか？", Dict_Q["共通:かき氷1-1"]));
-        Dict_Q["共通:かき氷"].Anss.Add(new Reply("一般", "お願いがあるんだけど、今空いてますか？", Dict_Q["共通:かき氷1-2"]));
+        Dict_Q["共通:かき氷1"].Anss.Add(new Reply("丁寧", "人手を集めてるんですけど\n協力してくれませんか？", Dict_Q["共通:かき氷1-1"]));
+        Dict_Q["共通:かき氷1"].Anss.Add(new Reply("一般", "お願いがあるんだけど、今空いてますか？", Dict_Q["共通:かき氷1-2"]));
 
         Dict_Q["共通:かき氷1-1"].Talks.Add("いいですよ。\n詳細も教えて頂いてありがとうございます。");
         Dict_Q["共通:かき氷1-1"].Talks.Add("いえいえ、ありがとうございます");
@@ -639,8 +639,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通:かき氷1-2"].Talks.Add("ありがとうございます");
 
         //綿あめ
-        Dict_Q["共通:綿あめ"].Anss.Add(new Reply("丁寧", "人手が足りないんですけど、今手伝えますか？", Dict_Q["共通:綿あめ1-1"]));
-        Dict_Q["共通:綿あめ"].Anss.Add(new Reply("一般", "今人手不足なんだ！手伝ってもらえない？", Dict_Q["共通:綿あめ1-2"]));
+        Dict_Q["共通:綿あめ1"].Anss.Add(new Reply("丁寧", "人手が足りないんですけど、今手伝えますか？", Dict_Q["共通:綿あめ1-1"]));
+        Dict_Q["共通:綿あめ1"].Anss.Add(new Reply("一般", "今人手不足なんだ！手伝ってもらえない？", Dict_Q["共通:綿あめ1-2"]));
 
         Dict_Q["共通:綿あめ1-1"].Talks.Add("はい。");
         Dict_Q["共通:綿あめ1-1"].Talks.Add("ありがとうございます...！");
@@ -649,8 +649,8 @@ public class Conversation : MonoBehaviour
         Dict_Q["共通:綿あめ1-2"].Talks.Add("ありがとう！");
 
         //射的
-        Dict_Q["共通:射的"].Anss.Add(new Reply("丁寧", "お手伝いをお願いしてもいいですか...？", Dict_Q["共通:射的1-1"]));
-        Dict_Q["共通:射的"].Anss.Add(new Reply("雑", "ちょっと手伝ってほしいんだ", Dict_Q["共通:射的1-2"]));
+        Dict_Q["共通:射的1"].Anss.Add(new Reply("丁寧", "お手伝いをお願いしてもいいですか...？", Dict_Q["共通:射的1-1"]));
+        Dict_Q["共通:射的1"].Anss.Add(new Reply("雑", "ちょっと手伝ってほしいんだ", Dict_Q["共通:射的1-2"]));
 
         Dict_Q["共通:射的1-1"].Talks.Add("はい！大丈夫ですよ");
         Dict_Q["共通:射的1-1"].Talks.Add("すみません助かります");
