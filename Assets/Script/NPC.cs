@@ -20,6 +20,9 @@ public class NPC : MonoBehaviour
     private Quaternion _base_rotate;
     //プレイヤーオブジェクト
     private GameObject _player;
+    
+    private int _talk_num = 0;
+    public int Talk_num{get {return _talk_num;}}
 /*
     [SerializeField]
     private Parts_Point emort;
@@ -78,11 +81,11 @@ public class NPC : MonoBehaviour
         }
     }
     public Question Get_Question(string s){
+        _talk_num++;
         string name = "";
         name += Get_NPC_String();
         name += ":";
-        if(s == "通常")name += "挨拶";
-        else if (s == "共通")name += "共通";
+        name += s;
         return Conversation.Dict_Q[name];
     }
     public string Get_NPC_String(){
@@ -106,6 +109,12 @@ public class NPC : MonoBehaviour
                 break;
             case Info.NPC_TYPE.YAKITORI:
                 name = "焼き鳥";
+                break;
+            case Info.NPC_TYPE.HANABI:
+                name = "花火師";
+                break;
+            case Info.NPC_TYPE.SONTYO:
+                name = "町長";
                 break;
             default:
                 name = "";

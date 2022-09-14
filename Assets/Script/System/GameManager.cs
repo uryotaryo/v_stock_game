@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
         Stop,
 
     }
+    public static int Hanabi_Talk_num = 0;
+
 
     /// <summary>
     /// 格納した自身のクラスを返す

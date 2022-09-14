@@ -75,11 +75,18 @@ public class Player : MonoBehaviour
     public void NPC_Click(GameObject Click_OBJ){
         if(Vector2.Distance(new Vector2(player_obj.transform.position.x,player_obj.transform.position.z),new Vector2(Click_OBJ.transform.position.x,Click_OBJ.transform.position.z))
         >= 1f)return;
+        Real_Time_Cont RTC = FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>();
         player_obj.transform.LookAt(Click_OBJ.transform.position);
         to_back();
         var g_npc = Click_OBJ.GetComponent<NPC>();
         g_npc.Look(this.transform.position);
-        FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>().init_Set(g_npc.Get_NPC_String(),g_npc.Get_Question("通常"));
+        string Click_NPC_name = g_npc.Get_NPC_String();
+        string Question_name = "";
+        if(Click_NPC_name == "花火師"){
+            if(g_npc.Talk_num == 0)Question_name = "挨拶";
+            else Question_name = "1";
+        }else if (Click_NPC_name == "")
+        RTC.init_Set(Click_NPC_name,g_npc.Get_Question(Question_name));
         Cam_Change();
     }
     private void to_back(){
