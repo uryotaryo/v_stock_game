@@ -13,6 +13,9 @@ public class GameManager : MonoBehaviour
     private static GameManager _my_Manager;
     //プレイヤーのオブジェクトを格納する
     private static GameObject _player_Obj;
+    [SerializeField]
+    private GameObject Exit_Pos;
+    public static Vector3 exit_pos;
     public static TPS_UI_cont _TPS_UI;
     public static string Now_Task_Name;
     public static Game_Mode Now_Mode = Game_Mode.Before;
@@ -45,9 +48,45 @@ public class GameManager : MonoBehaviour
         Stop,
 
     }
-    public static int Hanabi_Talk_num = 0;
+    public static string Select_Task_Name = "";
 
-
+    public static void Help_ReSet(){
+        foreach(var g in GameObject.FindGameObjectsWithTag("NPC")){
+            g.GetComponent<NPC>().Help_Flag = false;
+        }
+    }
+    
+    public static void Task_Execution_Set(Task t,int r_w,NPC npc_g){
+        if(t == null)return;
+        Debug.Log(t.Name);
+        Debug.Log(r_w);
+        if(t.Name == "共通1"||t.Name == "共通2"){
+            Debug.Log(Select_Task_Name);
+            if(Select_Task_Name == ""){
+                Select_Task_Name = t.Name; 
+                return;
+            }
+            if(!Conversation.All_Tasks[Select_Task_Name+"子"].Task_Clear())return;
+            t.Add_ReWard(r_w);
+            foreach(var ng in GameObject.FindGameObjectsWithTag("NPC")){
+                Debug.Log(ng.GetComponent<NPC>().Get_NPC_String()+"::"+ng.GetComponent<NPC>().Help_Flag.ToString());
+                if(ng.GetComponent<NPC>().Help_Flag)ng.GetComponent<NPC>().Set_Target_Point(exit_pos);
+            }
+            npc_g.Set_Target_Point(exit_pos);
+            Select_Task_Name = "";
+            Help_ReSet();
+            return;
+        }else if(t.Name == "共通1サブ"||t.Name == "共通2サブ"){
+            npc_g.gameObject.GetComponent<NPC>().Help_Flag = true;
+            t.Add_ReWard(r_w);
+        }else{
+            npc_g.Set_Target_Point(exit_pos);
+            t.Add_ReWard(r_w);
+        }
+    }
+    
+    
+    
     /// <summary>
     /// 格納した自身のクラスを返す
     /// </summary>
@@ -75,6 +114,7 @@ public class GameManager : MonoBehaviour
         _player_Obj = GameObject.FindWithTag("Player");
         _TPS_UI = GameObject.FindWithTag("TPS_canvas").GetComponent<TPS_UI_cont>();
         AS = this.GetComponent<AudioSource>();
+        exit_pos = Exit_Pos.transform.position;
     }
     
     public void To_Result(){
@@ -86,6 +126,7 @@ public class GameManager : MonoBehaviour
         Game_Scenes = Scenes.Default;
         Conversation.Q_And_A_Load();
     }
+    
 
     private void Audio_Change(Scenes S){
         switch(S){

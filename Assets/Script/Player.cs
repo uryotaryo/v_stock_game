@@ -48,6 +48,11 @@ public class Player : MonoBehaviour
         if(Input.GetKey(KeyCode.C)&&Input.GetKey(KeyCode.K)){
             GameManager.Get_GameManager().To_Result();
         }
+        if(Input.GetKeyDown(KeyCode.T)){
+            foreach(var v in Conversation.All_Tasks){
+                Debug.Log(v.Key + ":" +v.Value.Task_Clear().ToString());
+            }
+        }
     }
     public void Set_Target(Vector3 t){
         _target = t;
@@ -75,23 +80,47 @@ public class Player : MonoBehaviour
     public void NPC_Click(GameObject Click_OBJ){
         if(Vector2.Distance(new Vector2(player_obj.transform.position.x,player_obj.transform.position.z),new Vector2(Click_OBJ.transform.position.x,Click_OBJ.transform.position.z))
         >= 1f)return;
-        Real_Time_Cont RTC = FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>();
         player_obj.transform.LookAt(Click_OBJ.transform.position);
         to_back();
         var g_npc = Click_OBJ.GetComponent<NPC>();
         g_npc.Look(this.transform.position);
+        
+        Real_Time_Cont RTC = FpsCam.transform.GetChild(0).GetComponent<Real_Time_Cont>();
+
         string Click_NPC_name = g_npc.Get_NPC_String();
         string Question_name = "";
         if(Click_NPC_name == "花火師"){
             if(g_npc.Talk_num == 0)Question_name = "挨拶";
             else Question_name = "1";
         }else if (Click_NPC_name == "町長"){
-            
+            if(GameManager.Select_Task_Name == ""){
+                Question_name = "挨拶";
+                Click_NPC_name = "共通1";
+                if(Conversation.All_Tasks["共通1"].Task_Clear()){
+                    Click_NPC_name = "共通2";
+                }
+            }else{
+                if(Conversation.All_Tasks[GameManager.Select_Task_Name+"子"].Task_Clear()){
+                    Click_NPC_name = GameManager.Select_Task_Name;
+                    Question_name = "その後";
+                }else{
+                    Question_name = "虚無";
+                }
+            }
         }
         else {
-            Question_name = "挨拶";
+            if(GameManager.Select_Task_Name == "共通1"||GameManager.Select_Task_Name == "共通2"){
+                if(g_npc.Help_Flag || Conversation.All_Tasks[GameManager.Select_Task_Name+"子"].Task_Clear()){
+                    Question_name = "虚無";
+                }else{
+                    Click_NPC_name = GameManager.Select_Task_Name + "子";
+                    Question_name = "共通1";
+                }
+            }else{
+                Question_name = "挨拶";
+            }
         }
-        RTC.init_Set(Click_NPC_name,g_npc.Get_Question(Question_name));
+        RTC.init_Set(Click_NPC_name,g_npc.Get_Question(Question_name),g_npc);
         Cam_Change();
     }
     private void to_back(){

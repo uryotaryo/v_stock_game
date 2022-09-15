@@ -12,17 +12,20 @@ public class NPC : MonoBehaviour
     private Info.NPC_TYPE _Type;
     //子オブジェクトのナビメッシュ管理
     private NavMeshAgent _agent;
+    private BoxCollider _this_collider;
     //オブジェクトの座標変更を停止する
     public bool Stop;
+    private Vector3 S_point;
     //一フレーム前の座標
     private Vector3 _lastpos;
     //スタート時の回転
     private Quaternion _base_rotate;
     //プレイヤーオブジェクト
     private GameObject _player;
-    
     private int _talk_num = 0;
     public int Talk_num{get {return _talk_num;}}
+    public bool Help_Flag;
+
 /*
     [SerializeField]
     private Parts_Point emort;
@@ -43,9 +46,13 @@ public class NPC : MonoBehaviour
         if(_npc_obj == null) _npc_obj = transform.GetChild(0).gameObject;
         if(_player == null) _player = GameManager.Get_Player_OBJ();
         if(_agent == null)_agent = _npc_obj.GetComponent<NavMeshAgent>();
+        if(_this_collider == null) _this_collider = this.GetComponent<BoxCollider>();
         else _agent.isStopped = false;
         _lastpos = transform.position;
         _base_rotate = _npc_obj.transform.rotation;
+        S_point = transform.position;
+
+        Help_Flag = false;
         Stop = true;
     }
     // Update is called once per frame
@@ -59,6 +66,8 @@ public class NPC : MonoBehaviour
         //停止判定の際に前フレームの座標を代入する
         if(Stop)transform.position = _lastpos;
         else _lastpos = transform.position;
+
+        _this_collider.enabled = Stop;
 
         //NPCオブジェクトの座標を親オブジェクトの座標へ変更する
         transform.position = new Vector3(_npc_obj.transform.position.x,0,_npc_obj.transform.position.z);
@@ -77,7 +86,7 @@ public class NPC : MonoBehaviour
         if(Vector3.Distance(this.transform.position,_player.transform.position) <= 2){
             Look(_player.transform.position);
         }else{
-            _npc_obj.transform.rotation =_base_rotate;
+            if(Stop)_npc_obj.transform.rotation =_base_rotate;
         }
     }
     public Question Get_Question(string s){
@@ -86,6 +95,9 @@ public class NPC : MonoBehaviour
         name += Get_NPC_String();
         name += ":";
         name += s;
+        if(s=="虚無"){
+            name = "虚無";
+        }
         return Conversation.Dict_Q[name];
     }
     public string Get_NPC_String(){
@@ -127,6 +139,7 @@ public class NPC : MonoBehaviour
     /// </summary>
     /// <param name="v">指定座標</param>
     public void Look(Vector3 v){
+        if(!Stop)return;
         v.y = _npc_obj.transform.localPosition.y;
         _npc_obj.transform.LookAt(v);
     }
@@ -137,6 +150,7 @@ public class NPC : MonoBehaviour
     public void Set_Target_Point(Vector3 v)
     {
         if(_agent == null) return;
+        Stop = false;
         _agent.SetDestination(v);
     }
 }

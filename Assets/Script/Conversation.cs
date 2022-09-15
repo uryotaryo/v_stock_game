@@ -19,6 +19,7 @@ public class Conversation : MonoBehaviour
     private static void Question_Load()
     {
         Dict_Q = new Dictionary<string, Question>();
+        Dict_Q.Add("虚無",new Question("虚無会話"));
         //お面屋
         Dict_Q.Add("お面:挨拶", new Question("お疲れ様です～"));
 
@@ -162,7 +163,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("花火師:1-3", new Question("NPC返答2"));
         
        //共通タスク
-        Dict_Q.Add("共通:挨拶", new Question("こんにちは"));
+        Dict_Q.Add("町長:挨拶", new Question("こんにちは"));
 
         Dict_Q.Add("共通:1", new Question("プレイヤー行動選択肢"));
 
@@ -171,7 +172,7 @@ public class Conversation : MonoBehaviour
 
         Dict_Q.Add("共通:3", new Question("世間話"));
 
-        Dict_Q.Add("共通会話:0", new Question("ボランティアを集めた後の会話"));
+        Dict_Q.Add("町長:その後", new Question("ボランティアを集めた後の会話"));
         Dict_Q.Add("共通会話:1", new Question("ボランティアについて"));
         Dict_Q.Add("共通会話:2", new Question("意気込み"));
         Dict_Q.Add("共通会話:3", new Question("やるべきこと"));
@@ -210,7 +211,7 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["お面:1"].Anss.Add(new Reply("要件", "何か御用かしら？", Dict_Q["お面:2"]));
         Dict_Q["お面:1"].Anss.Add(new Reply("世間話", "お話？いいわよ", Dict_Q["お面:3"]));
-        Dict_Q["お面:1"].Anss.Add(new Reply("特になし", "あら、そう。", 0));
+        Dict_Q["お面:1"].Anss.Add(new Reply("特になし", "あら、そう。", -2));
 
         Dict_Q["お面:2"].Anss.Add(new Reply("丁寧", "わかったわ～任せて頂戴", -1));
         Dict_Q["お面:2"].Anss.Add(new Reply("一般", "OK～やってくるわ", 0));
@@ -558,19 +559,19 @@ public class Conversation : MonoBehaviour
         Dict_Q["花火師:1-3"].Anss.Add(new Reply("", "当日、楽しみにしててくれよな", -1));
         
         //共通タスク
-        Dict_Q["共通:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ様～何用かな？", Dict_Q["共通:1"]));
+        Dict_Q["町長:挨拶"].Anss.Add(new Reply("挨拶", "お疲れ様～何用かな？", Dict_Q["共通:1"]));
 
         Dict_Q["共通:1"].Anss.Add(new Reply("要件", "OK!人手が足りないから、何人かボランティアの人を呼んできて頂戴ね", Dict_Q["共通:2"]));
         Dict_Q["共通:1"].Anss.Add(new Reply("世間話", "世間話かい？", Dict_Q["共通:3"]));
         Dict_Q["共通:1"].Anss.Add(new Reply("特になし", "そうかい", -2));
 
         //このセリフの後町長との会話がいったん終了して他NPCに話しかけに行く
-        Dict_Q["共通:2"].Anss.Add(new Reply("", "了解です！", -2));
+        Dict_Q["共通:2"].Anss.Add(new Reply("", "了解です！", 0));
 
         //他NPCに話しかけた後の町長との会話
-        Dict_Q["共通会話:0"].Talks.Add("集めてきました！");
-        Dict_Q["共通会話:0"].Talks.Add("ありがとう！じゃあ取りに行ってくるね");
-        Dict_Q["共通会話:0"].Next_Question = Dict_Q["共通:2-1"];
+        Dict_Q["町長:その後"].Talks.Add("集めてきました！");
+        Dict_Q["町長:その後"].Talks.Add("ありがとう！じゃあ取りに行ってくるね");
+        Dict_Q["町長:その後"].Next_Question = Dict_Q["共通:2-1"];
 
         Dict_Q["共通:2-1"].Anss.Add(new Reply("よろしくお願いします。", "任せておくれ", 0));
         Dict_Q["共通:2-1"].Anss.Add(new Reply("頼みます", "任せておくれ", 0));
@@ -604,9 +605,11 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["お面:共通1-1"].Talks.Add("わかったわ～\nお力添えできるかわからないけど頑張るわね");
         Dict_Q["お面:共通1-1"].Talks.Add("お願いします！");
+        Dict_Q["お面:共通1-1"].Anss.Add(new Reply("","",0));
 
         Dict_Q["お面:共通1-2"].Talks.Add("OK～");
         Dict_Q["お面:共通1-2"].Talks.Add("任せる。頼むね～");
+        Dict_Q["お面:共通1-2"].Anss.Add(new Reply("","",0));
 
         //金魚すくい
         Dict_Q["金魚:共通1"].Anss.Add(new Reply("丁寧", "町長さんと手伝ってほしいことがあるんですが...\nお願いできます？", Dict_Q["金魚:共通1-1"]));
@@ -614,9 +617,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["金魚:共通1-1"].Talks.Add("大丈夫だよ～");
         Dict_Q["金魚:共通1-1"].Talks.Add("ありがとうございます！");
+        Dict_Q["金魚:共通1-1"].Anss.Add(new Reply("","",0));
+
 
         Dict_Q["金魚:共通1-2"].Talks.Add("了解");
         Dict_Q["金魚:共通1-2"].Talks.Add("ありがとう！頼むね");
+        Dict_Q["金魚:共通1-2"].Anss.Add(new Reply("","",0));
+
 
         //焼き鳥
         Dict_Q["焼き鳥:共通1"].Anss.Add(new Reply("一般", "人手が欲しくて手伝ってほしいのだけど\nお願いできます？", Dict_Q["焼き鳥:共通1-1"]));
@@ -624,9 +631,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["焼き鳥:共通1-1"].Talks.Add("おうよ！なんだい？");
         Dict_Q["焼き鳥:共通1-1"].Talks.Add("ありがとう～");
+        Dict_Q["焼き鳥:共通1-1"].Anss.Add(new Reply("","",0));
+
 
         Dict_Q["焼き鳥:共通1-2"].Talks.Add("いいですよ～！");
         Dict_Q["焼き鳥:共通1-2"].Talks.Add("ありがとうございます！");
+        Dict_Q["焼き鳥:共通1-2"].Anss.Add(new Reply("","",0));
+
 
         //かき氷
         Dict_Q["かき氷:共通1"].Anss.Add(new Reply("丁寧", "人手を集めてるんですけど\n協力してくれませんか？", Dict_Q["かき氷:共通1-1"]));
@@ -634,9 +645,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["かき氷:共通1-1"].Talks.Add("いいですよ。\n詳細も教えて頂いてありがとうございます。");
         Dict_Q["かき氷:共通1-1"].Talks.Add("いえいえ、ありがとうございます");
+        Dict_Q["かき氷:共通1-1"].Anss.Add(new Reply("","",0));
+
 
         Dict_Q["かき氷:共通1-2"].Talks.Add("問題ないですよ");
         Dict_Q["かき氷:共通1-2"].Talks.Add("ありがとうございます");
+        Dict_Q["かき氷:共通1-2"].Anss.Add(new Reply("","",0));
+
 
         //綿あめ
         Dict_Q["綿あめ:共通1"].Anss.Add(new Reply("丁寧", "人手が足りないんですけど、今手伝えますか？", Dict_Q["綿あめ:共通1-1"]));
@@ -644,9 +659,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["綿あめ:共通1-1"].Talks.Add("はい。");
         Dict_Q["綿あめ:共通1-1"].Talks.Add("ありがとうございます...！");
+        Dict_Q["綿あめ:共通1-1"].Anss.Add(new Reply("","",0));
+
 
         Dict_Q["綿あめ:共通1-2"].Talks.Add("いいですよ。なんでも手伝いましょう！");
         Dict_Q["綿あめ:共通1-2"].Talks.Add("ありがとう！");
+        Dict_Q["綿あめ:共通1-2"].Anss.Add(new Reply("","",0));
+
 
         //射的
         Dict_Q["射的:共通1"].Anss.Add(new Reply("丁寧", "お手伝いをお願いしてもいいですか...？", Dict_Q["射的:共通1-1"]));
@@ -654,9 +673,13 @@ public class Conversation : MonoBehaviour
 
         Dict_Q["射的:共通1-1"].Talks.Add("はい！大丈夫ですよ");
         Dict_Q["射的:共通1-1"].Talks.Add("すみません助かります");
+        Dict_Q["射的:共通1-1"].Anss.Add(new Reply("","",0));
+
 
         Dict_Q["射的:共通1-2"].Talks.Add("おっけー。");
         Dict_Q["射的:共通1-2"].Talks.Add("ごめんありがとう");
+        Dict_Q["射的:共通1-2"].Anss.Add(new Reply("","",0));
+
     }
     /// <summary>
     /// ゲーム内の全てのタスクをここで定義する 
@@ -682,12 +705,21 @@ public class Conversation : MonoBehaviour
 
         All_Tasks["共通1"] = new Task("共通1", "建材を用意しよう", 1);
         All_Tasks["共通2"] = new Task("共通2", "看板を豪華にしよう", 1);
-        All_Tasks["共通1"].Add_ReWard(new int[]{1});
-        All_Tasks["共通2"].Add_ReWard(new int[]{1});
+        All_Tasks["共通1"].Add_ReWard(new int[]{0,1});
+        All_Tasks["共通2"].Add_ReWard(new int[]{0,1});
+
+        All_Tasks["共通1子"] = new Task("共通1サブ","2人のボランティアを頼もう",2);
+        All_Tasks["共通2子"] = new Task("共通2サブ","2人のボランティアを頼もう",2);
+
+        All_Tasks["共通1子"].Add_ReWard(new int[]{0,1});
+        All_Tasks["共通2子"].Add_ReWard(new int[]{0,1});
 
         //個別タスク・花火師
         All_Tasks["花火師"] = new Task("花火師", "花火を打ち上げてもらおう", 1);
         All_Tasks["花火師"].Add_ReWard(new int[]{1});
+
+        All_Tasks["虚無"] = new Task ("虚無","何にもない",9999);
+        All_Tasks["虚無"].Add_ReWard(new int[]{1,1,1});
 
     }
     /// <summary>
@@ -768,6 +800,13 @@ public class Task
     public int Content_Num { get { return _Num; } }
     public int Content_Num_Max { get; }
     private int _Num;
+    public Stats Task_Stats = Stats.None;
+    public enum Stats{
+        None,
+        Preparation,
+        Clear,
+
+    }
     private int[] ReWards;
     public Task(string name, string expl, int count)
     {
