@@ -13,8 +13,6 @@ public class NPC : MonoBehaviour
     //子オブジェクトのナビメッシュ管理
     private NavMeshAgent _agent;
     private BoxCollider _this_collider;
-    //オブジェクトの座標変更を停止する
-    public bool Stop;
     private Vector3 S_point;
     //一フレーム前の座標
     private Vector3 _lastpos;
@@ -25,6 +23,15 @@ public class NPC : MonoBehaviour
     private int _talk_num = 0;
     public int Talk_num{get {return _talk_num;}}
     public bool Help_Flag;
+    private float _task_time;
+    private Vector3 _target;
+    private NPC_Modes _now_mode;
+    private enum NPC_Modes{
+        Talk_Standby = 0,
+        Move = 1,
+        Task_Execution = 2,
+        Result = 3,
+    }
 
 /*
     [SerializeField]
@@ -51,26 +58,31 @@ public class NPC : MonoBehaviour
         _lastpos = transform.position;
         _base_rotate = _npc_obj.transform.rotation;
         S_point = transform.position;
+        _now_mode = NPC_Modes.Talk_Standby;
 
         Help_Flag = false;
-        Stop = true;
     }
     // Update is called once per frame
     void Update()
     {
         if(_player == null)_player = GameManager.Get_Player_OBJ();
         
-        if(GameManager.Now_Mode == GameManager.Game_Mode.After){
-            this.gameObject.SetActive(false);
+        switch(_now_mode){
+            case NPC_Modes.Talk_Standby:
+                Talk_Standby_Update();
+                break;
+            case NPC_Modes.Move:
+                Move_Update();
+                break;
+            case NPC_Modes.Task_Execution:
+                Task_Execution_Update();
+                break;
+            case NPC_Modes.Result:
+                Result_Update();
+                break;
+            default:
+                break;
         }
-        //停止判定の際に前フレームの座標を代入する
-        if(Stop)transform.position = _lastpos;
-        else _lastpos = transform.position;
-
-        _this_collider.enabled = Stop;
-
-        //NPCオブジェクトの座標を親オブジェクトの座標へ変更する
-        transform.position = new Vector3(_npc_obj.transform.position.x,0,_npc_obj.transform.position.z);
         
         //お面のNPCのみ位置座標を補完する
         switch(_Type){
@@ -81,13 +93,56 @@ public class NPC : MonoBehaviour
                 _npc_obj.transform.localPosition = new Vector3(0,0,0);
                 break;
         }
-        
+    }
+
+    public void Set_Mode_Result(){
+        _now_mode = NPC_Modes.Result;
+    }
+
+    private void Talk_Standby_Update(){
+        transform.position = _lastpos;
         //範囲内にプレイヤーが存在したらプレイヤーのほうを向く
         if(Vector3.Distance(this.transform.position,_player.transform.position) <= 2){
             Look(_player.transform.position);
         }else{
-            if(Stop)_npc_obj.transform.rotation =_base_rotate;
+            _npc_obj.transform.rotation =_base_rotate;
         }
+
+        _this_collider.enabled = true;
+        _npc_obj.SetActive(true);
+    }
+    private void Move_Update(){
+        //NPCオブジェクトの座標を親オブジェクトの座標へ変更する
+        transform.position = new Vector3(_npc_obj.transform.position.x,0,_npc_obj.transform.position.z);
+        _lastpos = transform.position;
+
+        if(Vector3.Distance(_target,transform.position) <= 0.1f)arrival_target();
+        _this_collider.enabled = false;
+        _npc_obj.SetActive(true);
+    }
+    private void Task_Execution_Update(){
+        _this_collider.enabled = false;
+        _npc_obj.SetActive(false);
+        if(_task_time <= 0){
+            _npc_obj.SetActive(true);
+            Set_Target_Point(S_point);
+        }
+        _task_time -= Time.deltaTime;
+    }
+    private void Result_Update(){
+        this.gameObject.SetActive(false);
+    }
+    private void arrival_target(){
+        if(Vector3.Distance(transform.position,S_point) <= 0.1f){
+            transform.position = S_point;
+            _now_mode = NPC_Modes.Talk_Standby;
+        }else{
+            _now_mode = NPC_Modes.Task_Execution;
+        }
+    }
+    public void Set_Task_Move(Vector3 t,float Time){
+        _task_time = Time;
+        Set_Target_Point(t);
     }
     public Question Get_Question(string s){
         _talk_num++;
@@ -139,7 +194,6 @@ public class NPC : MonoBehaviour
     /// </summary>
     /// <param name="v">指定座標</param>
     public void Look(Vector3 v){
-        if(!Stop)return;
         v.y = _npc_obj.transform.localPosition.y;
         _npc_obj.transform.LookAt(v);
     }
@@ -150,7 +204,8 @@ public class NPC : MonoBehaviour
     public void Set_Target_Point(Vector3 v)
     {
         if(_agent == null) return;
-        Stop = false;
+        _target = v;
         _agent.SetDestination(v);
+        _now_mode = NPC_Modes.Move;
     }
 }

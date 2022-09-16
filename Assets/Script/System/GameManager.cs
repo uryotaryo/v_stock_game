@@ -70,9 +70,9 @@ public class GameManager : MonoBehaviour
             t.Add_ReWard(r_w);
             foreach(var ng in GameObject.FindGameObjectsWithTag("NPC")){
                 Debug.Log(ng.GetComponent<NPC>().Get_NPC_String()+"::"+ng.GetComponent<NPC>().Help_Flag.ToString());
-                if(ng.GetComponent<NPC>().Help_Flag)ng.GetComponent<NPC>().Set_Target_Point(exit_pos);
+                if(ng.GetComponent<NPC>().Help_Flag)ng.GetComponent<NPC>().Set_Task_Move(exit_pos,10);;
             }
-            npc_g.Set_Target_Point(exit_pos);
+            npc_g.Set_Task_Move(exit_pos,10);
             Select_Task_Name = "";
             Help_ReSet();
             return;
@@ -80,7 +80,7 @@ public class GameManager : MonoBehaviour
             npc_g.gameObject.GetComponent<NPC>().Help_Flag = true;
             t.Add_ReWard(r_w);
         }else{
-            npc_g.Set_Target_Point(exit_pos);
+            npc_g.Set_Task_Move(exit_pos,10);
             t.Add_ReWard(r_w);
         }
     }
@@ -119,6 +119,9 @@ public class GameManager : MonoBehaviour
     
     public void To_Result(){
         Now_Mode = Game_Mode.After;
+        foreach(var g in GameObject.FindGameObjectsWithTag("NPC")){
+            g.GetComponent<NPC>().Set_Mode_Result();
+        }
         _Result.SetActive(true);
     }
     void Start()
