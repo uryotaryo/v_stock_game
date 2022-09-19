@@ -25,7 +25,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("お面:1", new Question("プレイヤー行動選択肢"));
 
         Dict_Q.Add("お面:2", new Question("お面を作ってもらいたい"));
-        Dict_Q.Add("お面:2-1", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("お面:2-1", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("お面:3", new Question("世間話"));
         Dict_Q.Add("お面:3-1", new Question("好きなことの選択肢"));
@@ -41,13 +41,13 @@ public class Conversation : MonoBehaviour
         //綿あめ屋
         Dict_Q.Add("綿あめ:挨拶", new Question("こんにちは"));
 
-        Dict_Q.Add("綿あめ:1", new Question("会話選択肢"));
+        Dict_Q.Add("綿あめ:1", new Question("プレイヤー行動選択肢"));
 
         Dict_Q.Add("綿あめ:2", new Question("ザラメを集めてほしい"));
         Dict_Q.Add("綿あめ:2-1", new Question("綿あめ返答1"));
         Dict_Q.Add("綿あめ:2-2", new Question("綿あめ返答2"));
         Dict_Q.Add("綿あめ:2-3", new Question("綿あめ返答3"));
-        Dict_Q.Add("綿あめ:2-4", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("綿あめ:2-4", new Question("(もう一度お願いしよう)"));
         Dict_Q.Add("綿あめ:2-5", new Question("綿あめ返答4"));
         Dict_Q.Add("綿あめ:2-6", new Question("綿あめ返答5"));
 
@@ -71,7 +71,7 @@ public class Conversation : MonoBehaviour
         Dict_Q.Add("金魚:1", new Question("プレイヤー行動選択肢"));
 
         Dict_Q.Add("金魚:2", new Question("金魚を仕入れてもらいたい"));
-        Dict_Q.Add("金魚:2-1", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("金魚:2-1", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("金魚:3", new Question("世間話"));
         Dict_Q.Add("金魚:3-1", new Question("好きなことの選択肢"));
@@ -86,13 +86,13 @@ public class Conversation : MonoBehaviour
         //射的屋
         Dict_Q.Add("射的:挨拶", new Question("こんにちは"));
 
-        Dict_Q.Add("射的:1", new Question("景品を集めてほしい"));
+        Dict_Q.Add("射的:1", new Question("プレイヤー行動選択肢"));
 
-        Dict_Q.Add("射的:2", new Question("プレイヤー行動選択肢"));
+        Dict_Q.Add("射的:2", new Question("景品を集めてほしい"));
         Dict_Q.Add("射的:2-1", new Question("射的返答1"));
         Dict_Q.Add("射的:2-2", new Question("射的返答2"));
         Dict_Q.Add("射的:2-3", new Question("射的返答3"));
-        Dict_Q.Add("射的:2-4", new Question("(もう一度頼もう)"));
+        Dict_Q.Add("射的:2-4", new Question("(もう一度お願いしよう)"));
         Dict_Q.Add("射的:2-5", new Question("射的返答4"));
         Dict_Q.Add("射的:2-6", new Question("射的返答5"));
 
@@ -110,12 +110,12 @@ public class Conversation : MonoBehaviour
         //かき氷
         Dict_Q.Add("かき氷:挨拶", new Question("こんにちは、お疲れ様です"));
 
-        Dict_Q.Add("かき氷:1", new Question("会話選択肢"));
+        Dict_Q.Add("かき氷:1", new Question("プレイヤー行動選択肢"));
 
-        Dict_Q.Add("かき氷:2", new Question("エラーが起きていたのでこの文章を上書きしました"));
-        Dict_Q.Add("かき氷:2-1", new Question("綿あめ返答1"));
-        Dict_Q.Add("かき氷:2-2", new Question("綿あめ返答2"));
-        Dict_Q.Add("かき氷:2-3", new Question("綿あめ返答3"));
+        Dict_Q.Add("かき氷:2", new Question("氷を集めてきてほしい"));
+        Dict_Q.Add("かき氷:2-1", new Question("かき氷返答1"));
+        Dict_Q.Add("かき氷:2-2", new Question("かき氷返答2"));
+        Dict_Q.Add("かき氷:2-3", new Question("かき氷返答3"));
         Dict_Q.Add("かき氷:2-4", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("かき氷:3", new Question("世間話"));
@@ -132,18 +132,18 @@ public class Conversation : MonoBehaviour
         //焼き鳥
         Dict_Q.Add("焼き鳥:挨拶", new Question("こんにちは、お疲れ様です"));
 
-        Dict_Q.Add("焼き鳥:1", new Question("行動選択肢"));
+        Dict_Q.Add("焼き鳥:1", new Question("プレイヤー行動選択肢"));
 
-        Dict_Q.Add("焼き鳥:2", new Question("鶏肉１００個発注してもらってもいい？"));
-        Dict_Q.Add("焼き鳥:2-1", new Question("適切返答"));
-        Dict_Q.Add("焼き鳥:2-2", new Question("普通返答"));
-        Dict_Q.Add("焼き鳥:2-3", new Question("不適切返答"));
+        Dict_Q.Add("焼き鳥:2", new Question("鶏肉を発注して欲しい"));
+        Dict_Q.Add("焼き鳥:2-1", new Question("焼き鳥返答1"));
+        Dict_Q.Add("焼き鳥:2-2", new Question("焼き鳥返答2"));
+        Dict_Q.Add("焼き鳥:2-3", new Question("焼き鳥返答3"));
         Dict_Q.Add("焼き鳥:2-4", new Question("(もう一度お願いしよう)"));
 
         Dict_Q.Add("焼き鳥:3", new Question("世間話"));
         Dict_Q.Add("焼き鳥:3-1", new Question("好きなことの選択肢"));
 
-        Dict_Q.Add("焼き鳥:4-1", new Question("射的やについての選択肢"));
+        Dict_Q.Add("焼き鳥:4-1", new Question("射的屋についての選択肢"));
 
         Dict_Q.Add("焼き鳥:会話1", new Question("嫌いなこと"));
         Dict_Q.Add("焼き鳥:会話2", new Question("好きなこと"));
@@ -413,7 +413,7 @@ public class Conversation : MonoBehaviour
         Dict_Q["かき氷:3"].Anss.Add(new Reply("Hate", "苦手なことは何ですか？", Dict_Q["かき氷:会話1"]));
         Dict_Q["かき氷:3"].Anss.Add(new Reply("Like", "好きなことは何ですか？", Dict_Q["かき氷:会話2"]));
         Dict_Q["かき氷:3"].Anss.Add(new Reply("Friends", "綿あめの店主とはどんな関係ですか？", Dict_Q["かき氷:会話3"]));
-        Dict_Q["かき氷:3"].Anss.Add(new Reply("Friends", "焼き鳥の店主についてどう思いますか？", Dict_Q["かき氷:会話4"]));
+        Dict_Q["かき氷:3"].Anss.Add(new Reply("Friends2", "焼き鳥の店主についてどう思いますか？", Dict_Q["かき氷:会話4"]));
         Dict_Q["かき氷:3"].Anss.Add(new Reply("Heartiness", "今回の祭りの意気込みは？", Dict_Q["かき氷:会話5"]));
 
         Dict_Q["かき氷:3-1"].Anss.Add(new Reply("善処", "意識してくれるだけですごくうれしいよ！！あと敬語じゃなくていいよ！！", -2));
