@@ -31,6 +31,7 @@ public class NPC : MonoBehaviour
         Move = 1,
         Task_Execution = 2,
         Result = 3,
+        None = 4,
     }
 
 /*
@@ -61,6 +62,25 @@ public class NPC : MonoBehaviour
         _now_mode = NPC_Modes.Talk_Standby;
 
         Help_Flag = false;
+
+        //タイプごとの特殊処理
+        switch(_Type){
+            case Info.NPC_TYPE.OMEN:
+                //お面のNPCのみ位置座標を補完する
+                _npc_obj.transform.localPosition = new Vector3(0,-1.5f,0);
+                break;
+            case Info.NPC_TYPE.HANABI:
+                //時間によって表示されないようにする
+                _npc_obj.SetActive(false);
+                this.transform.position = GameManager.exit_pos;
+                _now_mode = NPC_Modes.None;
+                _npc_obj.transform.localPosition = new Vector3(0,0,0);
+
+                break;
+            default:
+                _npc_obj.transform.localPosition = new Vector3(0,0,0);
+                break;
+        }
     }
     // Update is called once per frame
     void Update()
@@ -80,14 +100,30 @@ public class NPC : MonoBehaviour
             case NPC_Modes.Result:
                 Result_Update();
                 break;
+            case NPC_Modes.None:
+                //120秒以上で180秒以下なら存在する
+                if(TimerCount.Get_NowTime() >= 120&&TimerCount.Get_NowTime() <= 180){
+                    _npc_obj.SetActive(true);
+                    Set_Target_Point(S_point);
+                }   
+                break;
             default:
                 break;
         }
-        
-        //お面のNPCのみ位置座標を補完する
+        //タイプごとの特殊処理
         switch(_Type){
             case Info.NPC_TYPE.OMEN:
+                //お面のNPCのみ位置座標を補完する
                 _npc_obj.transform.localPosition = new Vector3(0,-1.5f,0);
+                break;
+            case Info.NPC_TYPE.HANABI:
+                if(Conversation.All_Tasks["花火師"].Task_Clear()&&_now_mode == NPC_Modes.Task_Execution)_now_mode = NPC_Modes.Result;
+                //120秒以下なら帰る
+                if(TimerCount.Get_NowTime() < 120){
+                    if(Vector3.Distance(_npc_obj.transform.position,GameManager.exit_pos) <= 0.1f)_now_mode = NPC_Modes.Result;
+                    else Set_Target_Point(GameManager.exit_pos);   
+                }
+                _npc_obj.transform.localPosition = new Vector3(0,0,0);
                 break;
             default:
                 _npc_obj.transform.localPosition = new Vector3(0,0,0);
