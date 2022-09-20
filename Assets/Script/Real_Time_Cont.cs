@@ -30,7 +30,6 @@ public class Real_Time_Cont : MonoBehaviour
     
     void Start()
     {
-        timer_set();
     }
     private void timer_set(){
         Timer_Bar.maxValue = Max_Time;
@@ -53,6 +52,7 @@ public class Real_Time_Cont : MonoBehaviour
         Set_Task(name);
         Set_Q(q);
         now_npc = npc_date;
+        timer_set();
     }
     //タスク名がするなら代入
     public void Set_Task(string name){
@@ -162,7 +162,7 @@ public class Real_Time_Cont : MonoBehaviour
                             GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
                             return;
                     }
-                    
+                    if(Timer_Bar.value <= 0)Add_Human ++;
                     //不満度を変化させる
                     GameManager._TPS_UI.Human_level += Add_Human;
 
