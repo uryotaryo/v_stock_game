@@ -30,7 +30,6 @@ public class Real_Time_Cont : MonoBehaviour
     
     void Start()
     {
-        timer_set();
     }
     private void timer_set(){
         Timer_Bar.maxValue = Max_Time;
@@ -53,6 +52,7 @@ public class Real_Time_Cont : MonoBehaviour
         Set_Task(name);
         Set_Q(q);
         now_npc = npc_date;
+        timer_set();
     }
     //タスク名がするなら代入
     public void Set_Task(string name){
@@ -117,7 +117,7 @@ public class Real_Time_Cont : MonoBehaviour
                 //質問に紐づいている選択肢が0以下の場合
                 if(now_Q.Anss.Count <= 0){
                     //カメラをTPSに戻し処理を終わる
-                    GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
+                    Exit_Question(0);
                     return;
                 }
             }
@@ -130,7 +130,7 @@ public class Real_Time_Cont : MonoBehaviour
                 case Reply.Reply_Type.Ans_Reply:
                     //選択肢に次の質問がない場合
                     if(_select_reply.Next_Question == null){
-                        GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
+                    Exit_Question(0);
                     }else{
                         Set_Q(_select_reply.Next_Question);
                     }
@@ -158,22 +158,23 @@ public class Real_Time_Cont : MonoBehaviour
                             break;
                         //番外数値処理
                         default:
-                            //TPSカメラに戻し処理を終了する
-                            GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
+                            Exit_Question(Add_Human);
                             return;
                     }
-                    
-                    //不満度を変化させる
-                    GameManager._TPS_UI.Human_level += Add_Human;
-
                     GameManager.Task_Execution_Set(now_T,Reward_num,now_npc);
-
-                    //処理が終わったのでTPS視点に戻す
-                    GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
+                    Exit_Question(Add_Human);
                     return;
                 default:
                     return;
             }
         }
+    }
+    public void Exit_Question(int Human){
+        int Add_Value = Human;
+        if(Timer_Bar.value <= 0)Add_Value ++;
+        GameManager._TPS_UI.Human_level += Add_Value;
+
+        //処理が終わったのでTPS視点に戻す
+        GameManager.Get_Player_OBJ().GetComponent<Player>().Cam_Change();
     }
 }
