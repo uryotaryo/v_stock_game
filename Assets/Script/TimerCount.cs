@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class TimerCount : MonoBehaviour
 {
 	//　トータル制限時間
-	private float totalTime;
+	private static float totalTime;
 	//　制限時間（分）
 	[SerializeField]
 	private int minute;
@@ -16,9 +16,16 @@ public class TimerCount : MonoBehaviour
 	//　前回Update時の秒数
 	private float oldSeconds;
 	private Text timerText;
-
+	private static TimerCount _my_Timer;
+	public static TimerCount Get_Timer(){
+		return _my_Timer;
+	}
+	public static float Get_NowTime(){
+		return totalTime;
+	}
 	void Start()
 	{
+		_my_Timer = this;
 		totalTime = minute * 60 + seconds;
 		oldSeconds = 0f;
 		timerText = GetComponentInChildren<Text>();
